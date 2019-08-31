@@ -50,10 +50,15 @@
                         </div>
                         
                         <br>
-                        
+                        <div class="form-group">
+                            <div class="g-recaptcha" data-validate="required" data-callback="enableBtn" data-sitekey="6Lef_rUUAAAAADHu1mZePsgR_nAFiwdBntp4vtDS"></div>
+                        </div>
+                        <!--KEY PROD-->
+                        <!-- <div class="g-recaptcha" data-sitekey="6LfD_rUUAAAAAMZ6_VcSqeddRzKmK9mIL25yljyk"></div> -->
+                        <br>
                         <div class="btn-group">
                             <button type="button" class="btn btn-danger" onclick='location.href = "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'index'), '', true) ?>"'><?php echo ($this->lang == 'Es') ? 'Cancelar' : 'Cancel'; ?></button>
-                            <button type="submit" name="submit" class="btn btn-primary"><?php echo ($this->lang == 'Es') ? 'Enviar' : 'Send'; ?></button>                            
+                            <button type="submit" id="submit" name="submit" class="btn btn-primary"><?php echo ($this->lang == 'Es') ? 'Enviar' : 'Send'; ?></button>                            
                         </div>
                         
                     </form>
@@ -82,10 +87,10 @@
 <!-- Bootstrap validate-->
     <script src="<?php echo $this->baseUrl(); ?>/js/bootstrap.validate.js"></script>
     <script src="<?php echo $this->baseUrl(); ?>/js/bootstrap.validate.<?php echo ($this->lang == 'es') ? 'es' : 'en'; ?>.js"></script>
-
+    <script src='https://www.google.com/recaptcha/api.js'></script>
     <script>
         $(document).ready(function() {
-
+            document.getElementById("submit").disabled = true;
             //Formulario de la vista a validar
             $('#new-account').bt_validate();
 
@@ -97,5 +102,8 @@
                     "Las contraseñas no son iguales"
                     );
         });
+        function enableBtn(){
+            document.getElementById("submit").disabled = false;
+        }
     </script>
 <!-- end Bootstrap validate-->
