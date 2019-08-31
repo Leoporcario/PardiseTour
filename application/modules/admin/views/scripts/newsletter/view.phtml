@@ -1,0 +1,101 @@
+<div style="margin:auto; width:700px; background:#fff; font-family:calibri;">
+    <table cellspacing="0" cellpadding="0" border="0" width="100%">
+        <tr>
+            <td height="150" width="25%">
+                
+            </td>
+            <td style="background-color:#fff; color:#fff; text-align: center;" valign="middle" style="text-align: center;">
+                <font size="2" face="Calibri" >
+                    <strong>
+                        Federacion Economica Mendoza
+                    </strong>
+                </font>
+                <br>
+                <img src="<?php echo $this->baseUrl()?>/imgs/logo.png"/>
+            </td>
+            <td width="15%">
+                
+            </td>
+        </tr>
+        <tr>
+            <td colspan="10" style="background:#fff;">
+                <hr width="80%" style="opacity:0.2;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="10" style="text-align: center; background:#fff; color:#333;">
+                <font size="4" face="Calibri" >
+                    <strong>
+                        Newsletter - <?php echo $this->newsletter['NLName']?>
+                    </strong>
+                </font>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="10" style="background:#fff;">
+                <hr width="80%" style="opacity:0.2;">
+            </td>
+        </tr>
+        <?php foreach($this->noticias as $noticia){ ?>
+            <tr>
+                <td colspan="10" style="background:#fff;">
+                    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="color:#fff;">
+                        <tr>
+                            <td colspan="10" height="30" style="background:#4E5D9F; color:#fff; font-size: 14px; font-weight: bold; text-align: right; padding-right: 20px;">
+                                <?php echo $noticia['NTitulo']?>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td width="70%" valign="top" style="padding:5px;">
+                                <font color="#666" size="2">
+                                    <?php echo invert_date($noticia['NFecha'],'spanish')?>
+                                </font>
+                                <p style="font-size: 12px; color:#333;">
+                                    <?php echo $noticia['NIntroduccion']?>
+                                </p>
+                            </td>
+                            <td width="30%">
+                                <img  width="100%" src="<?php echo  HOST . $this->baseUrl()?>/images/m_<?=$noticia['NImagen']?>">                                                           
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        <?php } ?>
+        <tr>
+            <td colspan="10" style="background:#fff;">
+                <hr width="80%" style="opacity:0.2;">
+            </td>
+        </tr>
+        <tr>
+            <td colspan="3" style="background:#fff; color:#4E5D9F;padding-left:10px;" height="30">
+                <a href="http://www.alvarezcondarco.com" style="text-decoration: none; Color:#4E5D9F; ">
+                    Federación Economica Mendoza - Version Online
+                </a>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;            
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;            
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;                
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;            
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;            
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;                
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <font size="2">
+                 <?php $fecha = explode('-', date("Y-m-D"));                            
+                            $anio = $fecha[0];
+                            $mes = $fecha[1];
+                            $numeroDia = date('j');
+                            $dia = day_in_letters($fecha[2], 'spa');
+                            ?>
+                           
+                <?php echo $dia?> <?php echo $numeroDia?> de <?php echo month_in_letters($mes, '')?>, <?php echo $anio; exit();?>
+                </font>
+            </td>
+    </table>
+</div>

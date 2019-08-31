@@ -1,0 +1,167 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Newsletter - Rutini Wines</title>
+
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl()."/css/style_newsletter.css")."\n"; ?>
+
+</head>
+
+<body>
+
+	<div id="center" style="background:url(<?php echo $this->baseUrl() . $this->target_background . $this->img_background ?>)no-repeat;">
+    
+    	<div id="page">
+        
+        	<div class="header" style="background-image:url(<?php echo $this->baseUrl() . $this->target_header . $this->img_header?>)">            
+            
+            	<div class="info_newsletter"><?php echo $this->newsletter['NLName']?></div>
+            
+            	<div class="date"><?php echo $this->newsletter['NLDescription']?></div>
+            
+            </div>
+            
+            <div class="menu">            
+            
+            	<ul>
+                
+                	<li><a href="#">Menú</a></li>
+                    <li><a href="#">Noticias</a></li>
+                    <li><a href="#">Sección 2</a></li>
+                    <li style="margin-left:375px;"><a href="#">Volver</a></li>
+                    <li style="margin-left:-20px;"><a href="#"><img src="<?php echo $this->baseUrl()?>/imgs/icon_tweeter.png" /></a></li>
+                    <li style="margin-left:-20px;"><a href="#"><img src="<?php echo $this->baseUrl()?>/imgs/icon_facebook.png" /></a></li>                    
+                
+                </ul>
+            
+            </div>
+        	
+            <div class="principal_new">          
+            
+                <img src="<?php echo $this->baseUrl() . $this->image_target . $this->principal_img?>" />
+                    
+                <div class="title"><?php echo $this->principal_new['NTitle']?></div>
+                    
+                <div class="subtitle"><?php echo $this->principal_new['NSubtitle']?></div>
+                    
+                <div class="content"><?php echo $this->principal_new['NBody']?></div>
+                    
+                <div class="read_more"><a href="#"><img src="<?php echo $this->baseUrl()?>/imgs/image_read_more.jpg"/> Leer más</a> <div class="clear">
+            
+            </div></div>
+                 <div class="clear">
+            
+            </div>
+            </div>
+            
+            
+            <div class="secundary_area">
+            
+            	<?php $c=0; foreach($this->secundary_news as $secnew){?>
+            
+            	<div class="secundary_new">
+                	
+                    <div class="title"><?php echo $secnew['NTitle'];?></div>
+                    
+                    <img src="<?php echo $this->baseUrl() . $this->image_target . $this->secundary_imgs[$c];?>"/>
+                    
+                    <div class="copete"><?php echo $secnew['NSubtitle'];?></div>
+                    
+                    <div class="content"><?php echo $secnew['NBody'];?></div>
+                    
+                      <div class="read_more" style="margin-left:0px; margin-top:20px;"><a href="#"><img src="<?php echo $this->baseUrl()?>/imgs/image_read_more.jpg"/> Leer más</a></div>
+                    
+                </div>             
+                                   
+            <?php $c++; }?>
+            
+            <div class="clear">
+            
+            </div>
+            </div>
+            
+            <div class="other_news_area">
+            
+            	<div class="title">Febrero en la bodega</div>
+                
+                <?php $c=0; foreach($this->visit_news as $visitnew){?>
+                
+                <div class="other_new">
+                
+                	<img src="<?php echo $this->baseUrl() . $this->image_target . $this->visit_img[$c];?>" />
+                    
+                    <div class="content"><?php echo $visitnew['NBody']?></div>
+                    
+                     <div class="read_more" style="margin-left:0px; margin-top:20px;"><a href="#"><img src="<?php echo $this->baseUrl()?>/imgs/image_read_more.jpg"/> Leer más</a></div>
+                
+                </div>   
+                
+                 <?php $c++; }?>            
+                <div class="clear">
+                
+                </div>       
+            </div>
+            
+            <div class="footer" style="background-image:url(<?php echo $this->baseUrl() . $this->target_footer . $this->img_footer?>)">
+            
+            	<div class="info">
+                	Para más información, por favor contactar a: ILANA NAOMI RICHMAN Marketing Manager International Trade Division - irichman@rutiniwines.net
+                </div>
+            
+            	<div class="contact">
+                
+                	<table>
+                    
+                    	<tr>
+                        	
+                            <td colspan="2">Seguinos en:</td>
+                            
+                        </tr>
+                    
+                    	<tr>
+                        
+                        	<td><a href="#"><img src="<?php echo $this->baseUrl()?>/imgs/icon_facebook.png" /></a></td>
+                            <td>facebook/rutiniwinesglobal</td>
+                                                        
+                        </tr>
+                        
+                        <tr>
+                        
+                        	<td><a href="#"><img src="<?php echo $this->baseUrl()?>/imgs/icon_tweeter.png" /></a></td>
+                            <td>twitter/rutiniwines</td>
+                            
+                        </tr>
+                    
+                    </table>
+                
+                </div>
+                
+                <div class="directions">
+                
+                	<table>
+                    
+                    	<tr>
+                        
+                        	<td>OFICINAS & MUSEO <br /> Montecaseros 2625 . Coquimbito (5513) . <br />Maipú . Mendoza . Argentina <br />Tel-Fax: +54 261 4972013 .<br /> www.rutiniwines.com</td>
+                            <td>RUTINI WINERY <br />Ruta Prov. N° 89 . Km 10.5 . Tupungato <br />. Mendoza . Argentina <br />Localización por satelite:<br />
+S33.452200 W69.208830</td>
+                        
+                        </tr>
+                    
+                    </table>
+                
+                </div>
+                
+                <div class="baja">Este email no se considera SPAM, ya que Ud. puede en cualquier momento DARSE DE BAJA o RETIRARSE o BLOQUEARSE de nuestra base de datos haciendo <a href="#">CLICK AQUÍ</a> y en el término de 48 hs. daremos de baja su email de nuestra base de datos. De esta manera estamos cumpliendo la Disposición Nro.4/2009 DNDP que entro en vigencia en la Argentina a partir de 19/3/2009
+                </div>
+            
+            </div>
+            
+        </div>           
+        
+    </div>
+
+
+</body>
+</html>

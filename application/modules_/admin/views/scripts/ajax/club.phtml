@@ -1,0 +1,47 @@
+<div class="form-group col-lg-4" id="club_<?php echo $this->alreadyRendered?>">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Club de buceo <?php echo $this->alreadyRendered+1?> 
+            <button type="button" class="close closeId" data-target="club_<?php echo $this->alreadyRendered?>">&times;</button>
+        </div>
+        <div class="panel-body">        
+            <div class="form-group col-lg-15">
+                <?php $fieldName = 'club['.$this->alreadyRendered.'][CBnombreEs]'; ?>
+                <label for="<?php echo $fieldName ?>">Nombre (Español)*</label>
+                <input maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Español)" data-validate="required">        
+            </div>
+            <div class="clearfix">
+
+            </div> 
+            <div class="form-group col-lg-15">
+                <?php $fieldName = 'club['.$this->alreadyRendered.'][CBnombreEn]'; ?>
+                <label for="<?php echo $fieldName ?>">Nombre (Inglés)*</label>
+                <input maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Inglés)" data-validate="required">        
+            </div>    
+            <div class="clearfix">
+
+            </div> 
+            <div class="form-group col-lg-15">
+                <?php $fieldName = 'club['.$this->alreadyRendered.'][CBdescripcionEs]'; ?>
+                <label for="<?php echo $fieldName ?>">Descripción (Español)</label>
+                <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big" placeholder="Descripción (Español)"></textarea>
+            </div>
+            <div class="clearfix">
+
+            </div> 
+            <div class="form-group col-lg-15">
+                <?php $fieldName = 'club['.$this->alreadyRendered.'][CBdescripcionEn]'; ?>
+                <label for="<?php echo $fieldName ?>">Descripción (Inglés)</label>
+                <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big" placeholder="Descripción (Inglés)"></textarea>
+            </div>
+            <div class="clearfix">
+
+            </div> 
+            <div class="form-group col-lg-15">
+                <?php $fieldName = 'club['.$this->alreadyRendered.'][CBlink]'; ?>
+                <label for="<?php echo $fieldName ?>">Link</label>
+                <input maxlength="<?php echo $this->maxlenghtInput ?>" type="url" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Link" data-validate="www">        
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,87 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 shadow bg-light-blue">
+            <h1 class="color-white light">
+                <?php echo ($this->lang == 'Es') ? 'Archivos descargables' : 'Downloadable files' ;?>
+            </h1>
+        </div>
+    </div>
+    <div class="clearfix" style="margin-top: 30px;">
+
+    </div>
+    <div class="row">
+
+    </div>
+    <div id="hotels" class="row" style="margin-top: 15px;">
+        <?php foreach ($this->archivos as $archivo) : ?>
+            <?php if(file_exists(PUBLIC_PATH.DS."files".DS.$archivo['Afisico' . $this->lang]) && !empty($archivo['Afisico' . $this->lang])):?>
+            <div class="panel-heading">
+                <div class="row">
+                    <div class="col-lg-11 col-md-11">
+                        <h4 class="panel-title">
+                            <a class="roboto bold hotelLink color-white" style="color:#fff;" data-toggle="collapse" data-parent="#accordion" href="#collapse-file-<?php echo $archivo['idArchivo']; ?>">
+                                <span class="glyphicon glyphicon-file"></span> 
+                                <?php echo $archivo['Anombre' . $this->lang]; ?>
+                                <small class="color-white"><?php echo date_format(new DateTime($archivo['AfechaActualizacion']), 'd/m/Y'); ?></small>
+                            </a>
+                        </h4>
+                    </div>
+                    <div class="col-lg-1 col-md-1 text-right">
+                        <a class="hotelLink" data-toggle="collapse" data-parent="#accordion" href="#collapse-file-<?php echo $archivo['idArchivo']; ?>">
+                            <div class="showHide">
+
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="collapse-file-<?php echo $archivo['idArchivo']; ?>" class="panel-collapse collapse">
+                <div class="panel-body">
+                    <p class="color-a roboto light">
+                        <?php echo str_replace("</div>", "<br/>", str_replace("<div>", " ", $archivo['Adescripcion' . $this->lang])) ?>
+                    </p>                    
+                    <div class="clearfix" style="margin-top: 15px;">
+
+                    </div>
+                    <?php if (!$archivo['Afisico' . $this->lang]): ?>
+                        <?php  $archivo['Afisico' . $this->lang]=$archivo['AfisicoEs']; ?>
+                    <?php endif ?>
+                    <a target="_blank" class="btn btn-info" href="<?php echo $this->baseUrl(); ?>/files/<?php echo $archivo['Afisico' . $this->lang]; ?>">
+                        <span class="glyphicon glyphicon-save"></span> <?php echo ($this->lang == 'Es') ? 'Descargar archivo' : 'Download file' ;?>
+                    </a>
+                </div>        
+            </div>
+            <div class="clearfix" style="margin-top: 15px;">
+
+            </div>
+        <?php endif;?>
+        <?php endforeach; ?>
+    </div>
+    <div class="row">
+        <div class="col-lg-12">            
+            <div class="container" style="text-align: center; padding-top: 15px;">
+                <?php echo $this->paginationControl($this->archivos, 'Sliding', '_partials/_paginationControl.phtml', array('search' => $this->searched)); ?>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+
+    .hiddenContent{
+        max-height: 20px;
+        overflow: hidden;
+    }
+
+</style>
+
+
+<script>
+    //Oculto el slider para la seccion de usuarios
+    $("#ca-container").hide();
+
+    $(".panel-title a, .hotelLink").click(function() {
+        $(this).closest(".panel-heading").toggleClass("active");
+    });
+
+</script>

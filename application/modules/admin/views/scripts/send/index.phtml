@@ -1,0 +1,30 @@
+<h2>
+    <?php echo $this->h2; ?>
+</h2>
+<table class="tabla">
+    <tr>
+     	<th width="30">ID</th>
+        <th width="150">Nombre del Newsletter</th>
+        <th width="">Fecha</th>
+        <th width="150">Hora</th>
+        <th width="80">Estado</th>
+        <th width="120">Opciones</th>
+    </tr>
+<?  foreach($this->envios as $key=>$envio){ ?>
+    <tr <?=($key%2==0)?'class="gris"':'';?>>
+    	<td><?php echo $envio->IDEnvio?></td>
+        <td><?php echo $envio->NLName?></td> 
+        <td><?php echo $envio->EFecha?></td> 
+        <td><?php echo $envio->EHora?></td>   
+        <td><?php echo ($envio->EEstado == 1) ? 'Enviado' : 'Sin enviar' ; ?></td>
+        <td style="text-align:center">
+            <a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'send', 'action'=>'delete','id'=>$envio->IDEnvio),'',true);?>" title="Eliminar">
+            	<img border="0" src="<?php echo $this->baseUrl()?>/imgs/body_content_delete.png"/>
+            </a>
+            <a href="<?php echo $this->url(array('module' => 'admin', 'controller'=>'send', 'action'=>'view','id'=>$envio->IDEnvio),'',true);?>" title="Detalles envio">
+            	<img border="0" src="<?php echo $this->baseUrl()?>/imgs/body_content_flecha.png"/>
+            </a>
+        </td>
+    </tr>
+<? }?>
+</table>

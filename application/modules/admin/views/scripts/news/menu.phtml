@@ -1,0 +1,10 @@
+<?echo '
+            <div class="title" > 
+                Menu
+             </div>
+             <div class="menu_item">Noticias</div>
+             <div class="menu_item"><a href="' . $this->url(array('module' => 'admin', 'controller' => 'noticia', 'action' => 'add')) . '">- Agregar noticia </a></div>
+             <div class="menu_item"><a href="' . $this->url(array('module' => 'admin', 'controller' => 'noticia', 'action' => 'index')) . '">- Mostrar Todas</a></div>
+             <div class="menu_item"><a href="' . $this->url(array('module' => 'admin', 'controller' => 'noticia', 'action' => 'order', 'type' => 'new')) . '">- Ordenar Noticias</a></div>             
+             <div class="menu_item"><a href="' . $this->url(array('module' => 'admin', 'controller' => 'noticia', 'action' => 'order', 'type' => 'media')) . '">- Ordenar En los medios</a></div>                          
+             <div class="menu_item"><hr></div>'; ?>

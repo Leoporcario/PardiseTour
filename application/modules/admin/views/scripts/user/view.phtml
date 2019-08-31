@@ -1,0 +1,43 @@
+<table class="option">
+    <tr>
+        <td>
+            <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php 
+            echo $this->url(array('module' => $this->parameters['module'], 'controller' => $this->parameters['controller'], 'action' => 'index')); 
+        ?>'" value="Back">
+        </td>
+        <td>
+            <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php 
+            echo $this->url(array('module' => $this->parameters['module'], 'controller' => $this->parameters['controller'], 'action' => 'add'), null, true); 
+        ?>'" value="New">
+        <td>
+            <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php 
+            echo $this->url(array('module' => $this->parameters['module'], 'controller' => $this->parameters['controller'], 'action' => 'edit')); 
+        ?>'" value="Edit">
+        </td>
+        <td>
+            <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php 
+            echo $this->url(array('module' => $this->parameters['module'], 'controller' => $this->parameters['controller'], 'action' => 'delete')); 
+        ?>'" value="Delete">
+        </td>
+    </tr>
+</table>
+<fieldset>
+    <legend>General data</legend>
+    <table class="view">
+        <tr>
+            <th>Name: </th>
+            <?php $field = "UName"; ?>
+            <td><?php echo $this->result[$field]?></td>
+        </tr>
+        <tr>
+            <th>Lastname: </th>
+            <?php $field = "ULastname"; ?>
+            <td><?php echo $this->result[$field]?></td>
+        </tr>
+        <tr>
+            <th>Login name: </th>
+            <?php $field = "ULoginname"; ?>
+            <td><?php echo $this->result[$field]?></td>
+        </tr>
+    </table>
+</fieldset>

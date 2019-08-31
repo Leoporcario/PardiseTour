@@ -1,0 +1,98 @@
+<?php 
+
+if($this->message){
+	echo '<div class="message">'.$this->message.'</div>';
+}
+
+?>
+<form name = "edit_newsletter" id = "edit_newsletter" method = "post" >  
+<input type="hidden" name="IDNewsletter" id="IDNewsletter" value="<?php echo $this->result["IDNewsletter"]?>"   />    
+
+<table class="table_forms" border="0">
+    <tr>                        
+        <td class="label">Nombre: *</td>
+        <td><input name = "NLName" id = "NLName" type = "text" onkeyup="is_enter(event);" value="<?php echo $this->result['NLName']?>"/></td>                        
+    </tr>	
+    
+    <tr>                        
+        <td class="label">Descripción: *</td>
+        <td><textarea name = "NLDescription" id = "NLDescription" type = "text" onkeyup="is_enter(event);" ><?php echo $this->result['NLDescription']?></textarea></td>                        
+    </tr>    
+    
+    <tr>                        
+        <td class="label">Tipo (Layout): *</td>
+       <td>
+        <select name="IDType" id="IDType">
+		<?  foreach($this->types as $type){ ?>
+            <option <?php echo ($this->result["IDType"]==$type->IDType)?'selected="selected"':'';?> value="<?php echo $type->IDType?>"><?php echo $type->TName?></option>
+        <? } ?>
+        </select>
+        </td>                        
+    </tr>
+    
+     <tr>                        
+        <td class="label">Noticias: *</td>
+        <td>
+            <?
+			foreach($this->news as $new){ ?>
+            	
+            	<input name="IDNew[]" id="IDNew_<?php echo $new->IDNew?>" <?php echo (in_array($new->IDNew, $this->newsletter_new))?'checked="checked"':'';?> type="checkbox" value="<?php echo $new->IDNew?>" style="vertical-align:middle; width:20px"/>
+				<?php echo $new->NTitle?>
+                <br />
+            <? } ?>
+        </td>                        
+    </tr>
+       
+    <tr>                        
+        <td class="label">Imagen para el Footer: *</td>
+        <td>
+        
+        <select name="IDFooter" id="IDFooter">
+		<?  foreach($this->footers as $footer){ ?>
+           <option <?php echo ($this->result["IDFooter"]==$footer->IDFooter)?'selected="selected"':'';?> value="<?php echo $footer->IDFooter?>"><?php echo $footer->FName?></option>
+        <? } ?>
+        </select>
+        </td>                        
+    </tr>
+    
+    <tr>                        
+        <td class="label">Imagen para el Header: *</td>
+        <td>
+        <select name="IDHeader" id="IDHeader">
+		<?  foreach($this->headers as $header){ ?>
+            <option <?php echo ($this->result["IDHeader"]==$header->IDHeader)?'selected="selected"':'';?> value="<?php echo $header->IDHeader?>"><?php echo $header->HName?></option>
+        <? } ?>
+        </select>
+        </td>                        
+    </tr>
+        
+   
+      	
+    <tr>
+        <td colspan="2"><div id = "label_error" class="label_error">&nbsp;</div></td>
+    </tr> 
+    <tr>
+    	<td colspan="2">
+         <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php echo $this->url(array('controller'=>'newsletter', 'action'=>'index'),'',true);?>'" value="Cancelar">
+        <input type="button" class="buttons" name = "button_sumbmit" id = "button_sumbmit" onclick="validate_form();" value="Aceptar">
+        </td>
+    </tr>
+</table>
+	
+</form>
+<script>
+	function validate_form(){
+		var id_form='edit_newsletter';
+		form=document.getElementById(id_form).elements;
+		form=document.getElementById(id_form).elements;
+		
+		if(is_empty(form["NLName"],"Complete el campo Nombre del newsletter.")) return;
+		if(is_empty(form["NLDescription"],"Complete el campo Descripción")) return;		
+		if(is_empty(form["IDType"],"Seleccione un tipo (layout) para el newsletter")) return;		
+		
+		if(form["button_sumbmit"].disabled==false){
+			form["button_sumbmit"].disabled=true;
+			send_form(document.getElementById(id_form),"Modificando, por favor espere ... ");
+		}
+	}
+</script>

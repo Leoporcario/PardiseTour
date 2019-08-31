@@ -1,0 +1,100 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 shadow bg-light-blue">
+            <h1 class="color-white thin">
+                <?php echo ($this->lang == 'Es') ? 'Crear una nueva cuenta' : 'Create new user account'; ?>
+            </h1>
+        </div>
+    </div>
+    <div class="clearfix" style="margin-top: 30px;">
+
+    </div>
+
+    <!-- Formulario y explicacion -->
+    <div class="col-lg-12 col-md-12 col-sm-12" style="margin-bottom: 30px; padding: 0;">
+        <div class="bg-white border-radius-8 pad-20">
+            <div class="row">
+                <div class="col-lg-12">
+                    <blockquote>
+                        <p class="color-b slab">                            
+                            <?php echo ($this->lang == 'Es') ? 'Su cuenta será auditada por un administrador para activarla' : 'Your account will be audited by an administrator for activation'; ?>.
+                        </p>
+                    </blockquote>
+                    <h3 class="color-a roboto light noMargin">
+                        <?php echo ($this->lang == 'Es') ? 'Ingrese sus datos (todos son obligatorios)' : 'Input your account data (All data are mandatory)'; ?>
+                    </h3>
+                    <br>
+                    <form id="new-account" name="new-account" method="post" role="form" novalidate>
+                        <div class="form-group">
+                            <label class="color-a roboto" for="email"><?php echo ($this->lang == 'Es') ? 'Nombre' : 'Name'; ?></label>
+                            <input data-validate="required" type="text" class="form-control" id="name" name="SNombre" placeholder="<?php echo ($this->lang == 'Es') ? 'Nombre' : 'Name'; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label class="color-a roboto" for="email">Email</label>
+                            <input data-validate="required|email" type="email" class="form-control" id="email" name="SEmail" placeholder="Email">
+                        </div>
+                        <div class="form-group">
+                            <label class="color-a roboto" for="enterprise"><?php echo ($this->lang == 'Es') ? 'Empresa' : 'Enterprise'; ?></label>
+                            <input type="text" class="form-control" id="enterprise" name="SEmpresa" placeholder="<?php echo ($this->lang == 'Es') ? 'Empresa' : 'Enterprise'; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label class="color-a roboto" for="phone"><?php echo ($this->lang == 'Es') ? 'Teléfono' : 'Phone'; ?></label>
+                            <input data-validate="required" type="text" class="form-control" id="phone" name="STelefono" placeholder="<?php echo ($this->lang == 'Es') ? 'Teléfono' : 'Phone'; ?>">
+                        </div>
+                        <hr>
+                        <div class="form-group">
+                            <label class="color-a roboto" for="password"><?php echo ($this->lang == 'Es') ? 'Contraseña' : 'Password'; ?></label>
+                            <input data-validate="required" type="password" class="form-control" id="password" name="UPassword" placeholder="<?php echo ($this->lang == 'Es') ? 'Contraseña' : 'Password'; ?>">
+                        </div>
+                        <div class="form-group">
+                            <label class="color-a roboto" for="password-repeat"><?php echo ($this->lang == 'Es') ? 'Repita contraseña' : 'Repeat password'; ?></label>
+                            <input data-validate="required|custom_pass_eq" type="password" class="form-control" name="password2" id="password-repeat" placeholder="<?php echo ($this->lang == 'Es') ? 'Repita contraseña' : 'Repeat password'; ?>">
+                        </div>
+                        <br>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-danger" onclick='location.href = "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'index'), '', true) ?>"'><?php echo ($this->lang == 'Es') ? 'Cancelar' : 'Cancel'; ?></button>
+                            <button type="submit" name="submit" class="btn btn-primary"><?php echo ($this->lang == 'Es') ? 'Crear cuenta' : 'Create account'; ?></button>                            
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end Formulario y explicacion -->
+
+</div>
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+<!-- footer -->
+<?php echo $this->partial("_partials/_footer.phtml") ?>
+<!-- fin footer -->
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+
+</div>
+</div>
+
+<!-- HASTA ACA ES EL PRIMER PARALLAX -->
+
+<!-- Bootstrap validate-->
+    <script src="<?php echo $this->baseUrl(); ?>/js/bootstrap.validate.js"></script>
+    <script src="<?php echo $this->baseUrl(); ?>/js/bootstrap.validate.<?php echo ($this->lang == 'es') ? 'es' : 'en'; ?>.js"></script>
+
+    <script>
+        $(document).ready(function() {
+
+            //Formulario de la vista a validar
+            $('#new-account').bt_validate();
+
+            $.bt_validate.method(
+                    'custom_pass_eq',
+                    function(value) {
+                        return ($('#password').val() === $('#password-repeat').val());
+                    },
+                    "Las contraseñas no son iguales"
+                    );
+        });
+    </script>
+<!-- end Bootstrap validate-->

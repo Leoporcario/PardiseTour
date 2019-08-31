@@ -1,0 +1,89 @@
+<?php echo $this->partial('messages.phtml', array('messages' => $this->messages)); ?>
+<div class="form-container">
+    <blockquote>
+        <?php if($this->title){?>
+        <p class="text-primary"><?php echo ($this->icon) ? '<label class="glyphicon glyphicon-'.$this->icon.'"></label> ' : '' ;?> <?php echo $this->title?></p>
+        <?php } ?>
+        <?php if($this->description){?>
+        <small><?php echo $this->description?></small>
+        <?php } ?>
+    </blockquote>
+    <form id="archivoForm" method="post" enctype="multipart/form-data" novalidate>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'AnombreEs';?>
+            <?php $labelName = 'Nombre (Español)';?>
+            <label for="<?php echo $fieldName?>"><?php echo $labelName?></label>
+            <input maxlength="<?php echo $this->maxlenghtInput?>" type="text" id="<?php echo $fieldName?>" name="<?php echo $fieldName?>" class="form-control" placeholder="<?php echo $labelName?>" data-validate="<?php echo $this->validations[$fieldName]?>">        
+        </div>   
+        <div class="clearfix">
+
+        </div>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'AnombreEn';?>
+            <?php $labelName = 'Nombre (Inglés)';?>
+            <label for="<?php echo $fieldName?>"><?php echo $labelName?></label>
+            <input maxlength="<?php echo $this->maxlenghtInput?>" type="text" id="<?php echo $fieldName?>" name="<?php echo $fieldName?>" class="form-control" placeholder="<?php echo $labelName?>" data-validate="<?php echo $this->validations[$fieldName]?>">        
+        </div>    
+        <div class="clearfix">
+
+        </div>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'AdescripcionEs';?>
+            <?php $labelName = 'Descripción (Español)';?>
+            <label for="<?php echo $fieldName?>"><?php echo $labelName?></label>
+            <textarea id="<?php echo $fieldName?>" name="<?php echo $fieldName?>" class="form-control big ckeditor" placeholder="<?php echo $labelName?>"></textarea>
+        </div>
+        <div class="clearfix">
+
+        </div>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'AdescripcionEn';?>
+            <?php $labelName = 'Descripción (Inglés)';?>
+            <label for="<?php echo $fieldName?>"><?php echo $labelName?></label>
+            <textarea id="<?php echo $fieldName?>" name="<?php echo $fieldName?>" class="form-control big ckeditor" placeholder="<?php echo $labelName?>"></textarea>
+        </div>
+        <div class="clearfix">
+
+        </div> 
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'AfisicoEs';?>
+            <?php $labelName = 'Archivo (Español)';?>
+            <label for="<?php echo $fieldName?>"><?php echo $labelName?></label>
+            <input type="file" id="<?php echo $fieldName?>" name="<?php echo $fieldName?>" class="form-control" placeholder="<?php echo $labelName?>" data-validate="<?php echo $this->validations[$fieldName]?>">
+            <p class="help-block">Archivos .jpg, .png, .swf, .pdf solamente</p>
+        </div>  
+        <div class="clearfix">
+
+        </div> 
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'AfisicoEn';?>
+            <?php $labelName = 'Archivo (Ingles)';?>
+            <label for="<?php echo $fieldName?>"><?php echo $labelName?></label>
+            <input type="file" id="<?php echo $fieldName?>" name="<?php echo $fieldName?>" class="form-control" placeholder="<?php echo $labelName?>" data-validate="<?php echo $this->validations[$fieldName]?>">
+            <p class="help-block">Archivos .jpg, .png, .swf, .pdf solamente</p>
+        </div>  
+        <div class="clearfix"></div>
+        <hr>
+        <div class="">
+            <?php $fieldName = 'SIDPerfil'; ?>
+            <label for="<?php echo $fieldName ?>">Perfiles que podrán acceder</label>
+            <br/>
+            <div class="row">
+                <?php foreach ($this->perfiles as $tipo): ?>
+                    <div class="col-md-4 col-sm-6">
+                        <div class="checkbox ">
+                            <label><input type="checkbox" name="perfiles[]" value="<?php echo $tipo["IDPerfil"] ?>"><?php echo $tipo["PNombre"] ?></label>
+                        </div>
+                    </div>
+                <?php endforeach;?>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <hr>
+        <div class="btn-group">
+            <button type="submit" name="submit" class="btn btn-primary" data-loading-text="Validando...">Guardar</button>
+            <?php /*<button type="button" data-toggle="button" class="btn btn-info" data-rel="popover" data-content="asdasdasd" title="Información">Información</button>*/?>
+            <button type="button" class="btn btn-danger" onclick='location.href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'user', 'action' => 'index'), '', true)?>"'>Cancelar</button>
+        </div>
+    </form>
+</div>

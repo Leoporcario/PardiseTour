@@ -1,0 +1,25 @@
+<?php foreach ($this->hotelList as $hotel) : ?> 
+    <div class="panel-heading <?php echo ($hotel['idHotel'] == $this->activeHotelId) ? 'active' : '' ;?> hotel-ajax" data-hotel-id="<?php echo $hotel['idHotel']?>">
+        <div class="row">
+            <div class="col-lg-11 col-md-11">
+                <h4 class="panel-title">
+                    <a class="roboto bold hotelLink" data-toggle="collapse" data-parent="#accordion" href="#collapse-hotel-<?php echo $hotel['idHotel']; ?>">
+                        <?php echo $hotel['HOnombre' . $this->lang]; ?>
+                    </a>
+                </h4>
+            </div>
+            <div class="col-lg-1 col-md-1 text-right">
+                <a class="hotelLink" data-toggle="collapse" data-parent="#accordion" href="#collapse-hotel-<?php echo $hotel['idHotel']; ?>">
+                    <div class="showHide">
+
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="collapse-hotel-<?php echo $hotel['idHotel']; ?>" class="panel-collapse collapse <?php echo ($hotel['idHotel'] == $this->activeHotelId) ? 'in' : '' ;?>">
+        <div class="panel-body">
+            <?php echo $this->partial("_partials/_spinner.phtml"); ?>
+        </div>        
+    </div>
+<?php endforeach; ?>

@@ -1,0 +1,30 @@
+<div class="form-container">
+    <blockquote>
+        <?php if ($this->title) { ?>
+            <p class="text-primary"><?php echo ($this->icon) ? '<label class="glyphicon glyphicon-' . $this->icon . '"></label> ' : ''; ?> <?php echo $this->title ?></p>
+        <?php } ?>
+        <?php if ($this->description) { ?>
+            <small><?php echo $this->description ?></small>
+        <?php } ?>
+    </blockquote>
+    <form id="<?php echo $this->formId?>" method="post" enctype="multipart/form-data" novalidate>
+        <div class="form-group col-lg-4">
+            <?php $fieldName = 'GInombreEs'; ?>
+            <label for="<?php echo $fieldName ?>">Nombre (Español)*</label>
+            <input maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Español)" data-validate="<?php echo $this->validations[$fieldName] ?>">        
+        </div>                        
+        <div class="form-group col-lg-4">
+            <?php $fieldName = 'GInombreEn'; ?>
+            <label for="<?php echo $fieldName ?>">Nombre (Inglés) *</label>
+            <input maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Inglés)" data-validate="<?php echo $this->validations[$fieldName] ?>">
+        </div>      
+        <div class="clearfix">
+            
+        </div>
+        <div class="btn-group">
+            <button type="submit" name="submit" class="btn btn-primary" data-loading-text="Validando...">Guardar</button>
+            <?php /* <button type="button" data-toggle="button" class="btn btn-info" data-rel="popover" data-content="asdasdasd" title="Información">Información</button> */ ?>
+            <button type="button" class="btn btn-danger" onclick='location.href = "<?php echo $this->url(array('module' => 'admin', 'controller' => 'grupoisla', 'action' => 'index'), '', true) ?>"'>Cancelar</button>
+        </div>
+    </form>
+</div>

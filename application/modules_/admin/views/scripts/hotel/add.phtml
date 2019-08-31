@@ -1,0 +1,165 @@
+<div class="form-container">
+    <blockquote>
+        <?php if ($this->title) { ?>
+        <p class="text-primary"><?php echo ($this->icon) ? '<label class="glyphicon glyphicon-' . $this->icon . '"></label> ' : ''; ?> <?php echo $this->title ?></p>
+        <?php } ?>
+        <?php if ($this->description) { ?>
+        <small><?php echo $this->description ?></small>
+        <?php } ?>
+    </blockquote>
+    <form id="hotelForm" method="post" enctype="multipart/form-data" novalidate>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            Datos generales
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="form-group col-sm-5">
+                                <?php $fieldName = 'idGrupoIsla'; ?>
+                                <label for="<?php echo $fieldName ?>">Grupo de Islas</label>
+                                <br>
+                                <select class="form-control loadIslas" name="<?php echo $fieldName ?>" id="<?php echo $fieldName ?>">
+                                    <option value="">Seleccione un grupo de islas...</option>
+                                    <?php foreach ($this->grupoIsla as $tipo) { ?>
+                                    <option value="<?= $tipo[$fieldName] ?>"><?= $tipo['GInombreEs'] ?></option>     
+                                    <?php } ?>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <?php $fieldName = 'idIsla'; ?>
+                                <label for="<?php echo $fieldName ?>">Isla *</label>
+                                <br>
+                                <select class="form-control" name="<?php echo $fieldName ?>" id="<?php echo $fieldName ?>" data-validate="<?php echo $this->validations[$fieldName] ?>">
+                                    <option value="">Seleccione un grupo de islas...</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <?php $fieldName = 'IDCategoriaHotel'; ?>
+                                <label for="<?php echo $fieldName ?>">Categoría hotel</label>
+                                <br>
+                                <select class="form-control" name="<?php echo $fieldName ?>" id="<?php echo $fieldName ?>">
+                                    <?php foreach ($this->categoriaHotel as $tipo) { ?>
+                                    <option value="<?php echo $tipo[$fieldName] ?>"><?php echo $tipo['CHnombreEs'] ?></option>     
+                                    <?php } ?>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="clearfix">
+
+                        </div>
+                        <div class="form-group col-lg-4">
+                            <?php $fieldName = 'HOlogo'; ?>
+                            <label for="<?php echo $fieldName ?>">Logo *</label>
+                            <input type="file" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Imagen" data-validate="<?php echo $this->validations[$fieldName] ?>">
+                            <p class="help-block">Archivos .jpg o .png solamente</p>
+                        </div>                          
+                        <div class="form-group col-lg-4">
+                            <?php $fieldName = 'HOmapa'; ?>
+                            <label for="<?php echo $fieldName ?>">Mapa</label>
+                            <input type="file" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Imagen" data-validate="<?php echo $this->validations[$fieldName] ?>">
+                            <p class="help-block">Archivos .jpg o .png solamente</p>
+                        </div>  
+                        <div class="clearfix">
+
+                        </div> 
+                        <div class="form-group col-lg-4">
+                            <?php $fieldName = 'HOnombreEs'; ?>
+                            <label for="<?php echo $fieldName ?>">Nombre (Español)*</label>
+                            <input maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Español)" data-validate="<?php echo $this->validations[$fieldName] ?>">        
+                        </div>
+                        <div class="clearfix">
+
+                        </div>
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'HOdescripcionEs'; ?>
+                            <label for="<?php echo $fieldName ?>">Descripción (Español) *</label>
+                            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big ckeditor" placeholder="Descripción (Español)"></textarea>
+                        </div>
+
+                        <div class="form-group col-lg-4">
+                            <?php $fieldName = 'HOnombreEn'; ?>
+                            <label for="<?php echo $fieldName ?>">Nombre (Inglés) *</label>
+                            <input maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Inglés)" data-validate="<?php echo $this->validations[$fieldName] ?>">        
+                        </div>
+                        <div class="clearfix">
+
+                        </div>
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'HOdescripcionEn'; ?>
+                            <label for="<?php echo $fieldName ?>">Descripción (Inglés) *</label>
+                            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big ckeditor" placeholder="Descripción (Inglés)"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            Imágenes
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body" id="imageDiv">                       
+                        <?php echo $this->partial('imageInputs.phtml'); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                            Actividades (Pagas | Gratuitas - Dentro del hotel)
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body" id="actividadDiv">
+                        <?php echo $this->partial('actividadeshotel.phtml'); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse4">
+                            Bares y Restaurants (Dentro del hotel)
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse4" class="panel-collapse collapse">
+                    <div class="panel-body" id="restobarDiv">
+                        <?php echo $this->partial('restobarhotel.phtml'); ?> 
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse5">
+                            Eventos (Dentro del hotel)
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse5" class="panel-collapse collapse">
+                    <div class="panel-body" id="eventoDiv">
+                        <?php echo $this->partial('eventoshotel.phtml'); ?> 
+                    </div>
+                </div>
+            </div>
+        </div>       
+        <br>
+        <div class="btn-group">
+            <button type="submit" name="submit" class="btn btn-primary" data-loading-text="Validando...">Guardar</button>
+            <?php /* <button type="button" data-toggle="button" class="btn btn-info" data-rel="popover" data-content="asdasdasd" title="Información">Información</button> */ ?>
+            <button type="button" class="btn btn-danger" onclick='location.href = "<?php echo $this->url(array('module' => 'admin', 'controller' => 'hotel', 'action' => 'index'), '', true) ?>"'>Cancelar</button>
+        </div>
+    </form>
+</div>

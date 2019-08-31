@@ -1,0 +1,334 @@
+<?php
+//Definicion de cruceros
+
+$cruises = array();
+
+$cruises[0] = array(
+    'id' => 'cruice_1',
+    'images' => array(
+        1 => 'archipels1.jpg',
+        2 => 'archipels2.jpg',
+        3 => 'archipels3.jpg',
+        4 => 'archipels4.jpg',
+        5 => 'archipels5.jpg',
+        6 => 'archipels6.jpg',
+        7 => 'archipels7.jpg',
+        8 => 'archipels8.jpg',
+        9 => 'archipels9.jpg',
+    ),
+    'nameEs' => 'Archipels',
+    'nameEn' => 'Archipels',
+    'summaryEs' => 'Cruceros de lujo en Polinesia, en catamaranes a vela, con itinerarios en las Tahiti, las Islas de Sotavento (Bora Bora), y Rangiroa y las Tuamotu.',
+    'summaryEn' => 'Sailing cruises in Polynesia aboard deluxe catamaran-type boats, with itineraries including Tahiti, the Leeward Archipelago, Bora Bora and the Tuamotu.',
+    'descriptionEn' => 'Sail in comfort aboard an exceptionally stable 60 ft. catamaran with almost 1,400 sq. ft. of usable space. Each vessel is engineered for speed, exceptional stability and unparalleled comfort, with four air-conditioned cabins, private bathrooms, a vast salon with panoramic views, and a spacious deck. All are equipped with dinghies, windsurfs, snorkeling and fishing gear, ocean kayaks, a library, and games. An experienced crew takes you (never more than eight passengers per yacht!) on a carefree sail that will send you home with memories to last a lifetime.
+"Archipels Croisières" operates a fleet of four identical sail catamarans: MATA FENUA, TEREHAU, FANOTEA and one not yet baptised.
+
+The accommodation offers both space and refinement: A large panoramic, well ventilated living room/lounge includes a dining area, lounge, bar and navigation area. Four self-contained, air-conditioned passenger cabins with bathroom are designed for eight passengers.
+The warm feeling created by the woodwork and leatherwork as well as a carefully done decoration add to the pleasure of being aboard.
+
+On the deck, there are 130 square meters of useful surface (a large cockpit) outside the dining area sheltered from the sun (two large "trampoline / sunbathing areas" at the front of the boat), with deck cushions and mattresses - each hull having transom steps for easy access to/from the water.',
+    'descriptionEs' => 'Navegue en el confort a bordo de un catamarán excepcionalmente estable de 60 pies (20 metros) con 130 m2 de espacio usable. Cada nave está diseñada para obtener una velocidad y estabilidad superiores, con un alto nivel de confort también: 4 cabinas con aire acondicionado, con baños privados, un amplio salón con vistas panorámicas y una cubierta espaciosa. Todos los barcos están equipados con botes de goma, windsurfs, equipo de pesca y snorkels, kayaks, una biblioteca y juegos. Una tripulación experimentada lleva a los pasajeros (nunca más de 8 por crucero) a un viaje sin preocupaciones que otorga recuerdos para toda la vida.
+
+"Archipels Croisières" tiene una flota de cuatro veleros catamaranes idénticos: MATA FENUA, TEREHAU, FANOTEA y uno que no ha sido bautizado aún. 
+
+Construidos en la Rochelle (Francia) por el astillero “Fountaine Pajot”, estos grandes veleros de 20 m están perfectamente adaptados a las aguas polinesias. Además de sus cualidades náuticas, su estabilidad y su calado reducido, están concebidos como lujosos pequeños hoteles flotantes, para ocho pasajeros como máximo.
+
+Las acomodaciones son espaciosas y refinadas. Una gran sala de estar panorámica, bien ventilada, que comprende comedor, salón, bar y ricón de navegación. 
+4 cabinas independientes, acondicionadas, con cuarto de baño, que permiten acoger ocho pasajeros. 
+El placer de estar a bordo está realzado por los revestimientos de madera, el cálido de las pieles y las decoraciones pulidas. 
+
+Sobre la cubierta, 130m2 de superficie útil (un gran cockpit), un comedor exterior protegido del sol (dos grandes trampolines), baño de sol en la parte delantera de la nave (almohadones y colchones de cubierta), y bajada al mar fácil en la parte trasera de cada casco.',
+    'innerSpaceEs' => 'Tipo: Catamarán a vela
+Largo: 20 m (60´) - Ancho 8 m (28´)
+Desplazamiento 1,20 m (4´) - Superficie de velas 150 m2 - Capacidad: 8 pasajeros y 2 ó 3 miembros de la tripulación.
+4 camarotes con baños privados en cruceros tripulados, ó 5 cabinas con baño privado en cruceros privados ',
+    
+    'innerSpaceEn' => 'Type: sail catamaran. Length:20m (60’). – Width 8m (28’) – Draft 1.20m (4’) – Sail surface: 150 sq. m. Capacity: 8 passengers and 2 / 3 crew members.
+4 cabins with private toilets in crew-driven cruises, or 5 cabins with private toilets in private cruises.',
+    
+    'techEn' => '2 x 72HP engines – 1 x 12Kva genset – Voltages available : 220V-110V-12V - Fresh water maker producing 52 gallons approx./hr (200 liters/hr) – Large refrigerating/freezing storage space – air conditioning - plasma screen TV
+
+Leisure activities equipment
+1 x 4.20 m dinghy with 25HP HB motor, snorkeling gear (fins – masks – snorkels), 2-3 ocean kayaks, fishing equipment, library, parlor games, Hi fi equipment, TV and DVD player.',
+    
+    'techEs' => '2 motores de 72 CV - 1 generador de 12 Kva - Voltajes disponibles: 220V, 110V, 12V. Desalinizador de agua para producir 200 litros de agua por hora - Amplio espacio de freezer y/o refrigeración - Aire acondicionado - TV de pantalla de plasma
+
+El equipamiento de ocio incluye un bote de goma con un motor fuera de borda de 25 CV, equipo de snorkel (patas de rana - máscaras - snorkels), 2 ó 3 kayaks, equipo de pesca, biblioteca, juegos de mesa, equipo de audio, TV y reproductor de DVD. ',
+    
+    'subCruises' => array(
+        0 => array(
+            'nameEs' => 'Atolón de Rangiroa',
+            'nameEn' => 'Rangiroa Atoll',
+            'descriptionEn' => 'The Tuamotu atolls –these sand and coral crowns laid on the ocean - contain true inner seas. These emerged parts of engulfed volcanoes have created one of the Pacific´s most powerful images, images of countless coconut trees that crowd the beaches around magnificent lagoons.
+Rangiroa is the world of the great ocean depths. Owing to the two passes (which provide a habitat for an incredibly dense fauna of pelagic species, sharks and all kinds of fish), the Rangiroa atoll has become one of the world´s most popular diving sites.
+The fauna is nevertheless as varied inside as outside the lagoon, with multi-colored coral beds between 2 and 10 meters high, an ideal playground for snorkeling and all forms of fishing.
+Robinson Crusoe could have been your guide while you are enjoying three to four days of pleasant sailing in the sheltered waters of the lagoon area.
+Those few days of cruise provide our passengers with the intense experience of discovering incredibly beautiful "motu" and the magic, shimmering underwater world under the guidance of their crew.
+At the extreme eastern end of the atoll, the area known as the "Pink Sands" generates an atmosphere of "world´s beggining" that everyone can feel and the magic of the atolls will reveal itself to you while having a long drink at sunset time.',
+            'descriptionEs' => 'Los atolones de las Tuamotu son coronas de arena y coral que se posan sobre el océano Pacífico. Estas porciones emergentes de volcanes hundidos en las profundidades crean una de las imágenes más fuertes y características del Pacífico, la de las hileras de innumerables cocoteros dominando bellas playas que rodean un suntuoso lagoon.
+Como puede apreciarse en el mapa, Rangiroa es el reino del Gran Azul. Entre la inmensidad del Pacífico Sud y el lagoon, se extiende un verdadero mar interior de 70 Km. De largo por 30 de ancho. Rangiroa es un plano de agua extraordinario para los catamaranes que allí navegan en total tranquilidad y serenidad.
+Gracias a sus dos pasos (Avatoru y Tiputa) que abrigan una fauna submarina increíblemente rica y variada, este atolón se ha convertido en uno de los sitios de buceo más famosos del mundo. Pero no es necesario llevar en la espalda el equipamiento completo de buzo para apreciar las maravillas de la fauna submarina. La tripulación del catamarán acompaña a los pasajeros a uno de los dos pasos en un bote de goma. Luego de introducirse en el agua con sólo máscara y snorkel, uno se deja llevar por la corriente del paso descubriendo delfines, tortugas y una multitud de peces tropicales.
+Durante esos días de crucero lejos de toda presencia humana, se vive intensamente, descubriendo los más bellos lugares de este atolón, guiados por nuestra tripulación. Encuentro con peces y tortugas, playas inmaculadas, jornadas “Robinson Crusoe” con un pic-nic barbacoa en un islote, y muchas otras actividades organizadas por la tripulación a lo largo del crucero, para vivir momentos inolvidables.',
+            'image' => 'atolon.jpg'
+        ),
+        1 => array(
+            'nameEs' => 'Islas de Sotavento',
+            'nameEn' => 'Leeward islands',
+            'descriptionEn' => 'The Leeward islands form the westernmost part of the Society Archipelago.
+They are high volcanic islands quite close to each other and surrounded by turquoise-blue lagoons. Bora Bora is definitely the most famous of them, on account of its magnificent lagoon. However, the other islands are every bit as good as Bora Bora with their diversity, beauty and most of all their inhabitants whose friendliness is legendary.
+Just picture yourself briefly swimming or wading in turquoise-blue waters on an early morning exploration of an uninhabited motu you dropped anchor nearby the day before, while the crew is preparing a copious breakfast aboard your floating hotel.',
+            'descriptionEs' => 'Las Islas de Sotavento constituyen la parte oeste del Archipiélago de la Sociedad. 
+Cercanas las unas de las otras, son islas volcanicas altas, rodeadas de lagunas azul turquesa. La más famosa es sin duda Bora-Bora conocida por su magnifica laguna. Pero las otras islas no tienen nada que enviarle. La variedad, la belleza de estas islas y sobre todo la gran amabilidad de sus habitantes son legendaria.
+Este crucero, uno de los más famosos de las islas tropicales es encantador. Adaptado para todos, es una semana de suave aventura, navegando casi siempre en el interior de las lagunas tranquilas que rodean las islas (solo dos o tres horas de navegación en alta mar) y permite descubrir las islas de Bora-Bora, Tahaa, Raiatea y Huahine.
+Dado que el calado del catamarán es reducido, será un viajero privilegiado, ya que solo usted tendrá la oportunidad llegar hasta los lugares los más bellos de la laguna, inaccesibles para las naves mayores.
+Imagínese solo un momento, nadando o caminando en el agua azul turquesa, explorando de madrugada el motu desierto, cerca del cual se echó el ancla la víspera, mientras la tripulación prepara un copioso desayuno a bordo de su hotel flotante.
+El crucero es un verdadero descubrimiento de las islas, con amplia variedad de entretenimientos terrestres y náuticos. Excursión en 4X4 de Taha’a, un paseo botánico apasionante . 
+Escapadas románticas sobre los islotes de arena blanca. Frecuentes vueltas en kayak o dinghie. Partidas de pesca o buceo libre en la laguna. Observación de rayas mantas, tiburones y otros peces de la laguna.
+Visita de pueblos típicos de las islas).',
+            'image' => 'sotavento.jpg'
+        ),
+        2 => array(
+            'nameEs' => 'Archipiélago de las Tuamotu',
+            'nameEn' => 'Tuamotu Archipelago',
+            'descriptionEn' => 'Adventure Cruise in the heart of the Tuamotu
+
+In order to respond to a strong demand from its faithful clients, Archipels Croisières has set up a one-week cruise to take them right into the Tuamotus aboard one of its "Marquises 57".
+
+Archipels is very familiar with these atolls and therefore able to propose an ideal, carefully planned tour.
+
+Boarding on Saturday morning in Fakarava.
+
+Disembarking on Friday at 12 noon in Rangiroa.
+
+Frequency: Monthly cruise based on enclosed schedule.
+
+3 atolls visited: Fakarava, Toau and Rangiroa.
+
+Cruise dates scheduled on basis of full moon: Most of the time in rising moon periods, with full moon occurring toward the end of the cruise. Enough to keep everlasting memories of two nights of navigation under sail between atolls.
+
+Comfortable deep-sea navigation, sailing along prevailing winds.
+
+Opportunity of scuba diving on three to four occasions with diving clubs in Fakarava and Rangiroa.',
+            'descriptionEs' => 'Crucero aventura al corazón de las Tuamotu
+
+Para responder a la demanda de su fiel clientela, Archipels Croisières establece  un crucero de una semana, al corazón de los Tuamotu, a bordo de uno de sus catamaranes "Marquesas 57". Porque conoce perfectamente estos atolones, Archipels propone el circuito ideal, cuidadosamente concebido, con las características siguientes.
+
+Embarque el sábado por la mañana en Fakarava.
+
+Desembarque el viernes al mediodía en Rangiroa.
+
+Frecuencia: un crucero por mes según el calendario adjunto.
+
+3 atolones visitados: Fakarava, Toau y Rangiroa.
+
+Fechas de los cruceros establecidas con arreglo a la luna llena: la mayoría de las veces en luna creciente, para terminar el crucero en luna llena. Así, las dos noches de navegación a vela entre los atolones le dejarán recuerdos para toda la vida.
+
+Navegación en alta mar confortable ya que se hace en el mismo sentido que los vientos dominantes.
+
+Posibilidad de buceo con botella tres o cuatro veces con los clubs de Fakarava y Rangiroa (no incluído en el precio).
+
+Amplia variedad de entretenimientos: buceo con tubo, partidas de pesca, excursión en kayak (descubierta aleccionadora del ecosistema de los atolones) almuerzo en casa particular.
+
+Salida asegurada desde dos pasajeros.',
+            'image' => 'tuamotu.jpg'
+        ),
+    ),
+);
+
+?>
+
+<div class="clearfix" style="margin-top: 30px">
+
+</div>
+
+<div class="row shadow bg-white island-intro">
+
+    <div class="col-lg-12 col-md-12 col-sm-12">
+
+        <h1 class="color-b light">
+            <?php echo ($this->lang == 'Es') ? 'Cruceros y Charters náuticos' : 'Cruices & Nautic charters'; ?>
+        </h1>
+        <!--
+        <p class="color-a light" style="margin-top: 8px;">
+            Cruceros de lujo en Polinesia, en catamaranes a vela, con itinerarios en las Tahiti, las Islas de Sotavento (Bora Bora), y Rangiroa y las Tuamotu. 
+        </p>
+        -->
+
+    </div>
+
+</div>    
+
+<div class="clearfix" style="margin-top: 30px">
+
+</div>
+
+<!-- Cruceros -->
+<div class="row shadow bg-white" id="hotels">
+
+    <?php if (count($cruises) > 0) : ?>
+
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-primary">       
+                
+                <?php foreach ($cruises as $keyCruise => $cruise) : ?>
+                
+                    <div class="panel-heading active hotel-ajax">
+                        <div class="row">
+                            <div class="col-lg-11 col-md-11">
+                                <h4 class="panel-title">
+                                    <a class="roboto bold hotelLink" data-toggle="collapse" data-parent="#accordion" href="#collapse-cruise-<?php echo $keyCruise; ?>">
+                                        <?php
+                                        $lang = ($this->lang == 'Es') ? 'spa' : 'eng';
+                                        ?>
+                                        <?php echo $cruise['name' . $this->lang];?>
+                                    </a>
+                                </h4>
+                            </div>
+                            <div class="col-lg-1 col-md-1 text-right">
+                                <a class="hotelLink" data-toggle="collapse" data-parent="#accordion" href="#collapse-cruise-<?php echo $keyCruise; ?>">
+                                    <div class="showHide">
+
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div id="collapse-cruise-<?php echo $keyCruise; ?>" class="panel-collapse collapse <?php echo ($keyCruise == 0) ? 'in' : ''; ?>">
+                        
+                        <div class="panel-body">
+                            
+                            <div class="row">
+
+                                <div class="col-lg-9 col-md-9 col-sm-9">
+
+                                    <h4 class="color-a roboto margin-0">
+                                        <?php echo ($this->lang == 'Es') ? 'Descripción' : 'Description' ;?>
+                                    </h4>
+                                    
+                                    <p class="roboto light color-a">
+                                        <?php echo $cruise['description' . $this->lang];?>
+                                    </p> 
+
+                                </div>
+
+                                <!-- Imagenes -->
+                                <?php if(count($cruise['images']) > 0) : ?>
+                                    <div class="col-lg-3 col-md-3 col-sm-3">
+                                        <h4 class="color-a roboto margin-0">
+                                            <?php echo ($this->lang == 'Es') ? 'Galería de Fotos' : 'Photo Gallery' ;?>
+                                        </h4>
+                                        <div class="image galleryImage">
+                                            <img onclick="openGallery('<?php echo $cruise['id']?>')" src="<?php echo $this->baseUrl() ?>/imgs/cruises/<?php echo $cruise['images'][1]; ?>"/>
+                                        </div>
+                                        <?php if (count($cruise['images']) > 0) : ?>
+                                            <div class="hiddenGallery cruise-<?php echo $cruise['id']?>">
+                                            <?php foreach ($cruise['images'] as $keyImage => $image) : ?>
+                                                <a href="<?php echo $this->baseUrl() ?>/imgs/cruises/<?php echo $image ?>" title="<?php echo $cruise['name' . $this->lang] ?>" data-gallery>
+                                                    <img src="<?php echo $this->baseUrl() ?>/imgs/cruises/<?php echo $image ?>" alt="<?php echo $cruise['name' . $this->lang] ?>">
+                                                </a>
+                                            <?php endforeach; ?>
+                                            </div>
+                                        <?php endif; ?>
+                                    </div>
+
+                                    <!-- Bootstrap gallery -->
+                                    <?php
+                                    echo $this->partial("_partials/gallery.phtml", array(
+                                        'id' => $cruise['id'],
+                                    ));
+                                    ?>
+                                    <!-- end Bootstrap gallery -->
+
+                                <?php endif; ?>
+                                <!-- end Imagenes -->
+
+                            </div>
+                            
+                            <!-- Subcruceros -->
+                            <?php if(count($cruise['subCruises']) > 0) : ?>
+                            
+                                <div class="clearfix" style="margin-top: 15px;"></div>
+                            
+                                <?php foreach ($cruise['subCruises'] as $keySucCruise => $subCruise) : ?>
+
+                                    <div class="row">   
+                                        
+                                        <div class="col-lg-3">
+                                            <div class="img-rounded" style="max-height: 150px; overflow: hidden;  border: 2px solid #2076BE;">
+                                                <img class="img-rounded activeZoom" style="max-width: 100%;" data-target-image="<?php echo $this->baseUrl(); ?>/imgs/cruises/<?php echo $subCruise['image']; ?>" src="<?php echo $this->baseUrl(); ?>/imgs/cruises/<?php echo $subCruise['image']; ?>"/>
+                                            </div>
+                                        </div>                            
+
+                                        <div class="col-lg-9 col-md-9 col-sm-9">
+
+                                            <h4 class="color-a roboto margin-0">
+                                                <?php echo $subCruise['name' . $this->lang]; ?>
+                                            </h4>
+
+                                            <p class="roboto light color-a">
+                                                <?php echo $subCruise['description' . $this->lang]; ?>
+                                            </p> 
+
+                                        </div>
+
+                                    </div>
+                            
+                                    <div class="clearfix" style="margin-top: 15px;"></div>
+
+                                <?php endforeach; ?>
+                            
+                            <?php endif; ?>
+                            <!-- end Subcruceros -->
+                            
+                        </div>        
+                        
+                    </div>
+                
+                <?php endforeach; ?>
+                
+            </div>
+        </div>
+
+    <?php endif; ?>
+
+</div>
+<!-- Cruceros -->
+
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+
+<!-- footer -->
+<?php echo $this->partial("_partials/_footer.phtml") ?>
+<!-- fin footer -->
+
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+
+
+<style>
+    
+    #home{
+        background: -moz-linear-gradient(top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 50%) !important;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.7)), color-stop(100%,rgba(255,255,255,0))) !important;
+        background: -webkit-linear-gradient(top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 50%) !important;
+        background: -o-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 50%) !important;
+        background: -ms-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 50%) !important;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 50%) !important;
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ) !important;
+    }
+    
+</style>
+
+<script>
+    
+    //Abre gallery
+    function openGallery(idHotel){
+        $('.' + idHotel).data('useBootstrapModal', false);
+        $('.' + idHotel).toggleClass('blueimp-gallery-controls', true);
+        blueimp.Gallery($('.hiddenGallery.cruise-'+idHotel+' a'), $('.' + idHotel).data());
+    }
+
+</script>

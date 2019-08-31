@@ -1,0 +1,22 @@
+<?echo '
+            <div class="title" > 
+                Menu
+             </div>
+             <div class="menu_item">Newsletter</div>
+             <div class="menu_item"><a href="' . $this->url(array('module' => 'admin', 'controller' => 'newsletter', 'action' => 'add')) . '">- Generar newsletter </a></div>
+             <div class="menu_item"><a href="' . $this->url(array('module' => 'admin', 'controller' => 'newsletter', 'action' => 'index')) . '">- Mostrar Todos</a></div>
+             <div class="menu_item"><hr></div>
+             <div class="menu_item">Envios</div>
+             <div class="menu_item"><a href="' . $this->url(array('module' => 'admin', 'controller' => 'send', 'action' => 'add')) . '">- Enviar Newsletter </a></div>
+             <div class="menu_item"><a href="' . $this->url(array('module' => 'admin', 'controller' => 'send', 'action' => 'index')) . '">- Mostrar envios</a></div>
+             <div class="menu_item"><hr></div>
+             <div class="menu_item">Suscriptores</div>
+             <div class="menu_item"><a href="' . $this->url(array('module' => 'admin', 'controller' => 'suscriptor', 'action' => 'add')) . '">- Agregar Suscriptor </a></div>
+             <div class="menu_item"><a href="' . $this->url(array('module' => 'admin', 'controller' => 'suscriptor', 'action' => 'index')) . '">- Mostrar todos</a></div>
+             <div class="menu_item"><a href="' . $this->url(array('module' => 'admin', 'controller' => 'suscriptor', 'action' => 'masive')) . '">- Cargar por archivo .txt</a></div>             
+             <div class="menu_item"><hr></div>
+             <div class="menu_item">Categoria de Suscriptores</div>
+             <div class="menu_item"><a href="' . $this->url(array('module' => 'admin', 'controller' => 'category', 'action' => 'add')) . '">- Agregar Categoria </a></div>
+             <div class="menu_item"><a href="' . $this->url(array('module' => 'admin', 'controller' => 'category', 'action' => 'index')) . '">- Mostrar todas</a></div>
+             
+             '; ?>

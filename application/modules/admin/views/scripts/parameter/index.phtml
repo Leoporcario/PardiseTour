@@ -1,0 +1,26 @@
+<h2>
+    <?php echo $this->h2; ?>
+</h2>
+<?php 
+
+if($this->message){
+	echo '<div class="message">'.$this->message.'</div>';
+}
+?>
+
+<div class="view_field">Servidor SMTP: </div>
+<div class="view_data"><?php echo $this->parameters["PServer"]?></div>
+
+<div class="view_field">Puerto SMTP: </div>
+<div class="view_data"><?php echo $this->parameters["PPort"]?></div>
+
+<div class="view_field">Usuario:</div>
+<div class="view_data"><?php echo $this->parameters["PUser"]?></div>
+
+<div class="view_field">Contraseña:</div>
+<div class="view_data"><?php echo $this->parameters["PPassword"]?></div>
+
+<div class="view_field">Dirección de correo:</div>
+<div class="view_data"><?php echo $this->parameters["PEmail"]?></div>
+
+

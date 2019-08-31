@@ -1,0 +1,106 @@
+<div class="form-group col-lg-8"> 
+    <blockquote>
+        <p class="text-primary"><label class="glyphicon glyphicon-calendar"></label> Agregar eventos del hotel</p>
+        <small>Puede agregar todos los eventos necesarios. Nombre y día son obligatorios</small>
+    </blockquote>
+</div>
+<div class="form-group col-lg-4">        
+    <label >Opciones</label>
+    <div class="clearfix">
+
+    </div>
+    <div class="btn-group">
+        <button 
+            type="button" 
+            class="btn btn-primary addAjax"
+            data-input-target="eventoDiv"
+            data-input-action="eventohotel"
+            data-input-label="evento - hotel"
+            >Agregar evento</button>
+    </div>
+</div>
+<div class="clearfix">
+
+</div> 
+<div id="eventoDiv">
+    <?php if (count($this->eventos) > 0) { ?>
+        <?php foreach ($this->eventos as $keyEvento => $evento) { ?>
+            <div class="form-group col-lg-4">
+                <div class="panel panel-primary" id="eventoOld_<?php echo $keyEvento?>">
+                    <div class="panel-heading">Evento <?php echo $keyEvento+1?></div>
+                    <div class="panel-body">        
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'eventoOld['.$evento['idEventoHotel'].'][EHnombreEs]'; ?>
+                            <label for="<?php echo $fieldName ?>">Nombre (Español)*</label>
+                            <input value="<?php echo $evento['EHnombreEs']?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Español)" data-validate="required">        
+                        </div>
+                        <div class="clearfix">
+
+                        </div> 
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'eventoOld['.$evento['idEventoHotel'].'][EHnombreEn]'; ?>
+                            <label for="<?php echo $fieldName ?>">Nombre (Inglés)*</label>
+                            <input value="<?php echo $evento['EHnombreEn']?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Inglés)" data-validate="required">        
+                        </div>    
+                        <div class="clearfix">
+
+                        </div> 
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'eventoOld['.$evento['idEventoHotel'].'][EHdescripcionEs]'; ?>
+                            <label for="<?php echo $fieldName ?>">Descripción (Español)</label>
+                            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big" placeholder="Descripción (Español)"><?php echo $evento['EHdescripcionEs']?></textarea>
+                        </div>
+                        <div class="clearfix">
+
+                        </div> 
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'eventoOld['.$evento['idEventoHotel'].'][EHdescripcionEn]'; ?>
+                            <label for="<?php echo $fieldName ?>">Descripción (Inglés)</label>
+                            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big" placeholder="Descripción (Inglés)"><?php echo $evento['EHdescripcionEn']?></textarea>
+                        </div>
+                        <div class="clearfix">
+
+                        </div>
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'eventoOld['.$evento['idEventoHotel'].'][EHdiaEs]'; ?>
+                            <?php $days=json_decode($evento['EHdiaEs'],true); ?>
+                            <label for="<?php echo $fieldName ?>">Días del  evento</label>
+                            <div class=" checkbox">
+                                <label><input type="checkbox" <?php echo (in_array('Domingo',$days))?'checked="checked"':''; ?> name="<?php echo $fieldName ?>[]" value="Domingo">Domingo</label>
+                            </div>
+                            <div class=" checkbox">
+                                <label><input type="checkbox" <?php echo (in_array('Lunes',$days))?'checked="checked"':''; ?> name="<?php echo $fieldName ?>[]" value="Lunes">Lunes</label>
+                            </div>
+                            <div class=" checkbox">
+                                <label><input type="checkbox" <?php echo (in_array('Martes',$days))?'checked="checked"':''; ?> name="<?php echo $fieldName ?>[]" value="Martes">Martes</label>
+                            </div>
+                            <div class=" checkbox">
+                                <label><input type="checkbox" <?php echo (in_array('Miércoles',$days))?'checked="checked"':''; ?> name="<?php echo $fieldName ?>[]" value="Miércoles">Miércoles</label>
+                            </div>
+                            <div class=" checkbox">
+                                <label><input type="checkbox" <?php echo (in_array('Jueves',$days))?'checked="checked"':''; ?> name="<?php echo $fieldName ?>[]" value="Jueves">Jueves</label>
+                            </div>
+                            <div class=" checkbox">
+                                <label><input type="checkbox" <?php echo (in_array('Viernes',$days))?'checked="checked"':''; ?> name="<?php echo $fieldName ?>[]" value="Viernes">Viernes</label>
+                            </div>
+                            <div class=" checkbox">
+                                <label><input type="checkbox" <?php echo (in_array('Sábado',$days))?'checked="checked"':''; ?> name="<?php echo $fieldName ?>[]" value="Sábado">Sábado</label>
+                            </div>
+                        </div>
+                            
+                        <div style="margin-top:10px; margin-bottom: 10px;" class="btn-group" data-toggle="buttons">
+                            <label data-target="eventoOld_<?php echo $keyEvento?>" data-rel="popoverRight" data-content="Este evento se eliminará" class="btn btn-warning">
+                                <input type="checkbox" name="eliminarEventos[]" value="<?php echo $evento['idEventoHotel'] ?>"> Eliminar
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php if ($keyEvento % 3 == 2) { ?>
+                <div class="clearfix">
+
+                </div>
+            <?php } ?>
+        <?php } ?>
+    <?php } ?>
+</div>

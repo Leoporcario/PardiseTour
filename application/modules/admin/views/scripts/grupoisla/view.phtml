@@ -1,0 +1,45 @@
+<table cellspacing="0" cellpadding="0">
+    <tr>
+        <td valign="top" id="diplayNode" >
+            <div class="title">Noticia: <?php echo $this->parameters["id"] ?></div>
+            <div id="contentNode">
+                <fieldset class="save">
+                    <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php
+echo $this->url(array('module' => $this->parameters['module'], 'controller' => $this->parameters['controller'], 'action' => 'index'));
+?>'" value="Volver">
+                    <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php
+                           echo $this->url(array('module' => $this->parameters['module'], 'controller' => $this->parameters['controller'], 'action' => 'add'), null, true);
+?>'" value="Nuevo">
+                    <?if($this->result['IDTipoNoticia'] == 2){?>
+                    <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php
+                           echo $this->url(array('module' => $this->parameters['module'], 'controller' => $this->parameters['controller'], 'action' => 'edit'));
+?>'" value="Editar">
+                    <? }else{ ?>
+                    <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php
+                           echo $this->url(array('module' => $this->parameters['module'], 'controller' => $this->parameters['controller'], 'action' => 'editmedios'));
+?>'" value="Editar">
+                    <? } ?>
+                    <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" 
+                           onclick="location.href='<?php
+                           echo $this->url(array('module' => $this->parameters['module'], 'controller' => $this->parameters['controller'], 'action' => 'delete'));
+?>'" value="Eliminar">
+
+                </fieldset>
+                <fieldset>
+                    <table>
+                        <tr>
+                            <th>Título: </th>
+                            <?php $field = "NTitulo"; ?>
+                            <td><?php echo $this->result[$field] ?></td>
+                        </tr>
+                        <tr>
+                            <th>Fecha: </th>
+                            <?php $field = "NFecha"; ?>
+                            <td><?php echo $this->result[$field] ?></td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+        </td>
+    </tr>
+</table>

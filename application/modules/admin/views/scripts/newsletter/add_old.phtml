@@ -1,0 +1,122 @@
+<?php 
+if($this->message){
+	echo '<div class="message">'.$this->message;
+	echo '</div>';
+}?>
+
+<form name = "add_newsletter" id = "add_newsletter" method = "post" >          
+<table class="table_forms" border="0">
+	
+    <tr>                        
+        <td class="label">Nombre: *</td>
+        <td><input name = "NLName" id = "NLName" type = "text" onkeyup="is_enter(event);" /></td>                        
+    </tr>	
+    
+    <tr>                        
+        <td class="label">Descripción: *</td>
+        <td><textarea name = "NLDescription" id = "NLDescription" type = "text" onkeyup="is_enter(event);"></textarea></td>                        
+    </tr>
+    
+    <tr>                        
+        <td class="label">Tipo (Layout): *</td>
+        <td>
+        <select name="IDType" id="IDType">
+		<?  foreach($this->types as $type){ ?>
+            <option value="<?php echo $type->IDType?>"><?php echo $type->TName?></option>
+        <? } ?>
+        </select>
+        </td>                        
+    </tr>
+    <tr><td colspan="2"><hr /></td></tr>
+
+    <tr>                        
+        <td class="label">Noticia Principal: </td>
+        <td>
+        <select name="IDNewPrincipal" id="IDNewPrincipal" multiple="multiple" style="height:200px; width:370px;">
+		<?  foreach($this->news as $new){ ?>
+            <option value="<?php echo $new->IDNew?>"><?php echo $new->NTitle?></option>
+        <? } ?>
+        </select>
+      </td>                           
+    </tr>
+    
+    <tr><td colspan="2"><hr /></td></tr>
+    
+    <tr>                 
+      <td class="label">Noticias Secundarias: </td>
+        <td>
+          <select name="IDNewSecundary[]" id="IDNewSecundary" multiple="multiple" style="height:200px; width:370px;">
+				<?  foreach($this->news as $new){ ?>
+                    <option value="<?php echo $new->IDNew?>"><?php echo $new->NTitle?></option>
+                <? } ?>
+            </select>           
+        </td>                           
+    </tr>
+    
+    <tr><td colspan="2"><hr /></td></tr>
+    
+<tr>                        
+        <td class="label">Visitas: </td>
+        <td>
+      <select name="IDNewVisit[]" id="IDNewVisit" multiple="multiple" style="height:200px; width:370px;">
+				<?  foreach($this->news as $new){ ?>
+                    <option value="<?php echo $new->IDNew?>"><?php echo $new->NTitle?></option>
+                <? } ?>
+            </select>       
+        </td>                           
+    </tr>
+    
+    <tr><td colspan="2"><hr /></td></tr>
+    <tr>                        
+       
+        <td class="label">Imagen para el Footer: *</td>
+        <td>
+        <select name="IDFooter" id="IDFooter">
+		<?  foreach($this->footers as $footer){ ?>
+            <option value="<?php echo $footer->IDFooter?>"><?php echo $footer->FName?></option>
+        <? } ?>
+        </select>
+        </td>                        
+    </tr>
+    
+    <tr>                        
+        <td class="label">Imagen para el Header: *</td>
+        <td>
+        <select name="IDHeader" id="IDHeader">
+		<?  foreach($this->headers as $header){ ?>
+            <option value="<?php echo $header->IDHeader?>"><?php echo $header->HName?></option>
+        <? } ?>
+        </select>
+        </td>                        
+    </tr>
+    
+    
+   
+      
+    <tr>
+        <td colspan="2" align="center"><div id = "label_error" class="label_error">&nbsp;<? echo $this->response ?></div></td>
+    </tr> 
+    <tr>
+    	<td colspan="2">
+         <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php echo $this->url(array('controller'=>'newsletter', 'action'=>'index'),'',true);?>'" value="Cancelar">
+        <input type="button" class="buttons" name = "button_sumbmit" id = "button_sumbmit" onclick="validate_form();" value="Aceptar">
+        </td>
+    </tr>
+</table>
+	
+</form>
+<script>
+	function validate_form(){
+		var id_form='add_newsletter';
+		form=document.getElementById(id_form).elements;
+		
+		if(is_empty(form["NLName"],"Complete el campo Nombre del newsletter.")) return;
+		if(is_empty(form["NLDescription"],"Complete el campo Descripción")) return;
+		if(is_empty(form["IDType"],"Seleccione un tipo para el newsletter")) return;
+			
+		if(form["button_sumbmit"].disabled==false){
+			form["button_sumbmit"].disabled=true;
+			send_form(document.getElementById(id_form),"Verificando por favor espere ... ");
+		} 
+	}
+</script>

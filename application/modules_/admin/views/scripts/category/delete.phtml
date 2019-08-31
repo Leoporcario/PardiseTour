@@ -1,0 +1,18 @@
+<table cellspacing="0" cellpadding="0">
+    <tr>
+        <td valign="top" id="diplayNode" >
+            <div class="title">Eliminar Categoría: <?php echo $this->parameters["id"]?></div>
+            <form name="form_question" method="post">
+            <div id="contentNode">
+                <div class="message" style="text-align: center;" >
+                    <p>¿Está seguro que desea eliminar esta categoría?</p>
+                    <input type="button" class="buttons" name="delete_request" onclick="location.href='<?php 
+                            echo $this->url(array('module' => $this->parameters['module'], 'controller' => $this->parameters['controller'], 'action' => 'view')); 
+                            ?>'" value="No" />
+                    <input type="submit" class="buttons" name="delete_request" value="Si" />
+                </div>
+            </div>
+            </form>
+            </td>
+    </tr>
+</table>

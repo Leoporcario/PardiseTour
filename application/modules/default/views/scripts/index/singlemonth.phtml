@@ -1,0 +1,49 @@
+<?php if (count($this->events) > 0) : ?>
+<div id="eve_gallery">
+    <?php foreach ($this->events as $key=> $event) : ?>
+        <div id="captionSINGLE<?php echo $key;?>" style="display:none">
+            <h4><?php echo $event['EInombre' . $this->lang] ?> (<?php echo $event['EIdia'. $this->lang] ?>
+                                <?php $lang = ($this->lang == 'Es') ? 'spa' : 'eng' ;echo month_in_letters($event['EImes'], $lang);  ?>)</h4><p><?php echo strip_tags($event['EIdescripcion' . $this->lang])?></p>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12" style="margin-bottom: 30px; padding: 0;">
+            <div class="bg-white border-radius-8 pad-20">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h2 class="color-a slab margin-0">
+                            <?php echo $event['EInombre' . $this->lang] ?>
+                        </h2>                            
+                        <br>
+                        <p class="color-a bold">
+                        <?php echo ($this->lang == 'Es') ? 'Fecha' : 'Date' ;?>: <?php echo $event['EIdia'. $this->lang] ?>
+                                <?php $lang = ($this->lang == 'Es') ? 'spa' : 'eng' ;echo month_in_letters($event['EImes'], $lang);  ?>
+                        </p>
+                        <p class="color-a">
+                            <?php echo str_replace("</div>", "<br/>", str_replace("<div>", " ", $event['EIdescripcion' . $this->lang])) ?>
+                        </p>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="image galleryImage noMargin img-rounded" style="cursor: auto;">
+                            <a class="item" href="<?php echo $this->baseUrl() ?>/images/<?php echo $event['EIimagen'] ?>" data-sub-html="#captionSINGLE<?php echo $key;?>">
+                                <img src="<?php echo $this->baseUrl() ?>/images/m_<?php echo $event['EIimagen'] ?>"/>
+                            </a>
+                        </div>
+                        <!-- <p style="margin-top:15px;" class="color-a text-center"><span class="glyphicon glyphicon-zoom-in"></span> <?php echo ($this->lang == 'Es') ? 'Hacer click en la foto para ver la galería' : 'Click picture to view gallery' ;?></p> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+    <script>
+                    $(document).ready(function(){
+                        
+                        $('#eve_gallery').lightGallery({
+                            selector: '.item'
+                        });
+                    });
+                </script>
+</div>
+<?php else: ?>
+    <p class="color-a roboto" style="margin: 0;">
+        No se encontraron eventos para este mes.
+    </p>
+<?php endif; ?>

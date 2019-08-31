@@ -1,0 +1,49 @@
+<?php echo $this->partial('messages.phtml', array('messages' => $this->messages)); ?>
+<div class="jumbotron" style="border-radius: 0; padding-top:20px; padding-bottom: 40px;">
+    <div class="container">
+        <h1>Bienvenido!</h1>
+        <p>
+            Aquí conocerá las opciones que <b class="text-primary">CapicuaMS</b> le ofrece para la administración del contenido de su web.
+        </p>
+    </div>
+</div>
+
+<div class="container marketing">
+    
+    <div class="row">
+        <?php if(count($this->admModules) > 0) {?>
+            <?php foreach($this->admModules as $module){?>
+                <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => $module['link']),'',true)?>">
+                    <div class="col-sm-6 giant" >
+                        <label class="glyphicon glyphicon-<?php echo $module['icono']; ?>"></label>
+                        <h2 class="text-primary"><?php echo $module['nombre']; ?></h2>
+                        <p>
+                            <?php echo utf8_encode($module['descripcion']); ?>
+                        </p>
+                    </div><!-- /.col-lg-4 -->       
+                </a>
+            <?php } ?>   
+        <?php } ?>
+    </div><!-- /.row -->
+    
+    <hr class="featurette-divider">
+    
+    <div class="row">
+        <?php if(count($this->cmsModules) > 0) {?>
+            <?php foreach($this->cmsModules as $module){?>
+                <a href="<?php echo $this->url(array('module' => 'admin', 'controller' => $module['link']),'',true)?>">
+                    <div class="col-lg-6 giant">
+                        <label class="glyphicon glyphicon-<?php echo $module['icono']; ?>"></label>
+                        <h2 class="text-primary"><?php echo $module['nombre']; ?></h2>
+                        <p>
+                            <?php echo utf8_encode($module['descripcion']); ?>
+                        </p>
+                    </div><!-- /.col-lg-4 -->       
+                </a>
+            <?php } ?>   
+        <?php } ?>
+    </div><!-- /.row -->
+   
+    
+</div>
+

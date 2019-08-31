@@ -1,0 +1,31 @@
+<?php if (count($this->events) > 0) : ?>
+    <?php foreach ($this->events as $event) : ?>
+        <div class="col-lg-12 col-md-12 col-sm-12" style="margin-bottom: 30px; padding: 0;">
+            <div class="bg-white border-radius-8 pad-20">
+                <div class="row">
+                    <div class="col-lg-8">
+                        <h2 class="color-a slab margin-0">
+                            <?php echo $event['EInombre' . $this->lang] ?>
+                        </h2>                            
+                        <br>
+                        <p class="color-a bold">
+                            <?php echo ($this->lang == 'Es') ? 'Fecha' : 'Date' ;?>: <?php echo $event['EIdia'] ?>/<?php echo $event['EImes'] ?>
+                        </p>
+                        <p class="color-a">
+                            <?php echo str_replace("</div>", "<br/>", str_replace("<div>", " ", $event['EIdescripcion' . $this->lang])) ?>
+                        </p>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="image galleryImage noMargin img-rounded" style="cursor: auto;">
+                            <img src="<?php echo $this->baseUrl() ?>/images/m_<?php echo $event['EIimagen'] ?>"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php endforeach; ?>
+<?php else: ?>
+    <p class="color-a roboto" style="margin: 0;">
+        No se encontraron eventos para este mes.
+    </p>
+<?php endif; ?>

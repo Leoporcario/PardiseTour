@@ -1,0 +1,91 @@
+<div class="form-group col-lg-8"> 
+    <blockquote>
+        <p class="text-primary"><label class="glyphicon glyphicon-font"></label> Agregar actividades del hotel</p>
+        <small>Puede agregar todas las actividades necesarias. Solo el nombre es obligatorio</small>
+    </blockquote>
+</div>
+<div class="form-group col-lg-4">        
+    <label >Opciones</label>
+    <div class="clearfix">
+
+    </div>
+    <div class="btn-group">
+        <button 
+            type="button" 
+            class="btn btn-primary addAjax"
+            data-input-target="actividadDiv"
+            data-input-action="actividadhotel"
+            data-input-label="actividad - hotel"
+            >Agregar actividad</button>
+    </div>
+</div>
+<div class="clearfix">
+
+</div> 
+<div id="actividadDiv">
+    <?php if (count($this->actividades) > 0) { ?>
+        <?php foreach ($this->actividades as $keyActividad => $actividad) { ?>
+            <div class="form-group col-lg-4">
+                <div class="panel panel-primary" id="actividadOld_<?php echo $keyActividad?>">
+                    <div class="panel-heading">Actividad <?php echo $keyActividad+1?></div>
+                    <div class="panel-body">        
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'actividadOld['.$actividad['idActividadHotel'].'][AHnombreEs]'; ?>
+                            <label for="<?php echo $fieldName ?>">Nombre (Español)*</label>
+                            <input value="<?php echo $actividad['AHnombreEs']?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Español)" data-validate="required">        
+                        </div>
+                        <div class="clearfix">
+
+                        </div> 
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'actividadOld['.$actividad['idActividadHotel'].'][AHnombreEn]'; ?>
+                            <label for="<?php echo $fieldName ?>">Nombre (Inglés)*</label>
+                            <input value="<?php echo $actividad['AHnombreEn']?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Inglés)" data-validate="required">        
+                        </div>    
+                        <div class="clearfix">
+
+                        </div> 
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'actividadOld['.$actividad['idActividadHotel'].'][AHdescripcionEs]'; ?>
+                            <label for="<?php echo $fieldName ?>">Descripción (Español)</label>
+                            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big" placeholder="Descripción (Español)"><?php echo $actividad['AHdescripcionEs']?></textarea>
+                        </div>
+                        <div class="clearfix">
+
+                        </div> 
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'actividadOld['.$actividad['idActividadHotel'].'][AHdescripcionEn]'; ?>
+                            <label for="<?php echo $fieldName ?>">Descripción (Inglés)</label>
+                            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big" placeholder="Descripción (Inglés)"><?php echo $actividad['AHdescripcionEn']?></textarea>
+                        </div>
+                        <div class="clearfix">
+
+                        </div> 
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'actividadOld['.$actividad['idActividadHotel'].'][esPaga]'; ?>
+                            <input type="hidden" value="<?php echo $actividad['esPaga']?>" name="<?php echo $fieldName ?>" />
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-primary <?php echo ($actividad['esPaga'] == 1) ? 'active' : '' ; ?>">
+                                    <input value="1" data-validate="required" type="radio" name="<?php echo $fieldName ?>"> Paga
+                                </label>
+                                <label class="btn btn-info <?php echo ($actividad['esPaga'] == 0) ? 'active' : '' ; ?>">
+                                    <input value="0" data-validate="required" type="radio" name="<?php echo $fieldName ?>"> Gratuita
+                                </label>
+                            </div>
+                        </div>    
+                        <div style="margin-top:10px; margin-bottom: 10px;" class="btn-group" data-toggle="buttons">
+                            <label data-target="actividadOld_<?php echo $keyActividad?>" data-rel="popoverRight" data-content="Esta actividad se eliminará" class="btn btn-warning">
+                                <input type="checkbox" name="eliminarActividades[]" value="<?php echo $actividad['idActividadHotel'] ?>"> Eliminar
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php if ($keyActividad % 3 == 2) { ?>
+                <div class="clearfix">
+
+                </div>
+            <?php } ?>
+        <?php } ?>
+    <?php } ?>
+</div>

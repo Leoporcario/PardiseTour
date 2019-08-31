@@ -1,0 +1,266 @@
+<div id="<?php echo $this->collapseId ?>" class="panel-collapse collapse in">
+    <div class="panel-body">
+        <div class="row">
+            <!-- Intro -->
+            <div class="col-lg-9 col-md-9 col-sm-9">
+                <h2 class="color-a roboto light margin-0">
+                    <?php echo $this->hotel['HOnombre' . $this->lang]; ?>
+                </h2>
+                <p class="roboto light color-a">
+                    <?php echo $this->hotel['HOdescripcion' . $this->lang]; ?>
+                </p> 
+            </div>
+            <!-- end Intro -->
+            <!-- Logo -->
+            <div class="col-lg-3 col-md-3 col-sm-3 text-center hotelLogo">
+                <img src="<?php echo $this->baseUrl() ?>/images/<?php echo $this->hotel['HOlogo'] ?>" alt="Logo"/>
+            </div>
+            <!-- end Logo -->
+        </div>
+        <div class="clearfix" style="margin-top: 30px;">
+
+        </div>
+        <!-- Actividades -->
+        <div class="row">
+            <div class="col-lg-9 col-md-9 col-sm-9">
+                <h4 class="color-a roboto margin-0">
+                    <?php echo ($this->lang == 'Es') ? 'Actividades y Servicios' : 'Services & Activities' ;?>
+                </h4>
+                <div class="clearfix" style="margin-top: 15px">
+
+                </div>
+                <p class="title4 slab color-a bold">
+                    <?php echo ($this->lang == 'Es') ? 'Actividades gratuitas' : 'Free activities' ;?>
+                </p>
+                <p class="title5 slab color-a thin">
+                    Aquagym, centro de fitness, snorkel. 
+                </p>
+                <p class="title4 slab color-a bold">
+                    Actividades pagas
+                </p>
+                <p class="title5 slab color-a thin">
+                    Tour de la isla, safari 4x4, hiking, avistamiento de delfines, surf, jet ski, golf, buceo, crucero al atardecer. 
+                </p>
+                <p class="title4 slab color-a bold">
+                    Bares y Restaurants
+                </p>
+                <ul class="list-unstyled color-a title5">
+                    <li>
+                        <strong>Restaurante Vaitohi:</strong> restaurante abierto para el desayuno, almuerzo y cena a la carta o buffet
+                    </li>
+                    <li>
+                        <strong>Lounge Bar Punavai:</strong> abierto diariamente de 10 horas a medianoche
+                    </li>
+                    <li>
+                        <strong>Bar de Piscina Taapuna:</strong> abierto diariamente de 10 a 19 horas, y situado en medio de la impresionante piscina del hotel
+                    </li>
+                </ul>                                            
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-3">
+                <h4 class="color-a roboto margin-0">
+                    Galería de fotos
+                </h4>
+                <div class="image">
+                    <img id="image-gallery-button" src="<?php echo $this->baseUrl() ?>/imgs/preload.gif" data-src="<?php echo $this->baseUrl() ?>/images/m_<?php echo $this->firstImage['Inombre'] ?>"/>
+                </div>
+                <?php if (count($this->images) > 0) : ?>
+                    <?php foreach ($this->images as $keyImage => $image) : ?>
+                        <div class="hiddenGallery">
+                            <a href="<?php echo $this->baseUrl() ?>/images/<?php echo $image['Inombre'] ?>" title="<?php echo $this->hotel['HOnombre' . $this->lang] ?>" data-gallery>
+                                <img src="<?php echo $this->baseUrl() ?>/images/m_<?php echo $image['Inombre'] ?>" alt="<?php echo $this->hotel['HOnombre' . $this->lang] ?>">
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+            </div>
+        </div>
+        <!-- end Actividades -->
+
+        <div class="clearfix" style="margin-top: 30px;">
+
+        </div>
+
+        <!-- Habitaciones -->
+        <div class="row">
+            <div class="col-lg-10 col-md-10 col-sm-10">
+                <h4 class="color-a roboto margin-0">
+                    Habitaciones y facilidades
+                </h4>
+                <div class="clearfix" style="margin-top: 15px">
+
+                </div>
+                <div class="row color-a light roboto">
+                    <!-- habitaciones -->
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <table class="table-condensed text-center color-a light roboto">
+                            <tr>
+                                <th class="title-5 color-a">
+                                    Cantidad
+                                </th>
+                                <th  class="title-5 color-a">
+                                    Tipo de habitación
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    3
+                                </td>
+                                <td>
+                                    Premium Suite
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    2
+                                </td>
+                                <td>
+                                    Premium Suite
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    Premium Suite
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    20
+                                </td>
+                                <td>
+                                    Premium Suite
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- fin habitaciones -->
+
+                    <!-- comodidades hotel -->
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <table class="table-condensed text-center color-a light roboto">
+                            <tr>
+                                <th class="title-5 color-a">
+                                    Cantidad
+                                </th>
+                                <th  class="title-5 color-a">
+                                    Facilidades del hotel
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    3
+                                </td>
+                                <td>
+                                    Premium Suite
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    2
+                                </td>
+                                <td>
+                                    Premium Suite
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    Premium Suite
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    20
+                                </td>
+                                <td>
+                                    Premium Suite
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- fin comodidades hotel-->
+
+                    <!-- fin comodidades hab-->
+                    <div class="col-lg-4 col-md-4 col-sm-4">
+                        <table class="table-condensed text-center color-a light roboto">
+                            <tr>
+                                <th class="title-5 color-a">
+                                    Cantidad
+                                </th>
+                                <th  class="title-5 color-a">
+                                    Facilidades del hotel
+                                </th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    3
+                                </td>
+                                <td>
+                                    Premium Suite
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    2
+                                </td>
+                                <td>
+                                    Premium Suite
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    1
+                                </td>
+                                <td>
+                                    Premium Suite
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    20
+                                </td>
+                                <td>
+                                    Premium Suite
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <!-- fin comodidades hab-->
+                </div>                                      
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-2">
+                <h4 class="color-a roboto margin-0">
+                    Mapa
+                </h4>
+                <div class="image small">
+                    <a data-toggle="modal" data-target="#mapModal">
+                        <img src="<?php echo $this->baseUrl() ?>/imgs/preload.gif" data-src="<?php echo $this->baseUrl() ?>/imgs/map.jpg"/>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <!-- end Habitaciones -->
+
+    </div>
+</div>
+
+
+<!-- map Modal -->
+<?php
+echo $this->partial("_partials/mapModal.phtml", array(
+    'map' => $this->hotel['HOmapa']
+));
+?>
+<!-- end Map modal -->
+
+<!-- Bootstrap gallery -->
+<?php
+echo $this->partial("_partials/gallery.phtml", array(
+    'images' => $this->images
+));
+?>
+<!-- end Bootstrap gallery -->

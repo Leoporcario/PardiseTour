@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <?php if($this->lang == 'Es'):?>
+    <title>Paradise Tours Tahiti: Tour operador receptivo en Poluinesia Francesa</title>
+    <!-- ACA VA EN ESPAÑOL -->
+    <meta name="description" content="Paradise Tours Tahiti es un tour operador receptivo especializado en la prestación de todos los servicios turísticos a los viajeros que llegan a Polinesia Francesa en busca de unas vacaciones de sueño">
+    <meta name="Keywords" content="viajar a polinesia, polinesia viajes, hoteles en polinesia, hoteles tahiti, hoteles polinesia, hoteles en tahiti, hoteles en bora bora, polinesia hotel, polinesia turismo, paradise tours, tahitiparadise, tahiti paradise, paradise tours tahiti, buceo en polinesia, buceo en tahiti, polinesia buceo, tahiti buceo, polinesia cruceros, cruceros en polinesia, cruceros en tahiti, cruceros en bora bora, excursiones tahiti, excursiones bora bora, excursiones moorea, actividades en bora bora, actividades en tahiti, actividades en moorea, actividades en polinesia, polinesia francesa, tikehau, manihi, tuamotu, fakarava, maitai, rangiroa, moorea, bora bora, isla del amor, perla del pacífico, marquesas, hiva oa, nuku hiva, perla negra, perlas polinésicas, mapas de la polinesia, papeete, fotos de papeete, monoi tahiti, aceite monoi, pases air tahiti, catamaran, huahine, raiatea, tahaa, taha'a, pearl resorts polinesia, intercontinental resorts polinesia, meridien resorts polinesia, radisson tahiti, le maitai bora bora, hotel les tipaniers, restaurantes en polinesia, papeete aerolineas, aerolineas, the brando, tetiaroa, polinesia francesa, four seasons bora bora, polinesia, aerolineas tahiti, air tahiti, air tahiti nui, tour operador, intercontinental le moana, intercontinental thalasso resort, spa polynesia, intercontinental tahiti, intercontinental moorea, kia ora rangiroa, sofitel moorea, sofitel private island, sofitel bora bora, sofitel tahiti, manava moorea, bora bora pearl resort, st. regis bora bora, manava suite resort, tikehau pearl resort, le tahaa, keikahanui pearl lodge, hanakee pearl lodge, le meridien bora bora, le meridien tahiti, conrad bora bora nui, hilton moorea, royal bora bora, royal huahine, royal tahitien, hotel tahiti nui, tahiti nui, tahiti nui travel, le mahana, spa en tahiti, tahiti spa, spa polinesia, perla polinesica, perla tahitiana, luna de miel, luna de miel en tahiti, luna de miel en bora bora, paracaidas ascensional, centro de buceo, buceo rangiroa, buceo tuamotu, islas tuamotu">
+    <?php else: ?>
+    <!-- ACA VA EN INGLÉS -->
+    <title>Paradise Tours Tahiti: Inbound tour operator in French Polynesia</title>
+    <meta name="description" content="Paradise Tours Tahiti is an inbound tour operator specialized in delivering all the services to travelers coming to French Polynesia for a dream holiday">
+    <meta name="Keywords" content="hotels in polynesia, travel to tahiti, travel to polynesia, travel to bora bora, tahiti hotels, polynesia hotels, polynesia hotel, moorea hotels, bora bora hotels, polynesia tourism, paradise tours, tahitiparadise, tahiti paradise, paradise tours tahiti, diving in polinesia, diving in tahiti, polynesia diving, bora bora diving, tahiti diving, polynesia cruises, cruises in polynesia, tahiti excursions, bora bora excursions, cruises in bora bora, moorea excursions, activities in bora bora, activities in tahiti, activities in moorea, activities in polynesia, french polynesia, tikehau, manihi, tuamotu, fakarava, maitai, rangiroa, moorea, bora bora, maupiti, tetiaroa, island of love, pearl of the pacific, marquesas, hiva oa, nuku hiva, black pearl, polynesian pearls, polynesia maps, papeete, papeete pictures, monoi tahiti, monoi oil, air tahiti passes, catamaran, huahine, raiatea, tahaa, taha'a, pearl resorts polynesia, intercontinental resorts polynesia, meridien resorts polynesia, le maitai bora bora, maitai polynesia, les tipaniers, restaurants in polynesia, papeete airlines, polynesian airlines, tahitian airlines, air tahiti, air tahiti nui, tour operator tahiti, intercontinental le moana, intercontinental thalasso resort, spa polynesia, intercontinental tahiti, intercontinental moorea, kia ora rangiroa, maitai rangiroa, royal bora bora, sofitel moorea, sofitel private island, sofitel bora bora, marara bora bora, sofitel tahiti, manava moorea, manava suite resort, manava tahiti, bora bora pearl resort, st. regis bora bora, tikehau pearl beach, le tahaa, keikahanui pearl lodge, four seasons bora bora, hanakee pearl lodge, meridien bora bora, meridien tahiti, conrad bora bora nui, hilton moorea, royal huahine, le mahana, opoa beach, taputapuatea, the brando, royal tahitien, hotel tahiti nui, tahiti nui, tahiti nui travel, spa in tahiti, tahiti spa, polynesian spa, polynesian pearl, tahitian pearl, honeymoon, tahiti honeymoon, bora bora honeymoon, bora bora activities, tahiti activities, polynesia activities, ascensional parasail, diving center, diving in rangiroa, diving in tuamotu, tuamotu islands">
+    <?php endif;?>
+    <!-- Archivo CSS de Bootstrap -->
+    <link href="<?php echo $this->baseUrl()?>/css/bootstrap.css" rel="stylesheet" />
+    <link href="<?php echo $this->baseUrl()?>/lightGallery-master/dist/css/lightgallery.css" rel="stylesheet">
+    <link href="<?php echo $this->baseUrl()?>/css/styles.css" rel="stylesheet" />
+    <link href="<?php echo $this->baseUrl()?>/css/helpers.css" rel="stylesheet" />
+    <!-- CSS del carousel -->
+    <link href="<?php echo $this->baseUrl()?>/css/ext_circular-carousel.css" rel="stylesheet" />
+    <link href="<?php echo $this->baseUrl()?>/css/ext_circular-carousel_jscrollpane.css" rel="stylesheet" />
+    <!-- Google fonts -->
+    <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,700' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,100,300,700,900,400italic,700italic' rel='stylesheet' type='text/css'>
+
+    <!-- Bootstrap gallery 3.0.1 -->
+    <link rel="stylesheet" href="<?php echo $this->baseUrl()?>/css/ext_blueimp-gallery.min.css">
+    <link href="<?php echo $this->baseUrl()?>/css/ext_bootstrap-image-gallery.min.css" rel="stylesheet" />
+
+    <!-- Archivo Js de Bootstrap -->
+    <script src="<?php echo $this->baseUrl()?>/js/jquery.min.js"></script>
+    <script src="<?php echo $this->baseUrl()?>/js/bootstrap.min.js"></script>
+
+    
+    <!-- Favicon -->
+    <link rel="icon" href="<?php echo $this->baseUrl()?>/imgs/favicon.ico">
+    
+</head>
+<body>
+    
+    <!-- Loading! -->
+    <?php if($this->firstUse) : ?>
+        <div class="full-loading">
+            <?php echo $this->partial("_partials/_spinner.phtml", array(
+            )); ?>
+        </div>
+    <?php endif;?>
+    <!-- end Loading! -->
+
+    <!-- warning -->
+    <?php // $this->render('_partials/warning.phtml'); ?>
+    <!-- end warning -->
+
+    <!-- loginModal -->
+    <?php echo $this->render('_partials/loginModal.phtml', array(
+        'lang' => $this->lang
+        )); ?>
+        <!-- end loginModal -->
+        
+        <!-- activeZoom -->
+        <?php echo $this->render('_partials/_activeZoom.phtml', array(
+
+        )); ?>
+        <!-- end activeZoom -->
+
+        <div id="<?php echo (isset($this->action)) ? $this->action : 'home' ; ?>" class="parallax" style="background-image: url(<?php echo $this->baseUrl()?>/imgs/bgBody-home1.jpg);" data-stellar-background-ratio="<?php echo ($this->action != 'hotels' && $this->action != 'islas'  && $this->action != 'cruises') ? '0.2' : '0.03' ; ?>">
+            <div class="container">
+                <!-- begin userMenu -->
+                <?php echo $this->render('_partials/userMenu.phtml', array(
+                    'enableMenu' => $this->enableMenu,
+                    'user' => $this->user
+                    )); ?>
+                    <!-- end userMenu -->
+
+                    <!-- Menu principal -->
+                    <?php echo $this->render('_partials/principalMenu.phtml', array(
+                        'menuCurrent' => $this->menuCurrent,
+                        )); ?>
+                        <!-- end Menu principal -->
+                        <div class="clearfix" style="margin-top: 20px;">
+
+                        </div>
+
+                        <!-- Mensajes -->
+                        <?php echo $this->render("_partials/_messages.phtml", array(
+                            'messages' => $this->messages
+                            ))?>
+                            <!-- emdMensajes -->
+
+                            <div class="clearfix" style="margin-top: 20px;">
+
+                            </div>
+
+                            <!-- Slider! -->
+                            <?php if($this->action != 'account') : ?>
+                                <?php echo $this->render('_partials/slider.phtml', array(
+                                    'activeIsleId' => $this->activeIsleId,
+                                    )); ?>
+                                <?php endif; ?>
+                                <!-- end slider -->
+
+                                <div class="clearfix" style="margin-top: 0px;">
+
+                                </div>
+
+                                <?php echo $this->layout()->content; ?>
+
+
+                                <!-- Archivo Js CircularCarousel -->
+                                <script src="<?php echo $this->baseUrl()?>/js/ext_carousel-jquery.easing.1.3.js"></script>
+                                <script src="<?php echo $this->baseUrl()?>/js/ext_carousel-jquery.mousewheel.js"></script>
+                                <script src="<?php echo $this->baseUrl()?>/js/ext_carousel-contentcarousel.js"></script>
+
+                                <!-- Stellar Parallax-->
+                                <script src="<?php echo $this->baseUrl()?>/js/jquery.stellar.min.js"></script>
+
+                                <!-- Truncate Text -->
+                                <script src="<?php echo $this->baseUrl()?>/js/jquery.truncate.text.js"></script>
+
+                                <!-- Bootstrap gallery 3.0.1-->
+                                <script src="<?php echo $this->baseUrl()?>/js/ext_jquery.blueimp-gallery.min.js"></script>
+                                <script src="<?php echo $this->baseUrl()?>/js/ext_bootstrap-image-gallery.min.js"></script>
+
+                                <!-- Lazy Load -->
+                                <script src="<?php echo $this->baseUrl()?>/js/jquery.unveil.min.js"></script>
+
+                                <script>
+
+                                    $(window).load(function(){
+                                        <?php if($this->firstUse) : ?>
+                                        $(".full-loading").fadeOut(500);
+                                        setTimeout(function(){
+                                            $('#loginModal').modal('show');                        
+                                        }, 500);
+                                    <?php endif; ?>
+                                });
+
+
+                                    $(document).ready(function() {
+                //Inicia la galeria
+                $('#image-gallery-button').on('click', function(event) {
+                    event.preventDefault();
+                    console.log("asd");
+                    $('#blueimp-gallery').data('useBootstrapModal', false);
+                    $('#blueimp-gallery').toggleClass('blueimp-gallery-controls', true);
+                    blueimp.Gallery($('.hiddenGallery a'), $('#blueimp-gallery').data());
+                });
+
+                //Desaparecer Alerts
+                setTimeout(function(){
+                    $(".alert").slideUp(500);
+                }, 5000);
+                
+                //Truncar textos
+                $('.truncate300').succinct({
+                    size: 300
+                });
+                $('.truncate200').succinct({
+                    size: 200
+                });
+                $('.truncate100').succinct({
+                    size: 100
+                });
+
+                // $("a[href^='#']:not(.hotelLink)").click(function(e) {
+                //     e.preventDefault();
+                //     var section = $(this).attr("href");
+                //     $("html, body").animate({
+                //         scrollTop: $(section).offset().top
+                //     }, 3500, 'easeInOutQuad');
+                // });
+
+                $("[data-src]").unveil(200, function() {
+                    $(this).load(function() {
+                        this.style.opacity = 1;
+                    });
+                });
+
+                $('#ca-container').contentcarousel({
+                    // speed for the sliding animation
+                    sliderSpeed: 500,
+                    // easing for the sliding animation
+                    sliderEasing: 'swing',
+                    // speed for the item animation (open / close)
+                    itemSpeed: 500,
+                    // easing for the item animation (open / close)
+                    itemEasing: 'swing',
+                    // number of items to scroll at a time
+                    scroll: 2}
+                    );
+
+                jQuery.stellar({
+                    horizontalScrolling: false,
+                    verticalOffset: 0
+                });
+                
+                $(".activeZoom").on("click", function(){
+
+
+                    var targetImage = $(this).attr("data-target-image");
+                    $('#activeZoom').modal('show');
+                    $(".zoomedImage").attr('src', targetImage).load(function(){
+
+                    });
+                    
+                });
+
+                //Activacion de tooltips, popovers y textos de carga en botones
+                $("[data-rel=tooltipTop]").tooltip({placement: 'top', delay: {show: 500, hide: 100}});
+                $("[data-rel=tooltipRight]").tooltip({placement: 'right', delay: {show: 500, hide: 100}});
+                $("[data-rel=tooltipLeft]").tooltip({placement: 'left', delay: {show: 500, hide: 100}});
+                $("[data-rel=tooltipBottom]").tooltip({placement: 'bottom', delay: {show: 350, hide: 100}});
+            });
+            function abrirNoDisponible(){
+                //Saca la clase que oculta los modal
+                $("#noDisponible").modal("show");
+            }
+                                    function changeLang(lang){
+                                        $.ajax({
+                                            url: '<?php echo $this->url(array('module'=>'default','controller'=>'helper','action'=>'changelng'),null,true); ?>',
+                                            type: "post",
+                                            data: { lang:lang},
+                                            success: function (response) {
+                                               location.reload();
+                                            },
+                                            error: function(jqXHR, textStatus, errorThrown) {
+                                                console.log(errorThrown);
+                                            }
+                                        });
+                                    }
+                                </script>
+                                 <script src="<?php echo $this->baseUrl()?>/lightGallery-master/dist/js/lightgallery-all.js"></script>
+                            <script src="<?php echo $this->baseUrl()?>/lightGallery-master/lib/jquery.mousewheel.min.js"></script>
+                            <script src="<?php echo $this->baseUrl()?>/lightGallery-master/node_modules/lg-zoom/src/lg-zoom.js"></script>
+                                <div class="modal fade bs-modal-lg" id="noDisponible" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+                                    <div class="modal-dialog modal-lg">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <div class="row">
+                                                    <div class="col-lg-11 logo text-center">
+                                                        <img src="<?php echo $this->baseUrl()?>/imgs/logo.png"/>                                
+                                                    </div>
+                                                    <div class="col-lg-1 text-center pull-right imgsModal">
+                                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                                            <img src="<?php echo $this->baseUrl()?>/imgs/modal-x.png"/>
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-body text-center">
+                                                
+                                            <b><?php echo ($this->lang == 'Es') ? 'No hay información disponible' : 'Information not available'; ?></b>
+                                            
+                                            </div>
+                                            <div class="modal-footer">
+                                                <div class="row">
+                                                    <div class="col-lg-12 text-center light text-muted">
+                                                        <br>
+                                                        <small>Paradise Tours Tahiti · Spirit of Polynesia ® 2014</small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </body>
+                            </html>

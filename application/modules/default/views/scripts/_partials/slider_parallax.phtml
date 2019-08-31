@@ -1,0 +1,50 @@
+<div class="parallax-slider carousel">
+
+    <div data-stellar-vertical-offset="-1500" data-stellar-background-ratio="0.9" class="img-parallax" style="background: url(<?php echo $this->baseUrl(); ?>/imgs/h1.jpg) center top no-repeat;">
+
+    </div>
+    <div data-stellar-vertical-offset="-1500" data-stellar-background-ratio="0.9" class="img-parallax" style="background: url(<?php echo $this->baseUrl(); ?>/imgs/h2.jpg) center top no-repeat;">
+
+    </div>
+    <div data-stellar-vertical-offset="-1500" data-stellar-background-ratio="0.9" class="img-parallax" style="background: url(<?php echo $this->baseUrl(); ?>/imgs/h3.jpg) center top no-repeat;">
+
+    </div>
+    <div data-stellar-vertical-offset="-1500" data-stellar-background-ratio="0.9" class="img-parallax" style="background: url(<?php echo $this->baseUrl(); ?>/imgs/h4.jpg) center top no-repeat;">
+
+    </div>
+    <div data-stellar-vertical-offset="-1500" data-stellar-background-ratio="0.9" class="img-parallax" style="background: url(<?php echo $this->baseUrl(); ?>/imgs/h5.jpg) center top no-repeat;">
+
+    </div>
+    <div data-stellar-vertical-offset="-1500" data-stellar-background-ratio="0.9" class="img-parallax" style="background: url(<?php echo $this->baseUrl(); ?>/imgs/h6.jpg) center top no-repeat;">
+
+    </div>
+
+</div>
+
+<script>
+
+    //Maneja el slider-parallax
+    function changeParallaxBg(delay) {
+        $(imgArray[counter - 1]).fadeOut();
+        if (counter > 1) {
+            counter--;
+        } else {
+            $(".img-parallax").fadeIn();
+            counter = $(imgArray).size();
+        }
+        setTimeout("changeParallaxBg(" + delay + ")", delay);
+    }
+
+    var delay = 10000;
+    var imgArray = new Array();
+    imgArray = $(".img-parallax").toArray();
+
+    var counter = $(imgArray).size();
+    //fin slider parallax        
+    
+    $(document).ready(function(){
+        //Dispara slider-parallax
+        setTimeout("changeParallaxBg(delay)", delay);
+    });
+
+</script>

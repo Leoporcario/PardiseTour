@@ -1,0 +1,47 @@
+<div class="form-container">
+    <blockquote>
+        <?php if($this->title){?>
+            <p class="text-primary"><?php echo ($this->icon) ? '<label class="glyphicon glyphicon-'.$this->icon.'"></label> ' : '' ;?> <?php echo $this->title?></p>
+        <?php } ?>
+        <?php if($this->description){?>
+            <small><?php echo $this->description?></small>
+        <?php } ?>
+    </blockquote>
+    <form id="enlaceForm" method="post" novalidate>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'IDEnlaceCategoria'; ?>
+            <label for="<?php echo $fieldName ?>">Categoría *</label>
+            <br>
+            <select class="form-control loadIslas" name="<?php echo $fieldName ?>" id="<?php echo $fieldName ?>" data-validate="required">
+                <option value="">Seleccione una categoría...</option>
+                <?php foreach ($this->categorias as $categoria) { ?>
+                    <option value="<?php echo $categoria[$fieldName] ?>"><?= $categoria['ECnombreEs'] ?></option>     
+                <?php } ?>
+            </select>
+        </div>
+        <div class="clearfix">
+
+        </div>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'EnombreEs'?>
+            <label for="<?php echo $fieldName?>">Nombre (Español) *</label>
+            <input type="text" name="<?php echo $fieldName?>" class="form-control" placeholder="Nombre (Español)" data-validate="required">
+        </div>   
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'EnombreEn'?>
+            <label for="<?php echo $fieldName?>">Nombre (Inglés) *</label>
+            <input type="text" name="<?php echo $fieldName?>" class="form-control" placeholder="Nombre (Inglés)" data-validate="required">
+        </div>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'Elink'?>
+            <label for="<?php echo $fieldName?>">Nombre (Español) *</label>
+            <input type="text" name="<?php echo $fieldName?>" class="form-control" placeholder="http://sitioamigo.com.ar" data-validate="required|www">
+        </div>   
+        <br>
+        <div class="btn-group">
+            <button type="submit" name="submit" class="btn btn-primary" data-loading-text="Validando...">Guardar</button>
+            <?php /*<button type="button" data-toggle="button" class="btn btn-info" data-rel="popover" data-content="asdasdasd" title="Información">Información</button>*/?>
+            <button type="button" class="btn btn-danger" onclick='location.href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'enlace', 'action' => 'index'), '', true)?>"'>Cancelar</button>
+        </div>
+    </form>
+</div>

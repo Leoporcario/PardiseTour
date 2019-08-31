@@ -1,0 +1,146 @@
+<?php require_once '../application/models/DbTable/SendDetail.php';
+
+    $this->model = new Model_DBTable_SendDetail();
+    
+//Configuracion del envio de mails:
+require_once('PHPMailer/class.phpmailer.php');   
+   
+?>
+
+<?php echo $this->headLink()->prependStylesheet($this->baseUrl()."/css/popup.css")."\n"; ?>
+
+<h2>
+    
+    <?php echo $this->message;
+    
+    $intervalo=rand(2000,20000);
+    
+    ?>
+    
+</h2>
+        
+<strong>Newsletter a enviar:</strong> <?php echo $this->newsletter['NLName'] ?>
+
+<br />
+<br />
+<center>No cierre esta ventana, ya que interrumpiria el proceso de envio.</center>
+<br />
+
+<div class="center">
+<table border="0" class="table" border="1">
+    
+    <tr>
+        
+        <th>Suscriptor</th>
+        <th>Email</th>
+        <th>Estado de envio</th>
+        
+    </tr>
+    
+    <?php $send_mail = null; $c = 0; foreach($this->suscriptors as $suscriptor){ 
+        
+            if($suscriptor['EDEstado'] == 1){?>
+                <tr>
+
+                    <td><strong><?php echo $suscriptor['SNombre'] ?></strong></td>
+                    <td><strong><?php echo $suscriptor['SEmail'] ?></strong></td>
+                    <td><strong>Enviado</strong></td>
+
+                </tr>
+    <?php 
+                
+            }else{ $c++; 
+            
+            if($c == 1){ $send_mail = array('SEmail' => $suscriptor['SEmail'], 'IDEDetalle' => $suscriptor['IDEDetalle']); }
+            
+            ?>
+                
+                <tr>
+
+                    <td><?php echo $suscriptor['SNombre'] ?></td>
+                    <td><?php echo $suscriptor['SEmail'] ?></td>
+                    <td>Sin enviar</td>
+
+                </tr>
+                
+           <?php }
+          
+    } ?>
+</table>
+    
+    <?php 
+    if(is_array($send_mail)){
+        
+        $this->mail = new PHPMailer();
+
+        $this->mail->IsSMTP(); // telling the class to use SMTP
+
+        $this->mail->SMTPAuth   = true;                  // enable SMTP authentication
+        $this->mail->Host       = $this->parameters['PServer']; // SMTP server
+        $this->mail->Port       = $this->parameters['PPort'];                    // set the SMTP port for the GMAIL server
+        $this->mail->Username   = $this->parameters['PUser']; // SMTP account username
+        $this->mail->Password   = $this->parameters['PPassword'];        // SMTP account password
+
+        $this->mail->AddReplyTo($this->parameters['PUser'], $this->parameters['PUser']);
+
+        $this->mail->AddAddress($send_mail['SEmail'], $send_mail['SEmail']);
+
+        $this->mail->SetFrom($this->parameters['PUser'], $this->parameters['PUser']);
+
+        $this->mail->Subject = $this->newsletter['NLName'];
+
+        $body = 'newsletters/'.$this->newsletter['NLHtml'];
+        
+        $html_body = file_get_contents($body);
+
+        $this->mail->MsgHTML(utf8_decode($html_body));   
+        
+        $this->mail->AltBody = "Para visualizar corrrectamente este mensaje haga click aqui"; // optional, comment out and test
+
+        if(!$this->mail->Send()) {
+
+                echo "<h2>Ocurrio un error: " . $this->mail->ErrorInfo . '</h2>';
+
+            }else{
+
+                echo "<center><h2>Enviando mensaje a: " . $send_mail['SEmail'] . '</h2></center>';
+            }
+            
+        //PARA CAMBIAR EL ESTADO
+        $this->model->edit(array('IDEDetalle' => $send_mail['IDEDetalle'], 'EDEstado' => 1)); ?>
+    
+    
+</div>
+
+
+
+        <script>
+            var pagina='<?php echo $this->url(array('module' => 'admin' ,'controller'=>'popup', 'action'=>'popup', 'IDEnvio' => $this->envio['IDEnvio']),'',true);?>';
+            var tiempo=<?=$intervalo?>;
+
+            function redir() { 
+                location.href=pagina;
+            } 
+
+            setTimeout ("redir()", tiempo); 
+        </script> 
+        
+<?php 
+    }else{
+        ?><script>
+            window.opener.location.reload();
+            alert("El envio a fiinalizado correctamente.");
+            window.close();
+        </script>
+            <?php
+    }
+?>
+
+
+
+
+
+
+<?php
+
+?>

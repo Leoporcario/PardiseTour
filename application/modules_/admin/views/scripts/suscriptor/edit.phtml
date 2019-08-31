@@ -1,0 +1,83 @@
+<div class="form-container">
+    <blockquote>
+        <?php if ($this->title) { ?>
+            <p class="text-primary"><?php echo ($this->icon) ? '<label class="glyphicon glyphicon-' . $this->icon . '"></label> ' : ''; ?> <?php echo $this->title ?></p>
+        <?php } ?>
+        <?php if ($this->description) { ?>
+            <small><?php echo $this->description ?></small>
+        <?php } ?>
+    </blockquote>
+    <form id="userForm" method="post" novalidate>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'SNombre'; ?>
+            <label for="SNombre">Nombre *</label>
+            <input value="<?php echo $this->result[$fieldName]?>" type="text" id="<?php echo $fieldName?>" name="<?php echo $fieldName?>" class="form-control" placeholder="Nombre" data-validate="required">
+        </div>   
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'SEmail'; ?>
+            <label for="SEmail">Email *</label>
+            <input value="<?php echo $this->result[$fieldName]?>" type="email" id="SEmail" name="<?php echo $fieldName?>" class="form-control" placeholder="Email" data-validate="required|email">
+        </div>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'UPassword'; ?>
+            <label for="UPassword">Contraseña</label>
+            <div class="input-group">
+                <span class="input-group-addon"><label class="glyphicon glyphicon-lock"></label></span>
+                <input type="text" id="<?php echo $fieldName?>" name="<?php echo $fieldName?>" class="form-control" placeholder="Contraseña" data-validate="length_min,8">
+            </div>
+        </div>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'password2'; ?>
+            <label for="password2">Repetir Contraseña</label>
+            <div class="input-group">
+                <span class="input-group-addon"><label class="glyphicon glyphicon-lock"></label></span>
+                <input type="text" id="<?php echo $fieldName?>" name="<?php echo $fieldName?>" class="form-control" placeholder="Repetir Contraseña" data-validate="custom_pass_eq">
+            </div>
+        </div>
+        <div class="form-group col-lg-4">
+            <label for="Spermisos">Permisos</label>
+            <label class="glyphicon glyphicon-question-sign text-info" style="font-size: 20px;" data-rel="tooltipRight" title="Asigne permisos a este suscriptor para que pueda acceder a archivos con los mismos niveles de acceso"></label>
+            <br>
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-info <?php echo ($this->result['Sbase'] == 1) ? 'active' : '' ;?>">
+                    <input type="hidden" name="Sbase" value="0">
+                    <input <?php echo ($this->result['Sbase'] == 1) ? 'checked=""' : '' ;?> type="checkbox" name="Sbase" value="1"> Azul
+                </label>
+                <label class="btn btn-success <?php echo ($this->result['Sbajo'] == 1) ? 'active' : '' ;?>">
+                    <input type="hidden" name="Sbajo" value="0">
+                    <input <?php echo ($this->result['Sbajo'] == 1) ? 'checked=""' : '' ;?> type="checkbox" name="Sbajo" value="1"> Verde
+                </label>
+                <label class="btn btn-warning <?php echo ($this->result['Smedio'] == 1) ? 'active' : '' ;?>">
+                    <input type="hidden" name="Smedio" value="0">
+                    <input <?php echo ($this->result['Smedio'] == 1) ? 'checked=""' : '' ;?> type="checkbox" name="Smedio" value="1"> Amarillo
+                </label>
+                <label class="btn btn-danger <?php echo ($this->result['Salto'] == 1) ? 'active' : '' ;?>">
+                    <input type="hidden" name="Salto" value="0">
+                    <input <?php echo ($this->result['Salto'] == 1) ? 'checked=""' : '' ;?> type="checkbox" name="Salto" value="1"> Rojo
+                </label>
+            </div>
+        </div>
+        <div class="form-group col-lg-4">
+            <label for="Spermisos">Estado</label>
+            <label class="glyphicon glyphicon-question-sign text-info" style="font-size: 20px;" data-rel="tooltipRight" title="Indica si el usuario está habilitado para ingresar al sitio o no"></label>
+            <br>
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-info <?php echo ($this->result['SEstado'] == 1) ? 'active' : '' ;?>">
+                    <input <?php echo ($this->result['SEstado'] == 1) ? 'checked=""' : '' ;?> type="radio" name="SEstado" value="1"> Habilitado
+                </label>
+                <label class="btn btn-danger <?php echo ($this->result['SEstado'] == 0) ? 'active' : '' ;?>">
+                    <input <?php echo ($this->result['SEstado'] == 0) ? 'checked=""' : '' ;?> type="radio" name="SEstado" value="0"> Deshabilitado
+                </label>
+            </div>
+        </div>
+        <div class="clearfix">
+
+        </div>
+        <br>
+        <div class="btn-group">
+            <button type="submit" name="submit" class="btn btn-primary" data-loading-text="Validando...">Guardar</button>
+            <?php /* <button type="button" data-toggle="button" class="btn btn-info" data-rel="popover" data-content="asdasdasd" title="Información">Información</button> */ ?>
+            <button type="button" class="btn btn-danger" onclick='location.href = "<?php echo $this->url(array('module' => 'admin', 'controller' => 'user', 'action' => 'index'), '', true) ?>"'>Cancelar</button>
+        </div>
+    </form>
+</div>

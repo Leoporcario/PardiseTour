@@ -1,0 +1,96 @@
+<div class="form-container">
+    
+    <blockquote>
+        <?php if ($this->title) { ?>
+            <p class="text-primary"><?php echo ($this->icon) ? '<label class="glyphicon glyphicon-' . $this->icon . '"></label> ' : ''; ?> <?php echo $this->title ?></p>
+        <?php } ?>
+        <?php if ($this->description) { ?>
+            <small><?php echo $this->description ?></small>
+        <?php } ?>
+    </blockquote>
+    
+    <?php echo $this->h2; 
+    $field = 'sel1';
+    if(count($this->news) >1){
+        $field = 'sel1[]';
+    }
+    
+    ?>
+
+<?php 
+if($this->message){
+    echo '<div class="message">'.$this->message.'</div>';
+}
+if($this->message_error){
+    echo '<div class="message_error">'.$this->message_error.'</div>';
+}
+?>
+<form name = "add_new" id = "add_new" method = "post" enctype="multipart/form-data">
+    
+<table class="table_forms" border="0" style="width: 100%;">
+    <tr>   
+        
+        <td width="90%">
+            <select name="idIslas[]" id="idIslas" multiple="multiple" size="10" style="width:100%; height:400px;">
+                <?php foreach($this->islas as $isla){ ?>
+                    <option value="<?php echo $isla['idComodidadHabitacion']?>"><?php echo $this->hotel['HOnombreEs']." - " .$isla['CHnombreEs']?></option>
+                <?php } ?>
+            </select>
+        </td>
+        
+        <td align="center">
+            <input type="button" class="btn btn-info" value="&uarr;"  onclick="arriba('idIslas')" style="width:30px;"/><br />
+            <input type="button" class="btn btn-info" value="&darr;"  onclick="abajo('idIslas')" style="width:30px;"/>
+        </td>
+        
+    </tr>
+     
+    <tr>
+        <td colspan="2"><div id = "label_error" class="label_error">&nbsp;<?php echo $this->response ?></div></td>
+    </tr> 
+    <tr>
+        <td colspan="2">
+         <input type="button" class="btn btn-danger" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php echo $this->url(array('action'=>'room'));?>'" value="Cancelar">
+        <input type="button" class="btn btn-primary" name = "button_sumbmit" id = "button_sumbmit" onclick="validate_form();" value="Aceptar">
+        </td>
+    </tr>
+</table>
+    
+</form>
+</div>
+<script>
+    var id_form='add_new';
+    form=document.getElementById(id_form).elements; 
+    function validate_form(){
+    
+        for(var i=0; i<form.idIslas.length; i++) {
+            form.idIslas.options[i].selected = true;
+        }    
+        
+        if(form["button_sumbmit"].disabled==false){
+            form["button_sumbmit"].disabled=true;
+            send_form(document.getElementById(id_form),"Guardando por favor espere ... ");
+        } 
+    }
+    
+</script>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+    $(".Editor").cleditor({height:300, width:400, 
+        controls:  "bold italic underline " +
+                    "| outdent " +
+                    "indent |" +
+                    " link unlink",
+    
+    useCSS:false})[0].focus();
+    
+        $(".calendar").datepicker({
+            monthNamesShort:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
+            dayNamesMin:["Do","Lu","Ma","Mi","Ju","Vi","Sa"],
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true
+            });
+    });
+</script>

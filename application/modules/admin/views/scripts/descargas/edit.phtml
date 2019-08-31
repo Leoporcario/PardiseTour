@@ -1,0 +1,112 @@
+<table cellspacing="0" cellpadding="0">
+    <tr>
+        <td valign="top" id="diplayNode" >
+            <div class="title">Editar descarga: </div>
+            <div id="contentNode">
+                <form name="add" id="add" method="POST" enctype="multipart/form-data">
+                    <fieldset class="save">
+                        <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php
+                echo $this->url(array('module' => $this->parameters['module'], 'controller' => $this->parameters['controller'], 'action' => 'index'));
+                ?>'" value="Volver">
+
+                        <input type="button" class="buttons" name = "button_sumbmit" id = "button_sumbmit" 
+                               onclick="validate_form();" value="Guardar">
+
+                        <div id = "label_error" class="label_error">&nbsp;</div>
+                    </fieldset>
+
+                    <fieldset>
+                        
+                        <table>
+                            <tr>
+                            <tr>
+                                <th>Nombre del archivo: </th>
+                                <?php $field = "DNombre"; ?>
+                                <td><input type="text" name="<?php echo $field ?>" id="<?php echo $field ?>" onkeyup="is_enter(event);" value="<?php echo $this->result[$field]?>"></td>
+                            </tr>                
+                            <tr>
+                                <th>Descripción: </th>
+                                <?php $field = "DDescripcion"; ?>
+                                <td><textarea name="<?php echo $field ?>" id="<?php echo $field ?>" onkeyup="is_enter(event);"><?php echo $this->result[$field]?></textarea></td>
+                            </tr>      
+                            <tr>
+                                <th>
+                                    Archivo:    
+                                </th>
+                                <?php $field = "DArchivo"; ?>
+                                <td>                                
+                                    <?if($this->result['DArchivo']){?>
+                                        <a target="_blank" href="<?=$this->baseUrl()?>/files/<?=$this->result['DArchivo']?>"><?=$this->result['DNombre']?></a>
+                                        <br>
+                                        Reemplazar:
+                                    <? } ?>
+                                    <input style="margin-bottom: 20px;" type="file" name="<?php echo $field ?>" id="<?php echo $field ?>" onkeyup="is_enter(event);">
+                                </td>
+                            </tr>   
+                                    
+                        </table>
+                    </fieldset>
+                </form>
+            </div>
+        </td>
+    </tr>
+</table>
+
+<style>
+    textarea.Editor{
+        width: 500px;
+        height: 300px;
+    }
+    textarea{
+        width: 500px;
+        height: 120px;
+    }
+    
+    input{
+        width: 300px;
+    }
+</style>
+
+<script type="text/javascript">
+	tinyMCE.init({
+		mode : "exact",
+                theme : "advanced",
+                elements : "NDesarrollo"
+	});
+</script>
+
+<script>
+    function validate_form(){
+        var id_form='add';
+        form=document.getElementById(id_form).elements;
+<?php
+foreach ($this->fields as $field) {
+    if ($field['required'] == true) {
+        ?>
+            if(is_empty(form["<?= $field["field"] ?>"],"Por favor complete el campo <?= $field["label"] ?>")) return;
+        <?php
+    }
+    if ($field['type'] == "email") {
+        ?>
+            if(is_valid_email(form["<?= $field["field"] ?>"],"El <?= $field["label"] ?> no es una drección válida.")) return;
+        <?php
+    }
+}
+?>
+                if(form["button_sumbmit"].disabled==false){
+                    form["button_sumbmit"].disabled=true;
+                    send_form(document.getElementById(id_form),"Guardando por favor espere");
+                } 
+            }
+             
+	$(document).ready(function() {
+    
+        $(".calendar").datepicker({
+            monthNamesShort:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
+            dayNamesMin:["Do","Lu","Ma","Mi","Ju","Vi","Sa"],
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true
+            });
+	});
+    </script>

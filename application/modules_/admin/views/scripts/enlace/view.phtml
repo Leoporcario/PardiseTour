@@ -1,0 +1,52 @@
+<h2>
+    <?php echo $this->h2; ?>
+    <div class="menu_view">
+	<a href="<?php echo $this->url(array('module'=>'admin','controller'=>'suscriptor', 'action'=>'index'),'',true);?>" title="Volver">
+    	<img border="0" src="<?php echo $this->baseUrl()?>/imgs/body_content_flecha_left.png"/>
+   	</a>
+    <a href="<?php echo $this->url(array('module'=>'admin','controller'=>'suscriptor', 'action'=>'delete','id'=>$this->result["IDSuscriptor"]),'',true);?>" title="Eliminar">
+    	<img border="0" src="<?php echo $this->baseUrl()?>/imgs/body_content_delete.png"/>
+   	</a>
+    </div>
+</h2>
+
+<div class="view_field">Nombre y Apellido:</div>
+<div class="view_data"><?php echo $this->result["SName"]?> <?=$this->result['SLastname']?></div>
+<div class="view_field">E-mail:</div>
+<div class="view_data"><?php echo $this->result["SEmail"]?></div>
+<div class="view_field">País:</div>
+<div class="view_data"><?php echo $this->result["PNombre"]?></div>
+<div class="view_field">Comentarios hechos en noticias:</div>
+<?if( count($this->comments) > 0 ){?>
+    <?foreach($this->comments as $key =>$comment){?>
+        <div class="view_data">
+            <strong><?=$key+1?></strong> - <font style="font-style: italic; margin-right: 20px;">"<?=$comment['CBody'];?>"</font> on &nbsp;<strong>(<?=$comment['CDate']?>)</strong>, <?=$comment['CTime']?>
+            <?if($comment['CStatus'] == 1){?>
+                - Moderated
+            <? }else{ ?>
+                - Moderation needed <a target="_blank" href="<?php echo $this->url(array('module'=>'admin','controller'=>'comment', 'action'=>'edit', 'id' => $comment['IDComment']),'',true);?>" title="Moderate this comment"><img src="<?php echo $this->baseUrl()?>/imgs/body_content_flecha.png" valign="middle" /></a>
+            <? } ?>
+        </div>
+    <? } ?>
+<? }else{ ?>
+    <div class="view_data">
+        No se hicieron comentarios
+    </div>
+<? } ?>
+<div class="view_field">Comentarios hechos en imágenes:</div>
+<?if( count($this->commentsimage) > 0 ){?>
+    <?foreach($this->commentsimage as $key =>$comment){?>
+        <div class="view_data">
+            <strong><?=$key+1?></strong> - <font style="font-style: italic; margin-right: 20px;">"<?=$comment['CBody'];?>"</font> on &nbsp;<strong>(<?=$comment['CDate']?>)</strong>, <?=$comment['CTime']?>
+            <?if($comment['CStatus'] == 1){?>
+                - Moderated
+            <? }else{ ?>
+                - Moderation needed <a target="_blank" href="<?php echo $this->url(array('module'=>'admin','controller'=>'commentimage', 'action'=>'edit', 'id' => $comment['IDCommentImage']),'',true);?>" title="Moderate this comment"><img src="<?php echo $this->baseUrl()?>/imgs/body_content_flecha.png" valign="middle" /></a>
+            <? } ?>
+        </div>
+    <? } ?>
+<? }else{ ?>
+    <div class="view_data">
+        No se hicieron comentarios
+    </div>
+<? } ?>

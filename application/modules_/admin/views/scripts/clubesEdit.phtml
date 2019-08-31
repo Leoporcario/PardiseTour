@@ -1,0 +1,129 @@
+<div class="form-group col-lg-8"> 
+    <blockquote>
+        <p class="text-primary"><label class="glyphicon glyphicon-sort-by-attributes"></label> Agregar clubes de buceo</p>
+        <small>Puede agregar todos los clubes necesarios. Solo el nombre es obligatorio</small>
+    </blockquote>
+</div>
+<div class="form-group col-lg-4">        
+    <label >Opciones</label>
+    <div class="clearfix">
+
+    </div>
+    <div class="btn-group">
+        <button 
+            type="button" 
+            class="btn btn-primary addAjax"
+            data-input-action="club"
+            data-input-label="club de buceo"
+            data-input-target="clubDiv"
+            >Agregar otro club</button>
+    </div>
+</div>
+<div class="clearfix">
+
+</div> 
+<div id="clubDiv">       
+    <?php if(count($this->clubes) > 0){?>
+        <?php foreach($this->clubes as $keyClub => $club){?>
+            <div class="form-group col-lg-4">
+                <div class="panel panel-primary" id="clubOld_<?php echo $keyClub?>">
+                    <div class="panel-heading">Club de buceo - "<?php echo $club['CBnombreEs']?>"</div>
+                    <div class="panel-body">        
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'clubOld['.$club['idClubBuceo'].'][CBnombreEs]'; ?>
+                            <label for="<?php echo $fieldName ?>">Nombre (Español)*</label>
+                            <input maxlength="<?php echo $this->maxlenghtInput ?>" value="<?php echo $club['CBnombreEs']?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Español)" data-validate="required">        
+                        </div>
+                        <div class="clearfix">
+
+                        </div> 
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'clubOld['.$club['idClubBuceo'].'][CBnombreEn]'; ?>
+                            <label for="<?php echo $fieldName ?>">Nombre (Inglés)*</label>
+                            <input maxlength="<?php echo $this->maxlenghtInput ?>"  value="<?php echo $club['CBnombreEn']?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Inglés)" data-validate="required">        
+                        </div>    
+                        <div class="clearfix">
+
+                        </div> 
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'clubOld['.$club['idClubBuceo'].'][CBdescripcionEs]'; ?>
+                            <label for="<?php echo $fieldName ?>">Descripción (Español)</label>
+                            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big" placeholder="Descripción (Español)"><?php echo $club['CBdescripcionEs']?></textarea>
+                        </div>
+                        <div class="clearfix">
+
+                        </div> 
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'clubOld['.$club['idClubBuceo'].'][CBdescripcionEn]'; ?>
+                            <label for="<?php echo $fieldName ?>">Descripción (Inglés)</label>
+                            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big" placeholder="Descripción (Inglés)"><?php echo $club['CBdescripcionEn']?></textarea>
+                        </div>
+                        <div class="clearfix">
+
+                        </div> 
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'clubOld['.$club['idClubBuceo'].'][CBlink]'; ?>
+                            <label for="<?php echo $fieldName ?>">Link</label>
+                            <input maxlength="<?php echo $this->maxlenghtInput ?>" value="<?php echo $club['CBlink']?>" type="url" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Link" data-validate="www">        
+                        </div>          
+                        <div style="margin-top:10px; margin-bottom: 10px;" class="btn-group" data-toggle="buttons">
+                            <label data-target="clubOld_<?php echo $keyClub?>" data-rel="popoverRight" data-content="Este club se eliminará" class="btn btn-warning">
+                                <input type="checkbox" name="eliminarClubes[]" value="<?php echo $club['idClubBuceo'] ?>"> Eliminar
+                            </label>
+                        </div>
+                    </div>           
+                </div>          
+            </div>
+            <?php if($keyClub % 3 == 2){?>
+                <div class="clearfix">
+
+                </div>
+            <?php } ?>
+        <?php } ?>
+    <?php }else{ ?>
+        <div class="form-group col-lg-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading">Club de buceo 1</div>
+                <div class="panel-body">        
+                    <div class="form-group col-lg-15">
+                        <?php $fieldName = 'club[0][CBnombreEs]'; ?>
+                        <label for="<?php echo $fieldName ?>">Nombre (Español)*</label>
+                        <input maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Español)" data-validate="required">        
+                    </div>
+                    <div class="clearfix">
+
+                    </div> 
+                    <div class="form-group col-lg-15">
+                        <?php $fieldName = 'club[0][CBnombreEn]'; ?>
+                        <label for="<?php echo $fieldName ?>">Nombre (Inglés)*</label>
+                        <input maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Inglés)" data-validate="required">        
+                    </div>    
+                    <div class="clearfix">
+
+                    </div> 
+                    <div class="form-group col-lg-15">
+                        <?php $fieldName = 'club[0][CBdescripcionEs]'; ?>
+                        <label for="<?php echo $fieldName ?>">Descripción (Español)</label>
+                        <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big" placeholder="Descripción (Español)"></textarea>
+                    </div>
+                    <div class="clearfix">
+
+                    </div> 
+                    <div class="form-group col-lg-15">
+                        <?php $fieldName = 'club[0][CBdescripcionEn]'; ?>
+                        <label for="<?php echo $fieldName ?>">Descripción (Inglés)</label>
+                        <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big" placeholder="Descripción (Inglés)"></textarea>
+                    </div>
+                    <div class="clearfix">
+
+                    </div> 
+                    <div class="form-group col-lg-15">
+                        <?php $fieldName = 'club[0][CBlink]'; ?>
+                        <label for="<?php echo $fieldName ?>">Link</label>
+                        <input maxlength="<?php echo $this->maxlenghtInput ?>" type="url" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Link" data-validate="www">        
+                    </div>
+                </div>
+            </div>
+        </div>
+    <?php } ?>
+</div>

@@ -1,0 +1,14 @@
+<?php if(is_array($this->islas)){?>    
+    <option value="">
+        Seleccione una isla...
+    </option>
+    <?php foreach($this->islas as $isla){ ?>
+        <option <?php echo ($this->idIslaActual == $isla['idIsla']) ? 'selected=""' : '' ;?> value="<?php echo $isla['idIsla']?>">
+            <?php echo $isla['ISnombreEs']?>
+        </option>
+    <?php } ?>
+<?php }else{ ?>
+    <option value="">
+        <?php echo $this->islas?>
+    </option>
+<?php } ?>

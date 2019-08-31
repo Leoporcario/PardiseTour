@@ -1,0 +1,100 @@
+<!-- begin userMenu -->
+<div class="row userMenu">
+    <div class="col-lg-9 pull-right">
+        <nav class="navbar navbar-default userMenu" role="navigation">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#userMenu">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="userMenu">
+                <ul class="nav navbar-nav navbar-right">
+                    <!-- <li>
+                        <a href="#">
+                            <span class="icon">
+                                <img src="<?php echo $this->baseUrl() ?>/imgs/icon-cam.png" />
+                            </span> Webcams
+                        </a>
+                    </li>
+                    <li class="separator visible-lg">
+                        |
+                    </li> -->
+                    <li>
+                        <a href="<?php echo ($this->lang == 'Es') ? 'https://www.accuweather.com/es/pf/french-polynesia-weather' : 'https://www.accuweather.com/en/pf/french-polynesia-weather' ;?>" target="_blank">
+                            <span class="icon">
+                                <img src="<?php echo $this->baseUrl() ?>/imgs/icon-weather.png" />
+                            </span> <?php echo ($this->lang == 'Es') ? 'Clima' : 'Weather' ;?>
+                        </a>
+                    </li>
+                    <li class="separator visible-lg">
+                        |
+                    </li>
+                    <li>
+                        <a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'contact'), '', true);?>">
+                            <span class="icon">
+                                <img src="<?php echo $this->baseUrl() ?>/imgs/icon-mail.png" />
+                            </span> <?php echo ($this->lang == 'Es') ? 'Contacto' : 'Contact us' ;?>
+                        </a>
+                    </li>
+                    <?php if($this->enableMenu) : ?>
+                    <li class="separator visible-lg">
+                        |
+                    </li>
+                    <li class="dropdown noIcon">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Hola <strong><?php echo $this->user['user']?></strong> <b class="caret"></b></a>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'files'), '', true)?>">
+                                    <span class='glyphicon glyphicon-file'></span> 
+                                    <?php echo ($this->lang == 'Es') ? 'Archivos' : 'Files' ;?>
+                                </a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'logout'), '', true)?>">
+                                    <span class='glyphicon glyphicon-log-out'></span> 
+                                    <?php echo ($this->lang == 'Es') ? 'Salir' : 'Log out' ;?>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <?php else : ?>
+                    <li class="separator visible-lg">
+                        |
+                    </li>
+                    <li class="noIcon">
+                        <a data-toggle="modal" data-target="#loginModal">
+                            <strong>Login</strong>
+                        </a>
+                    </li>
+                    <?php endif;?>
+                    <li class="separator last visible-lg">
+                        |
+                    </li>
+                    <li class="langs <?php echo ($this->lang == "Es") ? 'active' : '' ;?>" data-rel="tooltipBottom" title="<?php echo ($this->lang == 'Es') ? 'Change Language' : 'Cambiar idioma' ;?>">
+                        <!-- <a href="<?php echo ($this->lang == "Es") ? '#' : $this->url(array('controller' => 'index', 'action' => 'index', 'lang' => 'Es'), '', true) ;?>"> -->
+                        <a href="<?php echo ($this->lang == "Es") ? 'javascript:void(0);' : 'javascript:changeLang(\'Es\');'?>">
+                            <span class="icon">
+                                <img src="<?php echo $this->baseUrl() ?>/imgs/icon-spain.png" />
+                            </span>
+                        </a>
+                    </li>
+                    <li class="langs <?php echo ($this->lang == "En") ? 'active' : '' ;?>" data-rel="tooltipBottom" title="<?php echo ($this->lang == 'Es') ? 'Change Language' : 'Cambiar idioma' ;?>">
+                        <a href="<?php echo ($this->lang == "En") ? 'javascript:void(0);' : 'javascript:changeLang(\'En\');'?>">
+                            <span class="icon">
+                                <img src="<?php echo $this->baseUrl() ?>/imgs/icon-brit.png" />
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+        </nav>
+    </div>
+</div>
+<!-- end userMenu -->

@@ -1,0 +1,50 @@
+<table cellspacing="0" cellpadding="0">
+    <tr>
+        <td valign="top">
+        </td>
+        <td valign="top" id="diplayNode" >
+            <div class="title">Categorias</div>
+            <table class="tabla">
+                <tr>
+                    <?
+                    foreach($this->fields as $key=>$field){
+                        if($field['list']==true){
+                            $cols++;
+                            echo '<th width="'.$field["width"].'"><a href="';
+                            if($field['order']==true){
+                                 echo $this->url(array('module'=>$this->parameters['module'],
+                                            'controller'=>$this->parameters['controller'], 
+                                            'action'=>$this->parameters['action'],
+                                            'sort'=>$field["field"],
+                                            'order'=>($this->parameters["order"]=="asc")?'desc':'asc')).'';
+                            }else echo '#';
+                            echo '">'.$field["label"].'</a></th>';
+                        }
+                    }
+                    ?>
+                </tr>
+                <? 
+                if(count($this->results)>0){ 
+                    foreach($this->results as $key=>$result){ ?>
+                    <tr onclick="location.href='<?php echo $this->url(array('module'=>$this->parameters['module'],'controller'=>$this->parameters['controller'], 
+                        'action'=>'view','id'=>$result[$this->fields[0]['field']]));?>'" <?=($key%2==0)?'':'class="gris"';?>>
+                        <?php
+                        foreach($this->fields as $key=>$field){
+                            if($field['list']==true){
+                                echo '<td class="'.$field["class"].'" '.$field["nowrap"].' style="text-align:'.$field["align"].'">&nbsp;'.$result[$field["field"]].'</td>';
+                            }
+                        }
+                        ?>
+                    </tr>
+                <? }
+                }else{ ?>
+                    <tr><td colspan="<?php echo $cols?>">No hay resultados</td></tr>  
+                <?
+                } ?>
+            </table>
+        </td>
+    </tr>
+</table>
+
+
+    

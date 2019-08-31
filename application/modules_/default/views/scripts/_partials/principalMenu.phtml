@@ -1,0 +1,146 @@
+<div class="row header">
+    <div class="col-lg-3">
+        <a href="<?php echo $this->url(array('controller' => 'index',  'action' => 'index'), '' , true); ?>">
+            <img src="<?php echo $this->baseUrl() ?>/imgs/logo.png" alt="Logo"/>
+        </a>
+    </div>
+    <div class="col-lg-9">
+        <nav class="navbar navbar-default principalMenu" role="navigation">
+            
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#principalMenu">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                <a class="navbar-brand" href="<?php echo $this->url(array('controller' => 'index',  'action' => 'index'), '' , true); ?>">
+                    <span class="glyphicon glyphicon-home"></span>
+                </a>
+                
+            </div>
+
+            <div class="collapse navbar-collapse" id="principalMenu">
+                
+                <ul class="nav nav-justified">
+                    
+                    <li class="<?php echo ($this->menuCurrent == 'islas') ? 'active' : ''; ?> dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <?php echo ($this->lang == 'Es') ? 'Islas' : 'Islands' ;?>  <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <?php $islas = Model_DBTable_Islas::getInstance()->showAll(); ?>
+                            <?php if(count($islas) > 0) : ?>
+                            
+                                <?php foreach($islas as $isla) : ?>                            
+                                    
+                                    <li>
+                                        <a  href="<?php echo $this->url(array('controller' => 'index', 'action' => 'islands', 'isle' => $isla['idIsla']), '', true);?>">
+                                        <?php echo $isla['ISnombre' . $this->lang];?>
+                                        </a>
+                                    </li>
+                            
+                                <?php endforeach; ?>
+                            
+                            <?php endif; ?>
+                        </ul>
+                    </li>
+                    
+                    <li class="<?php echo ($this->menuCurrent == 'hoteles') ? 'active' : ''; ?> dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <?php echo ($this->lang == 'Es') ? 'Hoteles' : 'Hotels' ;?>  <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <?php if(count($islas) > 0) : ?>
+                            
+                                <?php foreach($islas as $isla) : ?>                            
+                                    
+                                    <li class="dropdown-submenu" data-submenu="menu-hoteles-<?php echo $isla['idIsla']; ?>">
+                                        <a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'hotels', 'isle' => $isla['idIsla']), '', true);?>">
+                                        <?php echo ($this->lang == 'Es') ? 'Hoteles en ' : 'Hotels on ' ;?> <?php echo $isla['ISnombre' . $this->lang];?>
+                                        </a>
+                                                
+                                        <?php $hoteles = Model_DBTable_Hoteles::getInstance()->showAll('idIsla = ' . $isla['idIsla']);?>
+                                        <?php if(count($hoteles) > 0) : ?>
+                                            <ul id="menu-hoteles-<?php echo $isla['idIsla']; ?>" class="dropdown-menu second-menu" style="display: none;">
+
+                                                <?php foreach($hoteles as $hotel) : ?>
+
+                                                    <li><a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'hotels', 'hotel' => $hotel['idHotel']), '' , true);?>"><?php echo $hotel['HOnombre' . $this->lang]?></a></li>
+
+                                                <?php endforeach; ?>
+
+                                            </ul>
+                                        <?php endif; ?>
+                                    </li>
+                            
+                                <?php endforeach; ?>
+                            
+                            <?php endif; ?>
+                        </ul>
+                    </li>
+                    
+                    <li class="<?php echo ($this->menuCurrent == 'cruceros') ? 'active' : '' ;?>">
+                        <a href="<?php echo $this->url(array('controller' => 'index',  'action' => 'cruises'), '' , true); ?>">
+                            <?php echo ($this->lang == 'Es') ? 'Cruceros' : 'Cruises' ;?>
+                        </a>
+                    </li>
+                    
+                    <li class="<?php echo ($this->menuCurrent == 'transporte') ? 'active' : ''; ?> dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" href="<?php echo $this->url(array('controller' => 'index', 'action' => 'transportation'), '' , true);?>">
+                            <?php echo ($this->lang == 'Es') ? 'Transporte' : 'Transportation'; ?>  <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'transportation'), '' , true);?>">Aereo</a></li>
+                            <li><a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'transportation'), '' , true);?>">Mar&iacute;timo</a></li>
+                        </ul>
+                    </li>
+                    
+                    <li class="<?php echo ($this->menuCurrent == 'eventos') ? 'active' : '' ;?>">
+                        <a href="<?php echo $this->url(array('controller' => 'index',  'action' => 'events'), '' , true); ?>">
+                            <?php echo ($this->lang == 'Es') ? 'Eventos' : 'Events' ;?>
+                        </a>
+                    </li>
+                    
+                    <!--
+                    <li class="last <?php echo ($this->menuCurrent == 'extras') ? 'active' : '' ;?>">
+                        <a href="#">
+                            Extras
+                        </a>
+                    </li>
+                    -->
+                </ul>
+            </div>
+        </nav>
+    </div>
+</div>
+
+<style>
+    
+    .dropdown .dropdown-menu{
+        margin-top: -5px;
+    }
+    
+    .dropdown:hover .dropdown-menu {
+        display: block;
+     }
+    
+</style>
+
+<script>
+
+    $(".dropdown-submenu").on("mouseenter", function(){
+                
+        var submenuId = $(this).attr("data-submenu");
+        $("#" + submenuId).fadeIn(200);
+        
+    });
+    $(".dropdown-submenu").on("mouseleave", function(){
+                
+        var submenuId = $(this).attr("data-submenu");
+        $("#" + submenuId).fadeOut(200);
+        
+    });
+
+</script>

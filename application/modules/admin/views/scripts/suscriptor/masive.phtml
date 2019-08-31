@@ -1,0 +1,54 @@
+<h2>
+    <?php echo $this->h2; ?>
+</h2>
+<?php
+if ($this->message) {
+    echo '<div class="message">' . $this->message . '</div>';
+}
+if ($this->message_error) {
+    echo '<div class="message_error">' . $this->message_error . '</div>';
+}
+?>
+<form name = "add_suscriptor" id = "add_suscriptor" method = "post" enctype="multipart/form-data">         
+    <table class="table_forms" border="0">
+        <tr>                        
+            <td class="label">Seleccione el archivo: <br>
+                <b>Debe ser un listado de mails, 1 mail por reglon y debe finalizar en ;<br> (SOLO .TXT)</b></td>
+            <td><input name = "file" id = "file" type = "file" /></td>                          
+        </tr>
+        <tr>                        
+            <td class="label" valign="top">Categorías a la que pertenece:</td>
+            <td >
+                <? foreach ($this->categories as $category) { ?>
+                    <input style="width:30px; vertical-align:middle;" type="checkbox" name="IDCategory[]" id="<?php echo $category['IDCategory'] ?>" value="<?php echo $category['IDCategory'] ?>">
+                    <label for="<?php echo $category['IDCategory'] ?>"><?php echo $category['CName']; ?></label><br>
+                <? } ?>
+            </td>                        
+        </tr>    
+        <tr>
+            <td colspan="2">
+                <div id="label_error" class="label_error">&nbsp;</div>
+            </td>
+        </tr> 
+
+        <tr>
+            <td colspan="2">
+                <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php echo $this->url(array('module' => 'admin', 'controller' => 'suscriptor', 'action' => 'index'), '', true); ?>'" value="Cancelar">
+                <input type="button" class="buttons" name = "button_sumbmit" id = "button_sumbmit" onclick="validate_form();" value="Aceptar">
+            </td>
+        </tr>
+    </table>
+</form>
+<script>
+    function validate_form(){
+        var id_form='add_suscriptor';
+        form=document.getElementById(id_form).elements;
+        extensions = new Array("TXT","CSV"); 
+        if(is_empty(form["file"],"Seleccione un archivo")) return;
+        if(is_invalid_file(form["file"],extensions,"El formato del archivo no es válido. Solo se admiten: \"TXT Y CSV\"")) return;
+        if(form["button_sumbmit"].disabled==false){
+            form["button_sumbmit"].disabled=true;
+            send_form(document.getElementById(id_form),"Guardando, por favor espere ... ");
+        }
+    }
+</script>

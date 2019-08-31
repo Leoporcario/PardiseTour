@@ -1,0 +1,71 @@
+<div class="form-group col-lg-8"> 
+    <blockquote>
+        <p class="text-primary">Agregar habitaciones del hotel</p>
+        <small>Puede agregar todos las las habitaciones necesarias.</small>
+    </blockquote>
+</div>
+<div class="form-group col-lg-4">        
+    <label>Opciones</label>
+    <div class="clearfix">
+
+    </div>
+    <button 
+    type="button" 
+    class="btn btn-primary addAjax"
+    data-input-target="habitacionDiv"
+    data-input-action="habitacion"
+    data-input-label="habitacion - hotel"
+    >Agregar habitación</button>
+    <a 
+    type="button" 
+    class="btn btn-primary"
+     href='<?php echo $this->url(array('action'=>'roomorder'));?>'>Ordenar habitaciones</a>
+</div>
+
+<div class="clearfix">
+
+</div> 
+<div id="habitacionDiv">
+    <?php if (count($this->habitaciones) > 0) { ?>
+    <?php foreach ($this->habitaciones as $keyHabitacion => $habitacion) { ?>
+    <div class="form-group col-lg-4">
+        <div class="panel panel-primary" id="habitacionOld<?php echo $keyHabitacion ?>">
+            <div class="panel-heading">Habitación <?php echo $keyHabitacion + 1 ?></div>
+            <div class="panel-body">        
+                <div class="form-group col-lg-15">
+                    <?php $fieldName = 'habitacionOld[' . $habitacion['idHabitacion'] . '][HnombreEs]'; ?>
+                    <label for="<?php echo $fieldName ?>">Nombre (Español)*</label>
+                    <input value="<?php echo $habitacion['HnombreEs'] ?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Español)" data-validate="required">        
+                </div> 
+                <div class="clearfix">
+
+                </div>
+                <div class="form-group col-lg-15">
+                    <?php $fieldName = 'habitacionOld[' . $habitacion['idHabitacion'] . '][HnombreEn]'; ?>
+                    <label for="<?php echo $fieldName ?>">Nombre (Ingles)*</label>
+                    <input value="<?php echo $habitacion['HnombreEn'] ?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Inglés)" data-validate="required">        
+                </div>
+                <div class="clearfix">
+
+                </div>
+                <div class="form-group col-lg-15">
+                    <?php $fieldName = 'habitacionOld[' . $habitacion['idHabitacion'] . '][Hcantidad]'; ?>
+                    <label for="<?php echo $fieldName ?>">Cantidad  de habitaciones en el hotel</label>
+                    <input value="<?php echo $habitacion['Hcantidad'] ?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="number" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Cantidad de habitaciones en el hotel" data-validate="required|number|min,1">        
+                </div>           
+                <div style="margin-top:10px; margin-bottom: 10px;" class="btn-group" data-toggle="buttons">
+                    <label data-target="habitacionOld<?php echo $keyHabitacion?>" data-rel="popoverRight" data-content="Esta habitación se eliminará" class="btn btn-warning">
+                        <input type="checkbox" name="eliminarHabitaciones[]" value="<?php echo $habitacion['idHabitacion'] ?>"> Eliminar
+                    </label>
+                </div>
+            </div>         
+        </div>
+    </div>
+    <?php if ($keyHabitacion % 3 == 2) { ?>
+    <div class="clearfix">
+
+    </div>
+    <?php } ?>
+    <?php } ?>
+    <?php } ?>
+</div>

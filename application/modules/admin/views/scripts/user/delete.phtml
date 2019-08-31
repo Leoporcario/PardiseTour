@@ -1,0 +1,18 @@
+<div class="form-container">
+    <blockquote>
+        <?php if($this->title){?>
+            <p class="text-primary"><?php echo ($this->icon) ? '<label class="glyphicon glyphicon-'.$this->icon.'"></label> ' : '' ;?> <?php echo $this->title?> - <?php echo $this->result['ULoginname']?></p>
+        <?php } ?>
+        <?php if($this->description){?>
+            <small><?php echo $this->description?></small>
+        <?php } ?>
+    </blockquote>
+    <div class="alert alert-danger" align="center">
+        <form name="form_question" method="post">        
+            <div class="btn-group">            
+                <button type="submit" class="btn btn-primary" name="delete_request" value="No">Volver</button>
+                <button type="submit" class="btn btn-danger" name="delete_request" value="Yes">Eliminar</button>
+            </div>
+        </form>
+    </div>    
+</div>

@@ -1,0 +1,126 @@
+<?
+require_once '../application/models/DbTable/SendDetail.php';
+$this->model_send_detail = new Model_DBTable_SendDetail();
+?>
+<h2>
+<?php echo $this->h2 ?>
+</h2>
+<br>
+<form name = "add_envio" id = "add_envio" method = "post" >
+    <h3>1- Seleccione un newsletter para enviar:</h3>   
+    <table border="0">
+
+        <tr height="30">
+            <th style="text-align: center">Nombre del newsletter</th>
+            <th>Vista previa</th>
+        </tr>
+
+<? foreach ($this->newsletters as $newsletter) { ?>
+            <tr>
+                <td width="200"><input type="radio" name="IDNewsletter" id="IDNewsletter" <?php echo ($newsletter->IDNewsletter == $this->idnl || $this->idnl == 'Ninguna') ? 'checked="checked"' : ''; ?> value="<?php echo $newsletter->IDNewsletter ?>" style="width: 50px; vertical-align: middle;"><?php echo $newsletter['NLName'] ?></td>
+                <td style="text-align: center"><a target="_blank" href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'newsletter', 'action' => 'view', 'id' => $newsletter->IDNewsletter), '', true); ?>" title="Vista en la web"><img border="0" src="<?php echo $this->baseUrl() ?>/imgs/body_content_flecha.png"/></a></td>
+            </tr>
+<? } ?>
+    </table>
+    <br /><br />
+    <h3>2- Seleccione los suscriptores que seran destinatarios:</h3>    
+    
+    <table class="tabla">
+        <tr>
+            <th colspan="10">
+                Categorias
+            </th>
+        </tr>
+        <tr style="cursor:auto;">
+            <td colspan="10">
+                <?foreach($this->categorias as $category){?>
+                    <input style="width: 15px;" type="checkbox" name="IDCategory[]" value="<?=$category['IDCategory']?>"/><?=$category['CName']?>
+                <? } ?>
+            </td>
+        </tr>
+        <tr>
+            <th width="50">
+                <input style="width: 50px;" type="checkbox" onclick="checkedAll()">
+            </th>
+            <th width="250">Nombre</th>
+            <th width="250">EMail</th>
+        </tr>        
+    <?php foreach ($this->suscriptors as $key => $suscriptor) { ?>                
+            <tr <?= ($key % 2 == 0) ? '' : 'class="gris"'; ?>>
+                <td><input style="width:60px;" type="checkbox" name="IDSuscriptor[]" value="<?php echo $suscriptor['IDSuscriptor'] ?>"></td>                
+                <td><?php echo $suscriptor['SNombre'] ?></td>
+                <td><?php echo $suscriptor['SEmail'] ?></td>
+            </tr>
+    <? } ?>
+    </table>
+
+    <table>    
+        <tr>
+            <td colspan="2"><div id = "label_error" class="label_error">&nbsp;</div></td>
+        </tr> 
+        <tr>
+            <td colspan="2">
+                <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php echo $this->url(array('module' => 'admin', 'controller' => 'send', 'action' => 'index'), '', true); ?>'" value="Cancelar">
+                <input type="button" class="buttons" name = "button_sumbmit" id = "button_sumbmit" onclick="validate_form();" value="Aceptar">
+            </td>
+        </tr>            
+    </table>
+
+</form>
+
+<script>
+    
+    function reloadTable(value){
+        
+        var newsletters = document.getElementsByName("IDNewsletter");
+        
+        for(i = 0; i < newsletters.length; i++){
+            
+            if(newsletters[i].checked == true){
+            
+                var idnl = newsletters[i].value;
+                
+            }
+
+        }
+                                                                    
+        location.href = '<?php
+echo $this->url(array('module' => 'admin',
+    'controller' => 'send',
+    'action' => 'add'
+        ), '', true)
+?>/idcat/' + value + '/idnl/' + idnl;
+        
+    }
+    
+    checked=false;
+
+    function checkedAll () {
+        var aa= document.getElementById('add_envio');
+        if (checked == false)
+        {
+            checked = true
+        }
+        else
+        {
+            checked = false
+        }
+        for (var i =0; i < aa.elements.length; i++) 
+        {
+            aa.elements[i].checked = checked;
+        }
+    }
+
+    function validate_form(){
+        var id_form='add_envio';
+        form=document.getElementById(id_form).elements;
+
+        if(is_empty(form["IDNewsletter"],"Seleccione un newsletter.")) return;	
+
+        if(form["button_sumbmit"].disabled==false){
+            form["button_sumbmit"].disabled=true;
+            send_form(document.getElementById(id_form),"Guardando, por favor espere ... ");
+        }
+    }
+</script>
+

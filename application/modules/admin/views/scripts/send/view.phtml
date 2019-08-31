@@ -1,0 +1,48 @@
+<h2>
+    
+    <?php echo $this->resumen; ?>
+    
+</h2>
+        
+<h3>Newsletter a enviar:</h3> 
+<strong><?php echo $this->newsletter['NLName']; ?></strong>
+<br /><br />
+<h3>Suscriptores a los que sera enviado:</h3>
+<table class="tabla">
+    
+    <tr>
+        <th>Suscriptor</th>
+        <th width="120">Enviado</th>
+    </tr>
+    
+    <?php $status = false ;
+    foreach($this->array_suscriptor as $key=>$suscriptor){ 
+        if($suscriptor['EDEstado'] == 0) {
+            $status=true;
+        }
+        ?>
+    
+    <tr <?=($key%2==0)?'':'class="gris"';?>>
+        <td><?php echo $suscriptor['SNombre'] ?>  <<a href="mailto:<?php echo $suscriptor['SEmail'] ?>"><?php echo $suscriptor['SEmail'] ?></a>></td>
+        <td><?php echo ($suscriptor['EDEstado'] == 0)? 'Sin enviar' : 'Enviado' ;?> </td>
+    </tr>
+    
+    <?php } ?>
+    
+</table>
+
+<br />
+
+
+<? if($status==true){ ?>
+<input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php echo $this->url(array('module' => 'admin' ,'controller'=>'send', 'action'=>'index'),'',true);?>'" value="Cancelar">
+<input type="button" class="buttons" name = "button_sumbmit" id = "button_sumbmit" onclick="abrir(
+                                                                                    /*URL */'<?php echo $this->url(array('module' => 'admin' ,'controller'=>'popup', 'action'=>'popup', 'IDEnvio' => $this->IDEnvio),'',true);?>'
+                                                                                    /*HGT */,500
+                                                                                    /*WTH */,500
+                                                                                    /*ALG */,'centro')" value="Enviar">
+<? }else{
+    ?>
+    <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php echo $this->url(array('module' => 'admin' ,'controller'=>'send', 'action'=>'index'),'',true);?>'" value="Volver">
+<?
+} ?> 

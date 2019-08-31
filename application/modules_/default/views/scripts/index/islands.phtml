@@ -1,0 +1,585 @@
+<!-- Descripcion isla  -->
+<div class="container">
+
+    <!--
+    <div class="row">
+        <div class="col-lg-12 shadow bg-light-blue">
+            <h1 class="color-white light">
+            <?php echo ($this->lang == 'Es') ? 'Islas de la Polinesia' : 'Polynesian Islands'; ?>
+            </h1>
+        </div>
+    </div>
+-->
+
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+
+<div class="row shadow bg-white island-intro">
+
+    <div class="col-lg-3 col-md-3 col-sm-3">
+
+        <p class="color-b light title2" style="margin-top: 8px;">
+            <?php echo $this->isleGroup['GInombre' . $this->lang] ?>
+        </p>
+
+        <h1 class="color-b light">
+            <?php echo $this->isle['ISnombre' . $this->lang] ?>
+        </h1>
+
+    </div>
+
+    <div class="col-lg-9 col-md-9 col-sm-9 noRightPadding">
+
+        <ul class="nav nav-tabs bg-light-blue">
+
+            <li class="active">
+                <a href="#generalInfo" data-toggle="tab">
+                    <?php echo ($this->lang == 'Es') ? 'Información General' : 'General Information'; ?>
+                </a>
+            </li>
+
+            <li><a href="#swfMap"><?php echo ($this->lang == 'Es') ? 'Mapas' : 'Maps'; ?></a></li>
+
+            <li><a href="<?php echo $this->url(array('action'=>'hotels','isle'=>$this->isle["idIsla"]))?>"><?php echo ($this->lang == 'Es') ? 'Hoteles' : 'Hotels'; ?></a></li>
+
+            <li><a href="#diving"><?php echo ($this->lang == 'Es') ? 'Buceo' : 'Scuba'; ?></a></li>
+
+            <li><a href="#activities"><?php echo ($this->lang == 'Es') ? 'Actividades' : 'Activities'; ?></a></li>
+
+        </ul>
+
+        <div class="tab-content">
+
+            <div class="tab-pane active" id="generalInfo">
+
+                <p class="color-a truncate200">
+                    <?php echo str_replace("</div>", "<br/>", str_replace("<div>", " ", $this->isle['ISdescripcion' . $this->lang])) ?>
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>    
+
+</div>
+<!-- end Descripcion isla  -->
+
+
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+<!-- 3 cuadrados isla -->
+<div class="container threeBlocks">
+    <div class="row">
+        <div class="col-lg-4 col-sm-4 noLeftPadding">
+            <div class="bg-white border-radius-8 pad-20">
+                <h2 class="color-b slab margin-0"><?php echo ($this->lang == 'Es') ? 'Hoteles' : 'Hotels'; ?></h2>
+                <div class="limitedContent noButton">
+                    <?php $hotels = Model_DBTable_Hoteles::getInstance()->showAll("idIsla = " . $this->isle['idIsla']); ?>
+                    <?php if(count($hotels) > 0) : ?>
+                        <ul class="list-unstyled bordered">
+                            <?php foreach($hotels as $hotel) : ?>
+                                <li>
+                                    <a class="color-a" href="<?php echo $this->url(array('controller' => 'index', 'action' => 'hotels', 'hotel' => $hotel['idHotel']), '', true)?>">
+                                        <?php echo $hotel['HOnombre' . $this->lang]?>
+                                    </a>
+                                </li>
+                            <?php endforeach ; ?>
+                        </ul>
+                    <?php else: ?>
+                        <p class="color-b slab margin-0">
+                            <?php echo ($this->lang == 'Es') ? 'No se encontraron hoteles.' : 'Cannot find any hotels.' ;?>
+                        </p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+            <div class="bg-white border-radius-8 pad-20">
+                <h2 class="color-b slab margin-0"><?php echo ($this->lang == 'Es') ? 'Actividades' : 'Activities' ;?></h2>                            
+                <div class="limitedContent noButton">
+                    <?php $hotels = Model_DBTable_ActividadIsla::getInstance()->showAll("idIsla = " . $this->isle['idIsla']); ?>
+                    <?php if(count($hotels) > 0) : ?>
+                        <ul class="list-unstyled bordered">
+                            <?php foreach($hotels as $hotel) : ?>
+                                <li>
+                                    <a class="color-a" href="#activities">
+                                        <?php echo $hotel['AInombre' . $this->lang]?>
+                                    </a>
+                                </li>
+                            <?php endforeach ; ?>
+                        </ul>
+                    <?php else: ?>
+                        <p class="color-b slab margin-0">
+                            <?php echo ($this->lang == 'Es') ? 'No se encontraron actividades.' : 'Cannot find any activities.' ;?>
+                        </p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4 noRightPadding">
+            <div class="bg-white border-radius-8 pad-20">
+                <h2 class="color-b slab margin-0"><?php echo ($this->lang == 'Es') ? 'Buceo' : 'Scuba' ;?></h2>
+                <div class="limitedContent noButton">
+                    <?php $hotels = Model_DBTable_Clubes::getInstance()->showAll("idBuceoIsla = " . $this->isle['idIsla']); ?>
+                    <?php if(count($hotels) > 0) : ?>
+                        <ul class="list-unstyled bordered">
+                            <?php foreach($hotels as $hotel) : ?>
+                                <li>
+                                    <a class="color-a" href="#diving">
+                                        <?php echo $hotel['CBnombre' . $this->lang]?>
+                                    </a>
+                                </li>
+                            <?php endforeach ; ?>
+                        </ul>
+                    <?php else: ?>
+                        <p class="color-b slab margin-0">
+                            <?php echo ($this->lang == 'Es') ? 'No se encontraron actividades de Buceo.' : 'Cannot find any scuba.' ;?>
+                        </p>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- end 3 cuadrados isla -->
+
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+
+<!-- footer -->
+<?php echo $this->partial("_partials/_footer.phtml") ?>
+<!-- fin footer -->
+
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+</div>
+</div>
+
+<!-- HASTA ACA ES EL PRIMER PARALLAX -->
+
+<?php if($this->isle) : ?>
+
+    <div id="info" class="parallax" style="background-image: url(<?php echo $this->baseUrl() ?>/imgs/bgBody-home4.jpg)" data-stellar-background-ratio="0.2">            
+        <div class="container info">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-10">
+                    <h1 class="color-white light">
+                        <?php echo ($this->lang == 'Es') ? 'Información General' : 'General Information' ;?>
+                    </h1>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 text-right pad-20">
+                    <a href="#islas">
+                        <img src="<?php echo $this->baseUrl() ?>/imgs/icon-top.png"/>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top: 30px;">
+
+            </div>
+            <div class="row">
+                <div class="col-lg-9 col-md-9 col-sm-9">
+                    <p class="title2 slab bold color-white">
+                        <?php echo $this->isle['ISnombre' . $this->lang] ?>
+                    </p>
+                    <p class="color-white roboto light">
+
+                        <?php echo str_replace("</div>", "<br/>",str_replace("rgb(34, 34, 34)", "rgb(255, 255, 255)", str_replace("<div>", " ", $this->isle['ISdescripcion' . $this->lang])));?>
+                    </p>
+                </div>
+                <div class="col-lg-3 col-md-3 col-sm-3 text-center">
+                    <div class="image galleryImage noMargin">
+                        <img id="image-gallery-button" src="<?php echo $this->baseUrl()?>/imgs/preload.gif" data-src="<?php echo $this->baseUrl()?>/images/<?php echo $this->firstImage['Inombre']?>"/>
+                    </div>
+                    
+                    <?php if(count($this->images) > 0) : ?>
+                        <?php foreach($this->images as $keyImage => $image) : ?>
+                            <div class="hiddenGallery">
+                                <a href="<?php echo $this->baseUrl()?>/images/<?php echo $image['Inombre']?>" title="<?php echo $this->isle['ISnombre' . $this->lang]?>" data-gallery>
+                                    <img src="<?php echo $this->baseUrl()?>/images/m_<?php echo $image['Inombre']?>" alt="<?php echo $this->isle['ISnombre' . $this->lang]?>">
+                                </a>
+                            </div>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
+                    
+                </div>
+            </div>
+            <!-- Map -->
+            <div id="swfMap" class="row">
+                <div class="col-lg-12">
+                    <h1 class="color-white light">
+                        <?php echo ($this->lang == 'Es') ? 'Mapa de' : 'Map from' ;?> <?php echo $this->isle['ISnombre' . $this->lang] ?>
+                    </h1>
+                    
+
+                    <?php if($this->isle['ISmapa'] != '' && $this->isle['ISmapa'] != 'hidden') : ?>
+
+                        <?php 
+                        
+                        // $ISmapaArray=json_decode($this->isle['ISmapa'],true);
+                        $ISmapaArray=json_decode(CENTER_GOOGLE_MAPS,true);
+
+                        ?>
+                        <div class="flash">
+                            <div class="row">
+                                <div class="col-sm-7">
+                                    <div class="bg-white border-radius-8 pad-20 text-left">
+                                        <h4 class="color-a"><?php echo ($this->lang == 'Es') ? 'Categorías de hoteles' : 'Hotel categories' ;?></h4>
+                                        <br>
+                                        <div class="text-left">
+                                            <?php foreach ($this->categoriasHotel as $key => $value): ?>
+                                                <label style="margin-right: 15px;cursor: pointer;"> 
+                                                    <input type="checkbox" class="checkbox_check" attr-id="<?php echo $value["IDCategoriaHotel"] ?>" checked="checked" onchange="reload()" value=""> <span style="color: #<?php echo $value["CHcolor"]?>" class="glyphicon glyphicon-map-marker"></span><?php echo $value["CHnombre".$this->lang] ?>
+                                                </label>
+                                            <?php endforeach ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <div class="bg-white border-radius-8 pad-20 text-left">
+                                        <h4 class="color-a"><?php echo ($this->lang == 'Es') ? 'Sitios de interés' : 'Places of interest' ;?></h4>
+                                        <br>
+                                        <div class="text-left">
+                                            <?php foreach ($this->categoriasSitios as $key => $value): ?>
+                                                <label style="margin-right: 15px;cursor: pointer;"> 
+                                                    <input type="checkbox" class="checkbox_check2" attr-id="<?php echo $value["IDCategoriaSitio"] ?>" checked="checked" onchange="reload2()" value=""> <img src="<?php echo $value["CSIcono"]?>" style="width: 18px;"> <?php echo $value["CSnombre".$this->lang] ?>
+                                                </label>
+                                            <?php endforeach ?>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <br/>
+                            <div id="mapita" style="border-radius: 8px; height: 500px;width: 100%; background-color: grey;"></div>
+                            <script>
+                                function reload(){
+                                    $('input.checkbox_check').each(function(){
+                                        if ($(this).is(':checked')) {
+                                            for(i=0; i<gmarkers.length; i++){
+                                                if(gmarkers[i].category==$(this).attr('attr-id')){
+                                                    gmarkers[i].setVisible(true);
+                                                }
+                                            }
+                                        }else{
+                                            for(i=0; i<gmarkers.length; i++){
+                                                if(gmarkers[i].category==$(this).attr('attr-id')){
+                                                    gmarkers[i].setVisible(false);
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
+
+                                function reload2(){
+                                    $('input.checkbox_check2').each(function(){
+                                        if ($(this).is(':checked')) {
+                                            for(i=0; i<gmarkers2.length; i++){
+                                                if(gmarkers2[i].category==$(this).attr('attr-id')){
+                                                    gmarkers2[i].setVisible(true);
+                                                }
+                                            }
+                                        }else{
+                                            for(i=0; i<gmarkers2.length; i++){
+                                                if(gmarkers2[i].category==$(this).attr('attr-id')){
+                                                    gmarkers2[i].setVisible(false);
+                                                }
+                                            }
+                                        }
+                                    });
+                                }
+
+                                var gmarkers = [];
+                                var gmarkers2 = [];
+                                var map="";
+                                var markers=Array();
+                                var markers2=Array();
+                                var marker="";
+                                var locations=[];
+                                var infoWindows=[];
+                                var locations2=[];
+                                var contentString;
+                                var bounds;
+
+                                function initMap() {
+
+                                    locations=<?php echo json_encode($this->locations); ?>;
+                                    console.log(locations);
+                                    locations2=<?php echo json_encode($this->locations2); ?>;
+                                    bounds = new google.maps.LatLngBounds();
+                                    map = new google.maps.Map(document.getElementById('mapita'), {
+                                        center: {lat: <?php echo $ISmapaArray["lat"] ?>, lng: <?php echo $ISmapaArray["lng"] ?>},
+                                        scrollwheel: false,
+                                        zoom: <?php echo (int)$ISmapaArray["zoo"] ?>,
+                                        mapTypeId: '<?php echo $ISmapaArray["typ"] ?>',
+                                    // disableDefaultUI: true
+                                });
+                                    map.addListener('maptypeid_changed', function() {
+                                        $("#map_typ").val(map.getMapTypeId());                                     
+                                    });
+                                    map.addListener('zoom_changed', function() {
+                                        $("#map_zoo").val(map.getZoom());                                      
+                                    });
+                                    if (locations) {
+                                        for (var i = 0 ;i < locations.length; i++) {
+                                            if(locations[i].color){
+                                                var pinColor = locations[i].color;
+                                            }else{
+
+                                                var pinColor = "e91e63";
+                                            }
+                                            var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+                                                new google.maps.Size(21, 34),
+                                                new google.maps.Point(0,0),
+                                                new google.maps.Point(10, 34));
+                                            var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+                                                new google.maps.Size(40, 37),
+                                                new google.maps.Point(0, 0),
+                                                new google.maps.Point(12, 35));
+                                            gmarkers[i] = new google.maps.Marker({
+                                                position: locations[i].latLng,
+                                                map: map,
+                                                icon: pinImage,
+                                                shadow: pinShadow,
+                                                draggable: false,
+                                                entityId:locations[i].id,
+                                                title: locations[i].title,
+                                                category: locations[i].category
+                                            });
+
+                                            /************************** INFO ****************************/
+                                            gmarkers[i].contentString = `
+                                            <div style="width:250px; height:250px;" class="text-center">
+                                                <h5>${locations[i].title}</h5>
+                                                <hr>
+                                                <img src="${locations[i].picture}" style="width:100%;max-height:150px">
+                                                <a href="<?php echo $this->url(array('controller'=>'index','action'=>'hotels','hotel'=>''),null,true);?>${locations[i].id}" class="btn-block btn btn-primary-a color-white btn-ver-mas">${locations[i].label}</a>
+                                            </div>
+                                            `;
+                                            infowindow = new google.maps.InfoWindow({
+                                                position: locations[i].latLng
+                                            });
+
+                                            gmarkers[i].addListener('mouseover', function() {
+                                                infowindow.setPosition(this.position);
+                                                infowindow.setContent(this.contentString);
+                                                infowindow.open(map, this);
+
+                                            });
+
+                                            /************************ FIN INFO **************************/
+                                            infowindow.setPosition(gmarkers[i].position);
+                                            infowindow.setContent(gmarkers[i].contentString);
+                                            infoWindows.push(infowindow);
+                                            bounds.extend(gmarkers[i].getPosition());
+                                        }
+
+                                        map.fitBounds(bounds);
+                                    }
+                                    if (locations2) {
+                                        for (var i = 0 ;i < locations2.length; i++) {
+                                            gmarkers2[i] = new google.maps.Marker({
+                                                position: locations2[i].latLng,
+                                                map: map,
+                                                icon: locations2[i].icon,
+                                                shadow: pinShadow,
+                                                draggable: false,
+                                                entityId:locations2[i].id,
+                                                title: locations2[i].title,
+                                                category: locations2[i].category
+
+                                            });
+
+                                            /************************** INFO ****************************/
+                                            gmarkers2[i].contentString = `
+                                            <div style="width:250px; height:250px;" class="text-center">
+                                                <h5>${locations2[i].title}</h5>
+                                                <hr>
+                                                <img src="${locations2[i].picture}" style="width:100%;max-height:180px">
+                                            </div>
+                                            `;
+                                            infowindow = new google.maps.InfoWindow({
+                                                position: locations2[i].latLng
+                                            });
+
+                                            gmarkers2[i].addListener('mouseover', function() {
+                                                infowindow.setPosition(this.position);
+                                                infowindow.setContent(this.contentString);
+                                                infowindow.open(map, this);
+
+                                            });
+
+                                            /************************ FIN INFO **************************/
+                                            infowindow.setPosition(gmarkers2[i].position);
+                                            infowindow.setContent(gmarkers2[i].contentString);
+
+                                            bounds.extend(gmarkers2[i].getPosition());
+                                        }
+
+                                        map.fitBounds(bounds);
+                                    }
+                                }
+                            </script>
+                            <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNj3-soT2HznW8fzcFx8G1IqYh6XiA5qE&callback=initMap"
+                            async defer></script>
+                        </div>
+                    <?php else: ?>
+                        <p class="color-white slab margin-0">
+                            <?php echo ($this->lang == 'Es') ? 'No hay mapa disponible.' : 'No map available.' ;?>
+                        </p>
+                    <?php endif; ?>
+                </div>
+            </div>
+            <!-- end Map -->
+            <div class="clearfix" style="margin-top: 30px;">
+
+            </div>                
+            <!-- footer -->
+            <?php echo $this->partial("_partials/_footer.phtml") ?>
+            <!-- fin footer -->
+            <div class="clearfix" style="margin-top: 30px;">
+
+            </div>
+        </div>
+    </div>
+    <?php if(count($this->activities) > 0) :?>
+        <div id="activities" class="parallax" style="background-image: url(<?php echo $this->baseUrl() ?>/imgs/bgBody-home2.jpg)" data-stellar-background-ratio="0.2">            
+            <div class="container">                
+                <div class="row">
+                    <div class="col-lg-9 col-md-9 col-sm-9">
+                        <h1 class="color-white light">
+                            <?php echo ($this->lang == 'Es') ? 'Actividades de' : 'Activities on' ;?> <?php echo $this->isle['ISnombre' . $this->lang] ?>
+                        </h1>
+                    </div>
+                    <div class="col-lg-3 col-md-3 col-sm-3 text-right pad-20">
+                        <a href="#islas">
+                            <img src="<?php echo $this->baseUrl() ?>/imgs/icon-top.png"/>
+                        </a>
+                    </div>
+                </div>
+                <div class="clearfix" style="margin-top: 30px;">
+
+                </div>
+                <?php foreach($this->activities as $keyActivity => $activity) : ?>
+                    <div class="row">
+                        <div class="col-lg-9 col-md-9 col-sm-9">
+                            <p class="title2 color-white slab bold">
+                                <?php echo $activity['AInombre' . $this->lang]?>
+                            </p>
+                            <p class="color-white roboto light" style="color:#FFF !important;"> 
+                                <?php echo str_replace("</div>", "<br/>", str_replace("<div>", " ", str_replace("rgb(34, 34, 34)", "rgb(255, 255, 255)", str_replace("222222", "FFFFFF",$activity['AIdescripcion' . $this->lang]))))?>
+                            </p>
+                            <p class="color-c">
+                                <span class="badge badge-default" style="background-color:rgba(44, 64, 149, 0.8); "><?php echo ($this->lang == 'Es') ? 'Duración' : 'Duration' ;?>: <?php echo $activity['AIduracion' . $this->lang]?></span>                                
+                            </p>
+                        </div>
+                        <div class="col-lg-3 col-md-3 col-sm-3">
+                            <div class="image <?php echo ($keyActivity % 2 == 0) ? "right" : "left" ;?>">
+                                <img class="activeZoom" data-target-image="<?php echo $this->baseUrl() ?>/images/<?php echo $activity['AIimagen']?>" src="<?php echo $this->baseUrl() ?>/imgs/loading.gif" data-src="<?php echo $this->baseUrl() ?>/images/m_<?php echo $activity['AIimagen']?>"/>
+                            </div>
+                        </div>
+                    </div>
+                <?php endforeach; ?>
+                <div class="clearfix" style="margin-top: 30px;">
+
+                </div>                
+                <!-- footer -->
+                <?php echo $this->partial("_partials/_footer.phtml") ?>
+                <!-- fin footer -->
+                <div class="clearfix" style="margin-top: 30px;">
+
+                </div>
+            </div>
+        </div>
+    <?php endif; ?>
+
+    <?php if($this->scubaInfo) : 
+    $clubes = Model_DBTable_Clubes::getInstance()->showAll("idBuceoIsla = " . $this->scubaInfo['idBuceoIsla']);
+    $imagenes = Model_DBTable_Imagenes::getInstance()->showAll("idBuceoIsla = " . $this->scubaInfo['idBuceoIsla']);
+    ?>
+
+    <div id="diving" class="parallax" style="background-image: url(<?php echo $this->baseUrl() ?>/imgs/bgBody-home3.jpg)" data-stellar-background-ratio="0.2">            
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 col-md-10 col-sm-10">
+                    <h1 class="color-white light">
+                        <?php echo ($this->lang == 'Es') ? 'Buceo en' : 'Scuba on' ;?> <?php echo $this->isle['ISnombre' . $this->lang] ?>
+                    </h1>
+                </div>
+                <div class="col-lg-2 col-md-2 col-sm-2 text-right pad-20">
+                    <a href="#islas">
+                        <img src="<?php echo $this->baseUrl() ?>/imgs/icon-top.png"/>
+                    </a>
+                </div>
+            </div>
+            <div class="clearfix" style="margin-top: 30px;">
+
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 col-md-8 text color-white roboto light">
+                    <p>
+                        <?php echo $this->scubaInfo['BIdescripcion' . $this->lang]?>
+                    </p>
+                </div>
+                <div class="col-lg-4 col-md-4 text-center">
+                    <div class="row">
+                        <div class="image">
+                            <img class="activeZoom" data-target-image="<?php echo $this->baseUrl() ?>/images/<?php echo $imagenes[0]['Inombre']?>" src="<?php echo $this->baseUrl() ?>/imgs/loading.gif" data-src="<?php echo $this->baseUrl() ?>/images/m_<?php echo $imagenes[0]['Inombre']?>"/>
+                        </div>
+                        <div class="image">
+                            <img class="activeZoom" data-target-image="<?php echo $this->baseUrl() ?>/images/<?php echo $imagenes[1]['Inombre']?>" src="<?php echo $this->baseUrl() ?>/imgs/loading.gif" data-src="<?php echo $this->baseUrl() ?>/images/m_<?php echo $imagenes[1]['Inombre']?>"/>
+                        </div>
+                    </div>
+                    <div class="clearfix" style="margin-top: 15px">
+
+                    </div>
+                    <?php if(count($clubes) > 0) : ?>
+                        <div class="row club">
+                            <div class="col-lg-12 col-md-12">
+                                <p class="title2 color-white roboto text-left text-uppercase">
+                                    <?php echo ($this->lang == 'Es') ? 'Clubes de buceo' : 'Scuba clubs' ;?>
+                                </p>
+                                <?php foreach($clubes as $club) : ?>
+                                    <p class="title4 color-white roboto text-left">
+                                        <?php echo $club['CBnombre' . $this->lang]?>
+                                    </p>
+                                    <p class="color-white text-left roboto light truncate300">
+                                        <?php echo $club['CBdescripcion' . $this->lang]?>
+                                    </p>
+                                    <p class="text-left">
+                                        <a target="_blank" href="<?php echo $club['CBlink']?>" class="color-d"><?php echo $club['CBlink']?></a>
+                                    </p>
+                                <?php endforeach; ?>
+                            </div>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+
+            <div class="clearfix" style="margin-top: 30px;">
+
+            </div> 
+            <!-- footer -->
+            <?php echo $this->partial("_partials/_footer.phtml") ?>
+            <!-- fin footer -->
+            <div class="clearfix" style="margin-top: 30px;">
+
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+
+
+<!-- Bootstrap gallery -->
+<?php echo $this->partial("_partials/gallery.phtml", array(
+    'images' => $this->images
+    )); ?>
+    <!-- end Bootstrap gallery -->
+
+<?php endif; ?>

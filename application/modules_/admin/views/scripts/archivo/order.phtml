@@ -1,0 +1,90 @@
+<h2>
+    
+    <?php echo $this->h2; 
+    $field = 'sel1';
+    if(count($this->news) >1){
+        $field = 'sel1[]';
+    }
+    
+    ?>
+</h2>
+
+<?php 
+if($this->message){
+	echo '<div class="message">'.$this->message.'</div>';
+}
+if($this->message_error){
+	echo '<div class="message_error">'.$this->message_error.'</div>';
+}
+?>
+<form name = "add_new" id = "add_new" method = "post" enctype="multipart/form-data">
+    
+<table class="table_forms" border="0">
+    <tr>
+        <td class="label">Ordenar Noticias</td>        
+        <td>
+            <select name="IDNoticias[]" id="IDNoticias" multiple="multiple" size="10" style="width:100%; height:200px;">
+                <? foreach($this->news as $analizer){ ?>
+                    <option value="<?php echo $analizer['IDNoticia']?>"><?php echo invert_date($analizer['NFecha'], 'spanish')?> - <?php echo $analizer['NTitulo']?></option>
+                <? } ?>
+            </select>
+        </td>
+        <td align="center">
+            <input type="button" value="&uarr;"  onclick="arriba('IDNoticias')" style="width:30px;"/><br />
+            <input type="button" value="&darr;"  onclick="abajo('IDNoticias')" style="width:30px;"/>
+        </td>
+    </tr>
+    <tr>
+        <td>
+            
+        </td> 
+    </tr>
+     
+    <tr>
+        <td colspan="2"><div id = "label_error" class="label_error">&nbsp;<? echo $this->response ?></div></td>
+    </tr> 
+    <tr>
+    	<td colspan="2">
+         <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php echo $this->url(array('controller'=>'new', 'action'=>'index'),'',true);?>'" value="Cancelar">
+        <input type="button" class="buttons" name = "button_sumbmit" id = "button_sumbmit" onclick="validate_form();" value="Aceptar">
+        </td>
+    </tr>
+</table>
+	
+</form>
+<script>
+    var id_form='add_new';
+    form=document.getElementById(id_form).elements; 
+    function validate_form(){
+	
+        for(var i=0; i<form.IDNoticias.length; i++) {
+            form.IDNoticias.options[i].selected = true;
+        }    
+        
+        if(form["button_sumbmit"].disabled==false){
+            form["button_sumbmit"].disabled=true;
+            send_form(document.getElementById(id_form),"Guardando por favor espere ... ");
+        } 
+    }
+    
+</script>
+
+<script type="text/javascript">
+	$(document).ready(function() {
+	$(".Editor").cleditor({height:300, width:400, 
+		controls:  "bold italic underline " +
+					"| outdent " +
+					"indent |" +
+					" link unlink",
+	
+	useCSS:false})[0].focus();
+    
+        $(".calendar").datepicker({
+            monthNamesShort:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
+            dayNamesMin:["Do","Lu","Ma","Mi","Ju","Vi","Sa"],
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true
+            });
+	});
+</script>

@@ -1,0 +1,134 @@
+<!-- Slider Parallax -->
+<?php echo $this->render('_partials/slider_parallax.phtml'); ?>
+<!-- end Slider Parallax -->
+
+<div class="clearfix" style="margin-top: 30px">
+
+</div>
+
+<div class="row shadow bg-white island-intro">
+
+    <div class="col-lg-12 col-md-12 col-sm-12" style="padding-bottom: 15px;">
+
+        <br>
+        <h1 class="color-b light">
+            <?php echo ($this->lang == 'Es') ? 'Islas de la Polinesia' : 'Polynesian Islands'; ?>
+        </h1>
+
+        <p class="color-a thin" style="margin-top: 8px;">
+            Esparcidos en el Océano Pacífico, a mitad de camino entre Tokio y Santiago de Chile, 
+            se encuentran los archipiélagos que componen la Polinesia Francesa (son 5 en total), que contienen 118 islas entre todos. 
+        </p>
+        <a data-toggle="collapse" class="hotelLink color-a" data-parent="#accordion" href="#collapseOne">
+            <?php echo ($this->lang == 'Es') ? 'Leer más' : 'Read more'; ?>
+        </a>
+        <div class="clearfix">
+        </div>
+        <div id="collapseOne" class="collapse">
+            <div class="panel-body">                
+                <span class="hotelLink color-a">
+                De éstos archipiélagos, existen dos, el de Gambier y el archipiélago de las Australes, 
+                que no poseen mayor atractivo turístico en parte porque esta industria nunca llegó a desarrollarse demasiado allí, 
+                y en parte porque su ubicación hace que se encuentren un poco lejos de todo.
+                </span>
+            </div>
+        </div>
+    </div>
+
+</div>    
+
+<div class="clearfix" style="margin-top: 30px">
+
+</div>
+
+<!-- Noticias -->
+<div class="row shadow bg-white island-intro">
+
+    <div class="col-lg-12 col-md-12 col-sm-12">
+
+        <br>
+        <h1 class="color-b light">
+            <?php echo ($this->lang == 'Es') ? 'Últimas novedades' : 'Last news'; ?>
+        </h1>
+
+    </div>
+
+    <?php if (count($this->news) > 0) : ?>
+
+        <?php foreach ($this->news as $keyNews => $newsInstance) : ?>
+
+            <div class="col-lg-4 col-md-4 col-sm-12 text-center" style="padding-top: 20px;">  
+
+                <a title="Leer +" href="<?php echo $this->url(array('controller' => 'index', 'action' => 'news', 'n' => $newsInstance['IDNoticia']), '', true); ?>">
+                    <h5 class="slab color-a ellypsis">                            
+                        <?php echo date_format(new DateTime($newsInstance['NFecha']), 'd/m/Y'); ?> | <?php echo $newsInstance['NTitulo' . $this->lang]; ?>
+                    </h5>
+                </a>
+
+                <br>
+
+                <?php if ($newsInstance['NImagen']) : ?>
+                    <a title="Leer +" href="<?php echo $this->url(array('controller' => 'index', 'action' => 'news', 'n' => $newsInstance['IDNoticia']), '', true); ?>">
+                        <div class="image galleryImage noMargin img-rounded">
+                            <img src="<?php echo $this->baseUrl() ?>/imgs/preload.gif" data-src="<?php echo $this->baseUrl() ?>/images/m_<?php echo $newsInstance['NImagen'] ?>"/>
+                        </div>
+                    </a>
+                <?php endif; ?>
+
+                <br>
+
+                <?php if ($newsInstance['NIntroduccion' . $this->lang]) : ?>
+                    <p class="slab color-a truncate100" style="font-style: italic;">
+                        <?php echo $newsInstance['NIntroduccion' . $this->lang]; ?>
+                    </p>
+                <?php endif; ?>
+
+            </div>
+
+            <?php if ($keyNews % 3 == 2) : ?>
+
+                <div class="clearfix"></div>
+
+            <?php endif; ?>
+
+        <?php endforeach; ?>
+
+    <?php endif; ?>
+
+    <div class="row">
+        <div class="col-lg-12">            
+            <div class="container" style="text-align: center; padding-top: 15px;">
+                <?php echo $this->paginationControl($this->news, 'Sliding', '_partials/_paginationControl.phtml', array('search' => $this->searched)); ?>
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- Noticias -->
+
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+
+<!-- footer -->
+<?php echo $this->partial("_partials/_footer.phtml") ?>
+<!-- fin footer -->
+
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+
+
+<style>
+
+    #home{
+        background: -moz-linear-gradient(top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 50%) !important;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.7)), color-stop(100%,rgba(255,255,255,0))) !important;
+        background: -webkit-linear-gradient(top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 50%) !important;
+        background: -o-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 50%) !important;
+        background: -ms-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 50%) !important;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 50%) !important;
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ) !important;
+    }
+
+</style>

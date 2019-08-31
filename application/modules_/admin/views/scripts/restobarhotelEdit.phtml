@@ -1,0 +1,76 @@
+<div class="form-group col-lg-8"> 
+    <blockquote>
+        <p class="text-primary"><label class="glyphicon glyphicon-cutlery"></label> Agregar bares y restaurants</p>
+        <small>Puede agregar todos los restaurants y bares necesarios. Solo el nombre es obligatorio</small>
+    </blockquote>
+</div>
+<div class="form-group col-lg-4">        
+    <label >Opciones</label>
+    <div class="clearfix">
+
+    </div>
+    <div class="btn-group">
+        <button 
+            type="button" 
+            class="btn btn-primary addAjax"
+            data-input-target="restobarDiv"
+            data-input-action="restobar"
+            data-input-label="restobar"
+            >Agregar restobar</button>
+    </div>
+</div>
+<div class="clearfix">
+
+</div> 
+<div id="restobarDiv">
+    <?php if (count($this->restobares) > 0) { ?>
+        <?php foreach ($this->restobares as $keyRestobar => $restobar) { ?>
+            <div class="form-group col-lg-4">
+                <div class="panel panel-primary" id="restobarOld_<?php echo $keyRestobar?>">
+                    <div class="panel-heading">Restaurant/Bar 1</div>
+                    <div class="panel-body">        
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'restobarOld['.$restobar['idGastronomia'].'][RnombreEs]'; ?>
+                            <label for="<?php echo $fieldName ?>">Nombre (Español)*</label>
+                            <input value="<?php echo $restobar['RnombreEs']?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Español)" data-validate="required">        
+                        </div>
+                        <div class="clearfix">
+
+                        </div> 
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'restobarOld['.$restobar['idGastronomia'].'][RnombreEn]'; ?>
+                            <label for="<?php echo $fieldName ?>">Nombre (Inglés)*</label>
+                            <input value="<?php echo $restobar['RnombreEn']?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Inglés)" data-validate="required">        
+                        </div>    
+                        <div class="clearfix">
+
+                        </div> 
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'restobarOld['.$restobar['idGastronomia'].'][RdescripcionEs]'; ?>
+                            <label for="<?php echo $fieldName ?>">Descripción (Español)</label>
+                            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big" placeholder="Descripción (Español)"><?php echo $restobar['RdescripcionEs']?></textarea>
+                        </div>
+                        <div class="clearfix">
+
+                        </div> 
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'restobarOld['.$restobar['idGastronomia'].'][RdescripcionEn]'; ?>
+                            <label for="<?php echo $fieldName ?>">Descripción (Inglés)</label>
+                            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big" placeholder="Descripción (Inglés)"><?php echo $restobar['RdescripcionEn']?></textarea>
+                        </div>
+                        <div style="margin-top:10px; margin-bottom: 10px;" class="btn-group" data-toggle="buttons">
+                            <label data-target="restobarOld_<?php echo $keyRestobar?>" data-rel="popoverRight" data-content="Este restobar se eliminará" class="btn btn-warning">
+                                <input type="checkbox" name="eliminarRestobar[]" value="<?php echo $restobar['idGastronomia'] ?>"> Eliminar
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <?php if ($keyRestobar % 3 == 2) { ?>
+                <div class="clearfix">
+
+                </div>
+            <?php } ?>
+        <?php } ?>
+    <?php } ?>
+</div>

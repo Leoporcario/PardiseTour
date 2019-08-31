@@ -1,0 +1,56 @@
+<div class="form-group col-lg-8"> 
+    <blockquote>
+        <p class="text-primary"><label class="glyphicon glyphicon-picture"></label> Agregar y eliminar imágenes</p>
+        <small>Puede agregar todas las imágenes necesarias. Solo archivos .jpg y .png</small>
+    </blockquote>
+</div>
+<div class="form-group col-lg-4">        
+    <label >Opciones</label>
+    <div class="clearfix">
+
+    </div>
+    <div class="btn-group">
+        <button 
+            type="button" 
+            class="btn btn-primary addInput"
+            data-input-name="images[]"
+            data-input-type="file"
+            data-input-target="imageDiv"
+            data-input-label="Imagen"
+            data-input-rendered="<?php echo $this->alreadyRendered?>"
+            >Agregar otra imagen</button>
+    </div>
+</div>
+<div class="clearfix">
+
+</div>
+<?php foreach($this->images as $keyImage => $image){?>
+    <div class="form-group col-lg-4">
+        <img id="img_<?php echo $image['idImagen'] ?>" src="<?php echo $this->baseUrl() ?>/images/m_<?php echo $image['Inombre'] ?>" class="img-thumbnail">
+        <?php $fieldName = 'images[]'; ?>
+        <div style="margin-top:10px;" class="btn-group" data-toggle="buttons">
+            <label data-target-image="img_<?php echo $image['idImagen'] ?>" data-rel="popoverRight" data-content="Esta imagen se eliminará" class="btn btn-warning">
+                <input type="checkbox" name="eliminarImagenes[]" value="<?php echo $image['idImagen'] ?>"> Eliminar
+            </label>
+        </div>
+    </div>
+    <?php if($keyImage % 3 == 2){?>
+        <div class="clearfix">
+
+        </div>
+    <?php } ?>
+<?php } ?>
+<div class="clearfix">
+    
+</div>
+<?php /*$i < 3 to render only 3 inputs by default, and the cicle renders inputs up to the limit established on Session*/ ?>
+<?php for($i = 0; $i < $this->inputLimit - count($this->images) && $i < 3; $i++){?>
+<div class="form-group col-lg-4">
+    <?php $fieldName = 'images[]'; ?>
+    <label for="<?php echo $fieldName ?>">Imagen</label>
+    <div class="input-group">
+        <span class="input-group-addon"><label class="glyphicon glyphicon-picture"></label></span>
+        <input type="file" name="<?php echo $fieldName ?>" class="form-control" data-validate="valid_image_file">
+    </div>
+</div>
+<?php } ?>

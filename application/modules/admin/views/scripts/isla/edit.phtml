@@ -1,0 +1,467 @@
+<div class="form-container">
+    <blockquote>
+        <?php if ($this->title) { ?>
+        <p class="text-primary"><?php echo ($this->icon) ? '<label class="glyphicon glyphicon-' . $this->icon . '"></label> ' : ''; ?> <?php echo $this->title ?></p>
+        <?php } ?>
+        <?php if ($this->description) { ?>
+        <small><?php echo $this->description ?></small>
+        <?php } ?>
+    </blockquote>
+    <form id="islaForm" method="post" enctype="multipart/form-data" novalidate onsubmit = "return beforeSend();">
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            Datos generales
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'idGrupoIsla'; ?>
+                            <label for="<?php echo $fieldName ?>">Grupo de Islas *</label>
+                            <br>
+                            <select class="form-control" name="<?php echo $fieldName ?>" id="<?php echo $fieldName ?>" data-validate="<?php echo $this->validations[$fieldName] ?>">
+                                <option value="">Seleccione un grupo de islas...</option>
+                                <?php foreach ($this->grupoIsla as $tipo) { ?>
+                                <option <?php echo ($this->result['idGrupoIsla'] == $tipo['idGrupoIsla']) ? 'selected=""' : '' ;?> value="<?= $tipo[$fieldName] ?>"><?= $tipo['GInombreEs'] ?></option>                                    
+                                <?php } ?>
+                            </select>
+                        </div>      
+                        <div class="clearfix">
+
+                        </div>                            
+                        <?php $fieldName = 'ISimagenPrincipal'; ?>
+                        <?php if ($this->result[$fieldName]) { ?>
+                        <div class="form-group col-lg-4 imageCms">
+                            <img src="<?php echo $this->baseUrl() ?>/images/m_<?php echo $this->result[$fieldName] ?>" class="img-thumbnail">
+                        </div>
+                        <?php } ?>
+                        <div class="form-group col-lg-4">
+                            <label for="<?php echo $fieldName ?>">Imagen <?php echo (!empty($this->result[$fieldName])) ? '(Reemplazar)' : ''; ?></label>
+                            <input type="file" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Imagen" data-validate="valid_image_file">
+                            <p class="help-block">Archivos .jpg o .png solamente</p>                    
+                        </div>
+                        <div class="clearfix">
+
+                        </div>
+                        
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'ISnombreEs'; ?>
+                            <label for="<?php echo $fieldName ?>">Nombre (Español)*</label>
+                            <input value="<?php echo $this->result[$fieldName] ?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Español)" data-validate="<?php echo $this->validations[$fieldName] ?>">        
+                        </div>
+                        <div class="clearfix">
+
+                        </div>
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'ISdescripcionEs'; ?>
+                            <label for="<?php echo $fieldName ?>">Descripción (Español) *</label>
+                            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big ckeditor" placeholder="Descripción (Español)"><?php echo $this->result[$fieldName] ?></textarea>
+                        </div>
+
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'ISnombreEn'; ?>
+                            <label for="<?php echo $fieldName ?>">Nombre (Inglés) *</label>
+                            <input value="<?php echo $this->result[$fieldName] ?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Inglés)" data-validate="<?php echo $this->validations[$fieldName] ?>">        
+                        </div>
+                        <div class="clearfix">
+
+                        </div>
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'ISdescripcionEn'; ?>
+                            <label for="<?php echo $fieldName ?>">Descripción (Inglés) *</label>
+                            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big ckeditor" placeholder="Descripción (Inglés)"><?php echo $this->result[$fieldName] ?></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" >
+                            Mapa
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseMapa" class="">
+                    <?php $fieldName = 'ISmapa'; ?>
+                    <?php 
+                    $ISmapaArray=json_decode(CENTER_GOOGLE_MAPS,true);
+                    ?>
+                    <div class="panel-body" id="imageDiv">
+                        <div class="pull-right">                       
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalHoteles">Agregar Hotel</button>
+                            <button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalSitios">Agregar Sitio de interés</button>
+                        </div>
+                        <br/>
+                        <div class="clearfix">&nbsp;</div>
+                        
+                        <div id="mapita" style="height: 500px;width: 100%; background-color: grey;"></div>
+                        <script>
+
+                        </script>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            Imágenes
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body" id="imageDiv">                       
+                        <?php echo $this->partial('imageInputsEdit.phtml', array('images' => $this->images, 'inputLimit' => $this->inputLimit)); ?>
+                    </div>
+                </div>
+            </div>
+        </div>       
+        <br>
+        <input type="hidden"  name="<?php echo $fieldName ?>[typ]" id="map_typ" value="<?php echo $ISmapaArray["typ"] ?>">
+        <input type="hidden"  name="<?php echo $fieldName ?>[zoo]" id="map_zoo" value="<?php echo $ISmapaArray["zoo"] ?>">
+        <input type="hidden"  name="markes[hoteles]" id="markes_hoteles" value="">
+        <input type="hidden"  name="markes[sitios]" id="markes_sitios" value="">
+        <div class="btn-group">
+            <button type="submit" name="submit" class="btn btn-primary" data-loading-text="Validando...">Guardar</button>
+            <button type="button" class="btn btn-danger" onclick='location.href = "<?php echo $this->url(array('module' => 'admin', 'controller' => 'isla', 'action' => 'index'), '', true) ?>"'>Cancelar</button>
+        </div>
+    </form>
+</div>
+
+
+<div id="modalHoteles" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Seleccione un hotel</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->hoteles as $key => $value): ?>
+                            <?php $display=(!empty($value["HOlat"]) && !empty($value["HOlng"]))?"none":"table-row"; ?>
+                            <tr style="cursor: pointer; display: <?php echo $display ?>" id="selectHotel<?php echo $value["idHotel"] ?>" 
+                            onclick="add('<?php echo addslashes($value["HOnombreEs"]) ?>','<?php echo $value["idHotel"] ?>','<?php echo $value["CHcolor"] ?>')">
+                                <td><?php echo $value["HOnombreEs"] ?></td>
+                                <td style="color: #<?php echo $value["CHcolor"] ?>"><?php echo $value["CHnombreEs"] ?></td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="modalSitios" class="modal fade" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Seleccione un sitio de interés</h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Categoría</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($this->sitios as $key => $value): ?>
+                            <?php $display=(!empty($value["SIlat"]) && !empty($value["SIlng"]))?"none":"table-row"; ?>
+                            <tr style="cursor: pointer; display: <?php echo $display ?>" id="selectSitio<?php echo $value["idSitios"] ?>" 
+                            onclick="add2('<?php echo addslashes($value["SInombreEs"]) ?>','<?php echo $value["idSitios"] ?>','<?php echo $value["CSIcono"] ?>')">
+                                <td><?php echo $value["SInombreEs"] ?></td>
+                                <td style="color: #<?php echo $value["CScolor"] ?>"><?php echo $value["CSnombreEs"] ?> </td>
+                            </tr>
+                        <?php endforeach ?>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script type="text/javascript">
+    // var addFlag=false;
+    var gmarkers = [];
+    var gmarkers2 = [];
+    var map="";
+    var markers=Array();
+    var markers2=Array();
+    var marker="";
+    var locations=[];
+    var locations2=[];
+    var contentString;
+    var bounds;
+
+    function initMap() {
+        locations=<?php echo json_encode($this->locations); ?>;
+        locations2=<?php echo json_encode($this->locations2); ?>;
+        bounds = new google.maps.LatLngBounds();
+        map = new google.maps.Map(document.getElementById('mapita'), {
+            center: {lat: <?php echo $ISmapaArray["lat"] ?>, lng: <?php echo $ISmapaArray["lng"] ?>},
+            scrollwheel: false,
+            zoom: <?php echo (int)$ISmapaArray["zoo"] ?>,
+            mapTypeId: '<?php echo $ISmapaArray["typ"] ?>',
+                                    // disableDefaultUI: true
+                                });
+        map.addListener('maptypeid_changed', function() {
+            $("#map_typ").val(map.getMapTypeId());                                     
+        });
+        map.addListener('zoom_changed', function() {
+            $("#map_zoo").val(map.getZoom());                                      
+        });
+        if (locations) {
+            for (var i = 0 ;i < locations.length; i++) {
+                if(locations[i].color){
+                    var pinColor = locations[i].color;
+                }else{
+                    
+                    var pinColor = "e91e63";
+                }
+                var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+                    new google.maps.Size(21, 34),
+                    new google.maps.Point(0,0),
+                    new google.maps.Point(10, 34));
+                var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+                    new google.maps.Size(40, 37),
+                    new google.maps.Point(0, 0),
+                    new google.maps.Point(12, 35));
+                gmarkers[i] = new google.maps.Marker({
+                    position: locations[i].latLng,
+                    map: map,
+                    icon: pinImage,
+                    shadow: pinShadow,
+                    draggable: true,
+                    entityId:locations[i].id,
+                    title: locations[i].title
+                });
+
+                /************************** INFO ****************************/
+                gmarkers[i].contentString = `
+                <div style="width:150px; height:60px;" class="text-center">
+                    <h5>${locations[i].title}</h5>
+                    <a href="javascript:void(0);rm(${locations[i].id})" style="text-decoration:none;"><span class="glyphicon glyphicon-trash text-danger"></span> Quitar</a>
+                </div>
+                `;
+                infowindow = new google.maps.InfoWindow({
+                    position: locations[i].latLng
+                });
+
+                gmarkers[i].addListener('click', function() {
+                    infowindow.setPosition(this.position);
+                    infowindow.setContent(this.contentString);
+                    infowindow.open(map, this);
+
+                });
+
+                /************************ FIN INFO **************************/
+                infowindow.setPosition(gmarkers[i].position);
+                infowindow.setContent(gmarkers[i].contentString);
+               // infowindow.open(map, gmarkers[i]);
+
+               bounds.extend(gmarkers[i].getPosition());
+           }
+
+           map.fitBounds(bounds);
+       }
+       if (locations2) {
+        for (var i = 0 ;i < locations2.length; i++) {
+            
+            gmarkers2[i] = new google.maps.Marker({
+                position: locations2[i].latLng,
+                map: map,
+                icon: locations2[i].icon,
+                shadow: pinShadow,
+                draggable: true,
+                entityId:locations2[i].id,
+                title: locations2[i].title
+            });
+
+            /************************** INFO ****************************/
+            gmarkers2[i].contentString = `
+            <div style="width:150px; height:60px;" class="text-center">
+                <h5>${locations2[i].title}</h5>
+                <a href="javascript:void(0);rm2(${locations2[i].id})" style="text-decoration:none;"><span class="glyphicon glyphicon-trash text-danger"></span> Quitar</a>
+            </div>
+            `;
+            infowindow = new google.maps.InfoWindow({
+                position: locations2[i].latLng
+            });
+
+            gmarkers2[i].addListener('click', function() {
+                infowindow.setPosition(this.position);
+                infowindow.setContent(this.contentString);
+                infowindow.open(map, this);
+
+            });
+
+            /************************ FIN INFO **************************/
+            infowindow.setPosition(gmarkers2[i].position);
+            infowindow.setContent(gmarkers2[i].contentString);
+                //infowindow.open(map, gmarkers2[i]);
+
+                bounds.extend(gmarkers2[i].getPosition());
+            }
+
+            map.fitBounds(bounds);
+        }
+    }
+
+
+    function removeItemFromArr ( arr, item ) {
+        var i = arr.indexOf( item );
+
+        if ( i !== -1 ) {
+            arr.splice( i, 1 );
+        }
+    }
+
+    
+
+    function add(name,id,category){
+        if(category){
+            var pinColor = category;
+        }else{
+            
+            var pinColor = "e91e63";
+        }
+        var pinImage = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_letter&chld=%E2%80%A2|" + pinColor,
+            new google.maps.Size(21, 34),
+            new google.maps.Point(0,0),
+            new google.maps.Point(10, 34));
+        var pinShadow = new google.maps.MarkerImage("http://chart.apis.google.com/chart?chst=d_map_pin_shadow",
+            new google.maps.Size(40, 37),
+            new google.maps.Point(0, 0),
+            new google.maps.Point(12, 35));
+
+        $("#modalHoteles").modal('hide');
+        $("#selectHotel"+id).hide();
+        var infowindow = new google.maps.InfoWindow({
+            content: `
+            <div style="width:150px; height:60px;" class="text-center">
+                <h5>${name}</h5>
+                <a href="javascript:void(0);rm(${id})" style="text-decoration:none;"><span class="glyphicon glyphicon-trash text-danger"></span> Quitar</a>
+            </div>
+            `
+        });
+            // addFlag=true;
+            var myLatLng = map.getCenter();
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                entityId:id,
+                icon: pinImage,
+                shadow: pinShadow,
+                draggable: true,
+                title: 'Arrastre el marcador hasta el punto deseado'
+            });
+            marker.addListener('dragend', function (event){
+                // addFlag=false;
+
+            });
+            marker.addListener('mouseover', function (event){
+                infowindow.open(map, marker);
+            });
+            infowindow.open(map, marker);
+            gmarkers.push(marker);
+            
+        }
+
+        function add2(name,id,category){
+
+            $("#modalSitios").modal('hide');
+            $("#selectSitio"+id).hide();
+            var infowindow = new google.maps.InfoWindow({
+                content: `
+                <div style="width:150px; height:60px;" class="text-center">
+                    <h5>${name}</h5>
+                    <a href="javascript:void(0);rm2(${id})" style="text-decoration:none;"><span class="glyphicon glyphicon-trash text-danger"></span> Quitar</a>
+                </div>
+                `
+            });
+            // addFlag=true;
+            var myLatLng = map.getCenter();
+            var marker = new google.maps.Marker({
+                position: myLatLng,
+                map: map,
+                entityId:id,
+                icon: category,
+                draggable: true,
+                title: 'Arrastre el marcador hasta el punto deseado'
+            });
+            marker.addListener('dragend', function (event){
+                // addFlag=false;
+
+            });
+            marker.addListener('mouseover', function (event){
+                infowindow.open(map, marker);
+            });
+            infowindow.open(map, marker);
+            gmarkers2.push(marker);
+            
+        }
+
+        function rm(id){
+            for(i=0; i<gmarkers.length; i++){
+                if(gmarkers[i].entityId==id){
+                    gmarkers[i].setMap(null);
+                    index=gmarkers[i];
+                    $("#selectHotel"+id).show();
+                }
+            }
+            removeItemFromArr( gmarkers, index );
+            // gmarkers.splice(index);
+            // console.log(gmarkers);
+        }
+        function rm2(id){
+            for(i=0; i<gmarkers2.length; i++){
+                if(gmarkers2[i].entityId==id){
+                    gmarkers2[i].setMap(null);
+                    index=gmarkers2[i];
+                    $("#selectSitio"+id).show();
+                }
+            }
+            removeItemFromArr( gmarkers2, index );
+            // gmarkers.splice(index);
+            // console.log(gmarkers);
+        }
+        function beforeSend(){
+            var data=[];
+            var data2=[];
+            for(i=0; i<gmarkers.length; i++){
+                data.push({ id: gmarkers[i].entityId, lat: gmarkers[i].getPosition().lat(),lng: gmarkers[i].getPosition().lng()});
+            }
+            for(i=0; i<gmarkers2.length; i++){
+                data2.push({ id: gmarkers2[i].entityId, lat: gmarkers2[i].getPosition().lat(),lng: gmarkers2[i].getPosition().lng()});
+            }
+            $("#markes_hoteles").val(JSON.stringify(data));
+            $("#markes_sitios").val(JSON.stringify(data2));
+            return true ;
+        }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCNj3-soT2HznW8fzcFx8G1IqYh6XiA5qE&callback=initMap"
+async defer></script>

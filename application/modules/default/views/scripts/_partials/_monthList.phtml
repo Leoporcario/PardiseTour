@@ -1,0 +1,28 @@
+<?php for($i = 1; $i < 13; $i++)  : ?> 
+    <div class="panel-heading <?php echo ($i == $this->activeMonth) ? 'active' : '' ;?> hotel-ajax" data-month="<?php echo $i?>">
+        <div class="row">
+            <div class="col-lg-11 col-md-11">
+                <h4 class="panel-title">
+                    <a class="roboto bold hotelLink" data-toggle="collapse" data-parent="#accordion" href="#collapse-month-<?php echo $i; ?>">
+                        <?php 
+                        $lang = ($this->lang == 'Es') ? 'spa' : 'eng' ;
+                        echo month_in_letters($i, $lang); 
+                        ?>
+                    </a>
+                </h4>
+            </div>
+            <div class="col-lg-1 col-md-1 text-right">
+                <a class="hotelLink" data-toggle="collapse" data-parent="#accordion" href="#collapse-month-<?php echo $i; ?>">
+                    <div class="showHide">
+
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="collapse-month-<?php echo $i; ?>" class="panel-collapse collapse <?php echo ($i == $this->activeMonth) ? 'in' : '' ;?>">
+        <div class="panel-body">
+            <?php echo $this->partial("_partials/_spinner.phtml"); ?>
+        </div>        
+    </div>
+<?php endfor; ?>

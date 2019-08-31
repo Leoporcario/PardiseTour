@@ -1,0 +1,119 @@
+<table>
+    <tr>
+        <td>
+            <fieldset>
+                <legend>
+                    Noticias
+                </legend>
+                <form id="form" name="form" method="POST" enctype="multipart/form-data">
+                    <table>
+                        <tr>
+                            <th>
+                                Tipo noticia:
+                            </th>
+                            <?php $field = "IDTipoNoticia"; ?>
+                            <td>
+                                <select onchange="redirectIf(this.value);" name="<?php echo $field ?>" id="<?php echo $field ?>">
+                                    <option value="">Seleccione un tipo de noticia...</option>
+                                    <?foreach($this->tiposNoticia as $tipo){?>
+                                        <option <?=($tipo['IDTipoNoticia'] == 3) ? 'selected=""' : '' ;?> value="<?=$tipo['IDTipoNoticia']?>"><?=$tipo['TNNombre']?></option>                                    
+                                    <? } ?>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>                       
+                            <th>Fecha:</th>
+                            <?php $field = "NFecha"; ?>
+                            <td><input class="calendar" name="<?php echo $field ?>" id="<?php echo $field ?>" type = "text" onkeyup="is_enter(event);" value="<?=$this->result['NDate']?>" /></td>                        
+                        </tr>
+                        <tr>
+                            <th>Título: </th>
+                            <?php $field = "NTitulo"; ?>
+                            <td><input type="text" name="<?php echo $field ?>" id="<?php echo $field ?>" onkeyup="is_enter(event);" value="<?php echo $this->result[$field]?>"></td>
+                        </tr>  
+                        <tr>
+                            <th>Introducción: </th>
+                            <?php $field = "NIntroduccion"; ?>
+                            <td><textarea maxlength="600" name="<?php echo $field ?>" id="<?php echo $field ?>" onkeyup="is_enter(event);"><?php echo $this->result[$field]?></textarea></td>
+                        </tr>  
+                        <tr>
+                            <th>Link: <br> (debe ingresarse como <i>http://google.com.ar</i>)</th>
+                            <?php $field = "NDesarrollo"; ?>
+                            <td><input type="text" name="<?php echo $field ?>" id="<?php echo $field ?>" onkeyup="is_enter(event);" value="<?php echo $this->result[$field]?>"></td>
+                        </tr>               
+                        <tr>
+                            <td></td>
+                            <td>
+                                <div id = "label_error" class="label_error">
+                                    
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>
+                                <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php echo $this->url(array('module' => $this->parameters['module'], 'controller' => $this->parameters['controller'], 'action' => 'index'), null, true); ?>'" value="Cancelar">
+                                <input type="button" class="buttons" name = "button_sumbmit" id = "button_sumbmit" onclick="validate_form();" value="Aceptar">
+                            </td>
+                        </tr>
+                    </table>
+                </form>
+            </fieldset>
+        </td>
+    </tr>
+</table>
+<style>
+    textarea.Editor{
+        width: 500px;
+        height: 200px;
+    }
+    textarea{
+        width: 500px;
+        height: 60px;
+    }
+    
+    input{
+        width: 300px;
+    }
+</style>
+
+<script type="text/javascript">
+    
+    
+    function redirectIf(idTipo){
+        if(idTipo == 2){
+            location.href = '<?=$this->url(array('module' => 'admin','controller' => 'noticia', 'action' => 'add'), '', true)?>';
+        }
+    }
+</script>
+
+<script type="text/javascript">
+    function validate_form(){
+        var id_form='form';
+        form=document.getElementById(id_form).elements;
+        <?php
+        foreach($this->fields as $field){
+            if($field['required']==true){
+                ?>
+                    if(is_empty(form["<?=$field["field"]?>"],"Complete el campo <?=$field["label"]?>")) return;
+                <?php
+            }
+        } 
+        ?>                
+        if(form["button_sumbmit"].disabled==false){
+                form["button_sumbmit"].disabled=true;
+                send_form(document.getElementById(id_form),"Enviando...");
+        } 
+    }
+        
+	$(document).ready(function() {
+    
+        $(".calendar").datepicker({
+            monthNamesShort:["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre"],
+            dayNamesMin:["Do","Lu","Ma","Mi","Ju","Vi","Sa"],
+            dateFormat: 'yy-mm-dd',
+            changeMonth: true,
+            changeYear: true
+            });
+	});
+</script>

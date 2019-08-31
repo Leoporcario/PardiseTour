@@ -1,0 +1,61 @@
+<div class="menu_2">
+       <a href="<?php echo $this->url(array('module'=>'admin','controller'=>'newsletter', 'action'=>'index'),'',true);?>">Administrar newsletters</a>
+       <div class="clear"></div>
+</div>
+<?php
+    if($this->controller=='newsletter'){
+        ?>
+        <ul>
+            <li><a href="<?php echo $this->url(array('module'=>'admin','controller'=>'newsletter', 'action'=>'add'),'',true);?>" <? echo ($this->action=='add')?'style="font-weight: bold;"':'';?>>Generar newsletter</a></li>
+            <li><a href="<?php echo $this->url(array('module'=>'admin','controller'=>'newsletter', 'action'=>'index'),'',true);?>" <? echo ($this->action=='index')?'style="font-weight: bold;"':'';?>>Newsletter generados</a></li>
+        </ul>
+        <?    
+    }
+?> 
+<div class="menu_2">
+       <a href="<?php echo $this->url(array('module'=>'admin','controller'=>'type', 'action'=>'index'),'',true);?>">Administrar plantillas</a>
+       <div class="clear"></div>
+</div>
+<?php
+    if($this->controller=='type'){
+        ?>
+        <ul>
+            <li><a href="<?php echo $this->url(array('module'=>'admin','controller'=>'type', 'action'=>'add'),'',true);?>" <? echo ($this->action=='add')?'style="font-weight: bold;"':'';?>>Crear nueva</a></li>
+            <li><a href="<?php echo $this->url(array('module'=>'admin','controller'=>'type', 'action'=>'index'),'',true);?>" <? echo ($this->action=='index')?'style="font-weight: bold;"':'';?>>Mostrar todas</a></li>            
+        </ul>
+        <?    
+    }
+?>
+<div class="menu_2">
+       <a href="<?php echo $this->url(array('module'=>'admin','controller'=>'suscriptor', 'action'=>'index'),'',true);?>">Suscriptores</a>
+       <div class="clear"></div>
+</div>
+<?php
+    if($this->controller=='suscriptor' || $this->controller=='category'){
+        ?>
+        <ul>
+            <li><a href="<?php echo $this->url(array('module'=>'admin','controller'=>'suscriptor', 'action'=>'add'),'',true);?>" <? echo ($this->action=='add' && $this->controller=='suscriptor')?'style="font-weight: bold;"':'';?>>Agregar nuevo suscriptor</a></li>
+            <li><a href="<?php echo $this->url(array('module'=>'admin','controller'=>'suscriptor', 'action'=>'masive'),'',true);?>" <? echo ($this->action=='masive' && $this->controller=='suscriptor')?'style="font-weight: bold;"':'';?>>Subir archivo con suscriptores</a></li>
+            <li><a href="<?php echo $this->url(array('module'=>'admin','controller'=>'suscriptor', 'action'=>'index'),'',true);?>" <? echo ($this->action=='index' && $this->controller=='suscriptor')?'style="font-weight: bold;"':'';?>>Mostrar todos</a></li>
+            <li><a href="<?php echo $this->url(array('module'=>'admin','controller'=>'category', 'action'=>'add'),'',true);?>" <? echo ($this->action=='add' && $this->controller=='category')?'style="font-weight: bold;"':'';?>>Agregar nueva categoría</a></li>
+            <li><a href="<?php echo $this->url(array('module'=>'admin','controller'=>'category', 'action'=>'index'),'',true);?>" <? echo ($this->action=='index' && $this->controller=='category')?'style="font-weight: bold;"':'';?>>Mostrar todas las categorías</a></li>
+        </ul>
+        <?    
+    }
+ 
+?>
+<div class="menu_2">
+       <a href="<?php echo $this->url(array('module'=>'admin','controller'=>'send', 'action'=>'index'),'',true);?>">Envío de newsletters</a>
+       <div class="clear"></div>
+</div>
+<?php
+    if($this->controller=='send'){
+        ?>
+        <ul>
+            <li><a href="<?php echo $this->url(array('module'=>'admin','controller'=>'send', 'action'=>'add'),'',true);?>" <? echo ($this->action=='add')?'style="font-weight: bold;"':'';?>>Enviar newsletter</a></li>
+            <li><a href="<?php echo $this->url(array('module'=>'admin','controller'=>'send', 'action'=>'index'),'',true);?>" <? echo ($this->action=='index')?'style="font-weight: bold;"':'';?>>Envíos anteriores</a></li>
+        </ul>
+        <?    
+    }
+ 
+?>

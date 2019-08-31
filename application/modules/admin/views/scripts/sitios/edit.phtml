@@ -1,0 +1,92 @@
+<div class="form-container">
+    <blockquote>
+        <?php if ($this->title) { ?>
+        <p class="text-primary"><?php echo ($this->icon) ? '<label class="glyphicon glyphicon-' . $this->icon . '"></label> ' : ''; ?> <?php echo $this->title ?></p>
+        <?php } ?>
+        <?php if ($this->description) { ?>
+        <small><?php echo $this->description ?></small>
+        <?php } ?>
+    </blockquote>
+    <form id="actividadIslaForm" method="post" enctype="multipart/form-data" novalidate>
+        <div class="row">
+            <div class="form-group col-sm-6">
+                <?php $fieldName = 'idGrupoIsla'; ?>
+                <label for="<?php echo $fieldName ?>">Grupo de Islas</label>
+                <br>
+                <select class="form-control loadIslas" name="<?php echo $fieldName ?>" id="<?php echo $fieldName ?>" data-actual-id="<?php echo $this->result['idIsla']?>">
+                    <option value="">Seleccione un grupo de islas...</option>
+                    <?php foreach ($this->grupoIsla as $tipo) { ?>
+                    <option <?php echo ($this->islaActual['idGrupoIsla'] == $tipo[$fieldName]) ? 'selected=""' : '' ;?> value="<?= $tipo[$fieldName] ?>"><?= $tipo['GInombreEs'] ?></option>                                    
+                    <?php } ?>
+                </select>
+            </div> 
+            <div class="form-group col-sm-6">
+                <?php $fieldName = 'idIsla'; ?>
+                <label for="<?php echo $fieldName ?>">Isla *</label>
+                <br>
+                <select class="form-control" name="<?php echo $fieldName ?>" id="<?php echo $fieldName ?>" data-validate="<?php echo $this->validations[$fieldName] ?>">
+                    <option value="">Seleccione una isla...</option>
+                    <?php foreach($this->islas as $isla){?>
+                    <option <?php echo ($this->result['idIsla'] == $isla['idIsla']) ? 'selected=""' : '' ;?> value="<?php echo $isla['idIsla']?>">
+                        <?php echo $isla['ISnombreEs']?>
+                    </option>
+                    <?php } ?>
+                </select>
+            </div> 
+            <div class="clearfix">
+
+            </div>
+            <div class="form-group col-sm-6">
+                <?php $fieldName = 'IDCategoriaSitio'; ?>
+                <label for="<?php echo $fieldName ?>">Categoría</label>
+                <br>
+                <select class="form-control" name="<?php echo $fieldName ?>" id="<?php echo $fieldName ?>" data-validate="required">
+                    <?php foreach ($this->categoria as $tipo) { ?>
+                    <option <?php echo ($this->result['IDCategoriaSitio'] == $tipo['IDCategoriaSitio']) ? 'selected=""' : '' ;?>  value="<?php echo $tipo[$fieldName] ?>"><?php echo $tipo['CSnombreEs'] ?></option>     
+                    <?php } ?>
+                </select>
+            </div>
+            <div class="form-group col-sm-6">
+                <?php $fieldName = 'SInombreEs'; ?>
+                <label for="<?php echo $fieldName ?>">Nombre (Español)*</label>
+                <input value="<?php echo $this->result[$fieldName]?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Español)" data-validate="<?php echo $this->validations[$fieldName] ?>">        
+            </div>
+
+
+            <div class="form-group col-sm-6">
+                <?php $fieldName = 'SInombreEn'; ?>
+                <label for="<?php echo $fieldName ?>">Nombre (Inglés) *</label>
+                <input value="<?php echo $this->result[$fieldName]?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Inglés)" data-validate="<?php echo $this->validations[$fieldName] ?>">        
+            </div>
+            <div class="form-group col-sm-6">             
+                <?php $fieldName = 'SIimagen'; ?>
+                <?php if ($this->result[$fieldName]) { ?>
+                <img src="<?php echo $this->baseUrl() ?>/images/m_<?php echo $this->result[$fieldName] ?>" class="img-thumbnail">
+                
+                <?php } ?>
+            </div>
+            <div class="clearfix"></div>
+            <div class="form-group col-sm-6">
+                <label for="<?php echo $fieldName ?>">Imagen <?php echo (!empty($this->result[$fieldName])) ? '(Reemplazar)' : ''; ?></label>
+                <input type="file" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Imagen" data-validate="valid_image_file">
+                <p class="help-block">Archivos .jpg o .png solamente</p>    
+
+            <?php /*if ($this->result[$fieldName]) { ?>
+                <div class="btn-group" data-toggle="buttons">
+                    <label data-rel="popoverRight" data-content="Esta imagen se eliminará" class="btn btn-warning">
+                        <input type="checkbox" name="eliminarImagen" value="<?php echo $this->result[$fieldName] ?>"> Eliminar
+                    </label>
+                </div>
+                <?php }*/ ?>                   
+            </div>
+            <div class="clearfix">
+
+            </div> 
+        </div>    
+        <div class="btn-group">
+            <button type="submit" name="submit" class="btn btn-primary" data-loading-text="Validando...">Guardar</button>
+            <?php /* <button type="button" data-toggle="button" class="btn btn-info" data-rel="popover" data-content="asdasdasd" title="Información">Información</button> */ ?>
+            <button type="button" class="btn btn-danger" onclick='location.href = "<?php echo $this->url(array('action' => 'index')) ?>"'>Cancelar</button>
+        </div>
+    </form>
+</div>

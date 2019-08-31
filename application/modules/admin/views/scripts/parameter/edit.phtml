@@ -1,0 +1,76 @@
+
+<h2>
+    <?php echo $this->h2; ?>
+</h2>
+<?php 
+
+if($this->message){
+	echo '<div class="message">'.$this->message.'</div>';
+}
+
+?>
+<form name = "edit_parameter" id = "edit_parameter" method = "post" >  
+<input type="hidden" name="IDParameter" id="IDParameter" value="<?php echo $this->parameters["IDParameter"]?>"   />    
+
+<table class="table_forms" border="0">
+    <tr>                        
+        <td class="label">Servidor SMTP: *</td>
+        <td><input name = "PServer" id = "PServer" type = "text" onkeyup="is_enter(event);" value="<?php echo $this->parameters['PServer']?>"/></td>                          
+    </tr>
+    <tr>                        
+        <td class="label">Puerto SMTP: *</td>
+        <td><input name = "PPort" id = "PPort" type = "text" onkeyup="is_enter(event);" value="<?php echo $this->parameters['PPort']?>"/></td>                        
+    </tr>
+    
+     <tr>                        
+        <td class="label">Dirección de correo: </td>
+        <td><input name = "PEmail" id = "PEmail" type = "text" onkeyup="is_enter(event);" value="<?php echo $this->parameters['PEmail']?>"/></td>                          
+    </tr>   
+    
+    <tr>                        
+        <td class="label">Usuario: *</td>
+        <td><input name = "PUser" id = "PUser" type = "text" onkeyup="is_enter(event);" value="<?php echo $this->parameters['PUser']?>"/></td>                         
+    </tr>
+   
+     <tr>                        
+        <td class="label">Contraseña: *</td>
+        <td><input name = "PPassword" id = "PPassword" type = "password" onkeyup="is_enter(event);" value="<?php echo $this->parameters['PPassword']?>"/></td>                          
+    </tr>
+    <tr>                        
+        <td class="label">Verificar Contraseña: *</td>
+        <td><input name = "PPassword_rectify" id = "PPassword_rectify" type = "password" onkeyup="is_enter(event);" value="<?php echo $this->parameters['PPassword']?>"/></td>                          
+    </tr>
+        
+    <tr>
+        <td colspan="2"><div id = "label_error" class="label_error">&nbsp;</div></td>
+    </tr> 
+    <tr>
+    	<td colspan="2">
+         <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php echo $this->url(array('module'=>'admin','controller'=>'parameter', 'action'=>'index'),'',true);?>'" value="Cancelar">
+        <input type="button" class="buttons" name = "button_sumbmit" id = "button_sumbmit" onclick="validate_form();" value="Aceptar">
+        </td>
+    </tr>
+</table>
+	
+</form>
+<script>
+	function validate_form(){
+		var id_form='edit_parameter';
+		form=document.getElementById(id_form).elements;
+		
+		if(is_empty(form["PServer"],"Complete el campo Dirección del servidor")) return;
+                if(is_empty(form["PPort"],"Complete el campo Puerto")) return;
+                if(is_number(form["PPort"],"Complete el campo Puerto"), false) return;
+		if(is_empty(form["PUser"],"Complete el campo Usuario")) return;   
+                if(is_empty(form["PEmail"],"Complete el campo Dirección de correo")) return;   
+                if(is_valid_email(form["PEmail"],"El E-Mail no es válido")) return;
+		if(is_empty(form["PPassword"],"Complete el campo Contraseña")) return;
+		if(is_empty(form["PPassword_rectify"],"Complete el campo Verificar Contraseña")) return;		
+		if(is_pass_equal(form["PPassword"], form["PPassword_rectify"], "Las contraseñas no coinciden")) return;	
+		
+		if(form["button_sumbmit"].disabled==false){
+			form["button_sumbmit"].disabled=true;
+			send_form(document.getElementById(id_form),"Modificando, por favor espere ... ");
+		}
+	}
+</script>

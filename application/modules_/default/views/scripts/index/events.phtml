@@ -1,0 +1,125 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12 shadow bg-light-blue">
+            <h1 class="color-white thin">
+                <?php echo ($this->lang == 'Es') ? 'Eventos destacados' : 'Principal events'; ?>
+            </h1>
+        </div>
+    </div>
+    <div class="clearfix" style="margin-top: 30px;">
+
+    </div>
+
+    <?php if(count($this->mainEvents) > 0 ) : ?>
+        <?php foreach($this->mainEvents as $event) : ?>
+            <div class="col-lg-12 col-md-12 col-sm-12" style="margin-bottom: 30px; padding: 0;">
+                <div class="bg-white border-radius-8 pad-20">
+                    <div class="row">
+                        <div class="col-lg-8">
+                            <h2 class="color-b slab margin-0">
+                                <?php echo $event['EInombre' . $this->lang]?>
+                            </h2>                            
+                            <br>
+                            <p class="color-a">
+                                <?php echo str_replace("</div>", "<br/>", str_replace("<div>", " ", $event['EIdescripcion' . $this->lang]))?>
+                            </p>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="image galleryImage noMargin img-rounded">
+                                <img class="activeZoom" data-target-image="<?php echo $this->baseUrl(); ?>/images/<?php echo $event['EIimagen']; ?>" src="<?php echo $this->baseUrl()?>/imgs/preload.gif" data-src="<?php echo $this->baseUrl()?>/images/m_<?php echo $event['EIimagen']?>"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+    <?php endif; ?>
+
+</div>
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+<!-- footer -->
+<?php echo $this->partial("_partials/_footer.phtml") ?>
+<!-- fin footer -->
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+
+</div>
+</div>
+
+<!-- HASTA ACA ES EL PRIMER PARALLAX -->
+
+<div id="hotels" class="parallax" style="background-image: url(<?php echo $this->baseUrl() ?>/imgs/bgBody-home4.jpg)" data-stellar-background-ratio="0.2">   }
+    <div class="container">
+        <h1 class="color-white thin">
+            <?php echo ($this->lang == 'Es') ? 'Eventos mensuales' : 'Monthly events' ;?>
+        </h1>
+        <!-- collapse months -->
+        <div class="row">
+            <div class="panel-group" id="accordion">
+                <div class="panel panel-primary">
+                    <!-- Month list -->            
+                    <?php
+                    echo $this->partial("_partials/_monthList.phtml", array(
+                        'activeMonth' => $this->activeMonth,
+                        'lang' => $this->lang
+                    ))
+                    ?>
+                    <!-- end Month list -->
+                </div>
+            </div>
+        </div>
+        <!-- End collapse months -->
+        
+        <div class="clearfix" style="margin-top: 15px;">
+
+        </div>
+        <!-- footer -->
+        <?php echo $this->partial("_partials/_footer.phtml") ?>
+        <!-- fin footer -->
+        
+    </div>
+    <div class="clearfix" style="margin-top: 15px;">
+
+    </div>
+    
+</div>
+
+
+<script>
+
+    //Maneja el active de los hoteles
+    $(".panel-heading").click(function(e) {
+        if (!$(this).hasClass('active')) {
+            $(".panel-heading").removeClass('active');
+            $(this).toggleClass('active');
+        } else {
+
+        }
+    });
+    
+    var alreadyLoaded = new Array();
+    //Handler de ajax para hoteles
+    $("[data-month]").click(function() {
+        var month = $(this).attr("data-month");
+        var target = $("#collapse-month-" + month + " > .panel-body");
+        if (alreadyLoaded.indexOf(month) == -1) {
+            $.ajax({
+                url: "<?php echo $this->url(array('controller' => 'index', 'action' => 'singlemonth'), '', true) ?>" + "/month/" + month,
+            }).done(function(response) {
+                var answer = $(response);
+                setTimeout(function() {
+                    target.html(answer.hide().fadeIn(1500));
+                }, 1250);
+            });
+        }
+        //Este hotel fue cargado, lo agrego a los que ya fueron cargados
+        alreadyLoaded.push(month);
+    });
+
+    //Disparador de primer hotel
+    $("[data-month=<?php echo $this->activeMonth ?>]").trigger("click");
+
+</script>

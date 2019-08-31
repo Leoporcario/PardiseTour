@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="shortcut icon" href="<?php echo $this->baseUrl()?>/imgs/favicon.png">
+
+        <title>CapicuaMS - Login</title>
+
+        <!-- Bootstrap core CSS -->
+        <link href="<?php echo $this->baseUrl() ?>/css/bootstrap.css" rel="stylesheet">
+        <link href="<?php echo $this->baseUrl() ?>/css/login.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="signin.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+        <!--[if lt IE 9]>
+          <script src="../../assets/js/html5shiv.js"></script>
+          <script src="../../assets/js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+        <div class="progress progress-striped main-progressbar active">
+            <div class="progress-bar progress-bar-<?php echo $this->statusBar?>" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+                
+            </div>
+        </div>
+        <div class="container">
+            <form id="loginForm" class="form-signin" method="post">
+                <div class="container">
+                    <h2 class="navbar-text text-info">
+                        <label class="glyphicon glyphicon-cloud-upload text-info"></label> 
+                        <b class="text-info">CapicuaMS</b>
+                    </h2>
+                </div>
+                <?php if($this->response){?>
+                    <div class="alert alert-danger alert-dismissable"><?php echo $this->response?></div>
+                <?php } ?>
+                <input type="text" autocomplete="off" name="ULoginname" class="form-control" placeholder="Nombre de usuario" autofocus>
+                <input type="password" name="UPassword" class="form-control" placeholder="Contraseña">
+                <br/>
+                <button class="btn btn-lg btn-primary btn-block" type="submit" data-loading-text="Ingresando...">Ingresar</button>
+            </form>
+        </div> <!-- /container -->
+        
+        <nav class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+            <ul class="nav navbar-nav pull-left">
+                <li>
+                    <p class="navbar-text text-info"><label class="glyphicon glyphicon-cloud-upload text-info"></label> <b class="text-info">CapicuaMS</b> - Administración de contenidos</p>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav pull-right">
+                <li>
+                    <p class="navbar-text text-info"><b>Capicua Web Development</b> &COPY; <?php echo date('Y')?></p>
+                </li>
+                <li>
+                    <a href="#">
+                        <img style="height: 20px;" src="<?php echo $this->baseUrl()."/imgs/logoCapicua.png";?>"/>
+                    </a>
+                </li>                
+            </ul>         
+        </nav>
+    </body>    
+    
+    <?php echo $this->headScript()
+        ->prependFile($this->baseUrl() . '/js/bootstrap.validate.en.js', 'text/javascript')
+        ->prependFile($this->baseUrl() . '/js/bootstrap.validate.js', 'text/javascript')
+        ->prependFile($this->baseUrl() . '/js/popover.js', 'text/javascript')
+        ->prependFile($this->baseUrl() . '/js/respond.min.js', 'text/javascript', array('conditional' => 'lt IE 9',))
+        ->prependFile($this->baseUrl() . '/js/html5shiv.js',   'text/javascript', array('conditional' => 'lt IE 9',))
+        ->prependFile($this->baseUrl() . '/js/bootstrap.min.js', 'text/javascript')
+        ->prependFile($this->baseUrl() . '/js/jquery.min.js', 'text/javascript')
+    ; ?>
+    <script>
+        $(document).ready(function() {
+            $("[data-rel=tooltipTop]").tooltip({placement: 'top', delay: { show: 500, hide: 100 }});
+            $("[data-rel=tooltipRight]").tooltip({placement: 'right', delay: { show: 500, hide: 100 }});
+            $("[data-rel=tooltipLeft]").tooltip({placement: 'left', delay: { show: 500, hide: 100 }});
+            $("[data-rel=tooltipBottom]").tooltip({placement: 'bottom', delay: { show: 500, hide: 100 }});
+            $("[data-rel=popover]").popover({title: 'Información', placement: 'top', delay: { show: 100, hide: 100 }});
+
+            $("[data-loading-text]").click(function(){
+                var btn = $(this);
+                btn.button('loading');
+                setTimeout(function () {
+                        btn.button('reset');
+                    }, 2000);
+            });
+
+            $('#<?php echo $this->formId?>').bt_validate();
+            $.bt_validate.method(
+                  'custom_pass_eq', 
+                  function(value) {
+                    return ($('#UPassword').val() === $('#password2').val());
+                  },
+                  "Las contraseñas no son iguales"
+                );                      
+
+            $(".hideTooltip").click(
+                function(){
+                    $(".tooltip").slideUp(300);
+                }
+            );
+                
+        });
+    </script>    
+</html>

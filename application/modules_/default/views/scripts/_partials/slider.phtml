@@ -1,0 +1,48 @@
+<?php
+    //Obtengo islas ordenadas por nombre
+    $islands = Model_DBTable_Islas::getInstance()->showAll(null, 'ISorden', 'ASC');
+?>
+
+<div class="row">
+    
+    <div id="ca-container" class="ca-container">
+        
+        <div class="ca-wrapper">
+            
+            <?php if(count($islands) > 0) : ?>
+            
+                <?php foreach($islands as $keyIsle => $isle) : ?>
+            
+                <div class="ca-item ca-item-<?php echo $keyIsle + 1; ?>">
+                    
+                    <a href="<?php echo $this->url(array('controller' => 'index', 'action' => 'islands', 'isle' => $isle['idIsla']), '', true)?>">
+                        
+                        <div class="ca-item-main">
+                            
+                            <div class="slide <?php echo ($isle['idIsla'] == $this->activeIsleId) ? 'active' : '' ;?>">
+                                
+                                <div class="image">
+                                    <img id="slider_<?php echo $keyIsle; ?>" src="<?php echo $this->baseUrl() ?>/imgs/loading.gif" data-src="<?php echo $this->baseUrl() ?>/images/m_<?php echo $isle['ISimagenPrincipal']?>"/>
+                                </div>
+                                
+                                <p class="title text-center">
+                                    <?php echo $isle['ISnombreEs']?>
+                                </p>
+                                
+                            </div>
+                            
+                        </div>
+                        
+                    </a>
+                    
+                </div>
+            
+                <?php endforeach;?>
+            
+            <?php endif;?>
+            
+        </div>         
+        
+    </div>
+    
+</div>

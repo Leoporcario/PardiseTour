@@ -1,0 +1,32 @@
+<div class="modal fade bs-modal-lg modalNone" id="mapModal<?php echo $this->hotelId; ?>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <div class="row">
+                    <div class="col-lg-11 logo text-center">
+                        <img src="<?php echo $this->baseUrl()?>/imgs/logo.png"/>                                
+                    </div>
+                    <div class="col-lg-1 text-center pull-right imgsModal">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <img src="<?php echo $this->baseUrl()?>/imgs/modal-x.png"/>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-body text-center">
+                
+                    <img   src='<?php echo $this->baseUrl()?>/images/m_<?php echo $this->map?>'/>
+              
+            </div>
+            <div class="modal-footer">
+                <div class="row">
+                    <div class="col-lg-12 text-center light text-muted">
+                        <br>
+                        <small>Paradise Tours Tahiti · Spirit of Polynesia ® 2014</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

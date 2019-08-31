@@ -1,0 +1,26 @@
+<div class="form-container">
+    <blockquote>
+        <?php if($this->title){?>
+            <p class="text-primary"><?php echo ($this->icon) ? '<label class="glyphicon glyphicon-'.$this->icon.'"></label> ' : '' ;?> <?php echo $this->title?></p>
+        <?php } ?>
+        <?php if($this->description){?>
+            <small><?php echo $this->description?></small>
+        <?php } ?>
+    </blockquote>
+    <form id="enlaceCategoriaForm" method="post" novalidate>
+        <div class="form-group col-sm-6">
+            <?php $fieldName = 'PNombre'?>
+            <label for="<?php echo $fieldName?>">Nombre (Español) *</label>
+            <input type="text" name="<?php echo $fieldName?>" value="<?php echo $this->result[$fieldName] ?>" class="form-control" placeholder="Nombre (Español)" data-validate="required">
+        </div>   
+        <div class="clearfix">
+
+        </div>
+        <br>
+        <div class="btn-group">
+            <button type="submit" name="submit" class="btn btn-primary" data-loading-text="Validando...">Guardar</button>
+            <?php /*<button type="button" data-toggle="button" class="btn btn-info" data-rel="popover" data-content="asdasdasd" title="Información">Información</button>*/?>
+            <button type="button" class="btn btn-danger" onclick='location.href="<?php echo $this->url(array('action' => 'index'))?>"'>Cancelar</button>
+        </div>
+    </form>
+</div>

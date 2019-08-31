@@ -1,0 +1,17 @@
+<?php if ($this->enable){?>
+<div class="form-group col-lg-4">
+    <label for="<?php echo $this->inputName ?>"><?php echo $this->inputLabel ?></label>
+    <div class="input-group">
+        <span class="input-group-addon"><label class="glyphicon glyphicon-picture"></label></span>
+        <input type="<?php echo $this->inputType ?>" name="<?php echo $this->inputName ?>" class="form-control formValid" data-validate="valid_image_file">
+    </div>
+</div>
+<?php }else{ ?>
+<div class="clearfix">
+    
+</div>
+<div class="alert alert-info" style="margin-top: 20px;">
+    <strong>Se llegó al limite de imágenes</strong>
+    <a class="close" data-dismiss="alert" href="#" aria-hidden="true">&times;</a>
+</div>
+<?php } ?>

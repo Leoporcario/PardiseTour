@@ -1,0 +1,96 @@
+<div class="form-container">
+    <blockquote>
+        <?php if ($this->title) { ?>
+            <p class="text-primary"><?php echo ($this->icon) ? '<label class="glyphicon glyphicon-' . $this->icon . '"></label> ' : ''; ?> <?php echo $this->title ?></p>
+        <?php } ?>
+        <?php if ($this->description) { ?>
+            <small><?php echo $this->description ?></small>
+        <?php } ?>
+    </blockquote>
+    <form id="buceoForm" method="post" enctype="multipart/form-data" novalidate>
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+                            Datos generales
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseOne" class="panel-collapse collapse in">
+                    <div class="panel-body">
+                        <div class="form-group col-lg-4">
+                            <?php $fieldName = 'idGrupoIsla'; ?>
+                            <label for="<?php echo $fieldName ?>">Grupo de Islas</label>
+                            <br>
+                            <select class="form-control loadIslas" name="<?php echo $fieldName ?>" id="<?php echo $fieldName ?>">
+                                <option value="">Seleccione un grupo de islas...</option>
+                                <?php foreach ($this->grupoIsla as $tipo) { ?>
+                                    <option value="<?= $tipo[$fieldName] ?>"><?= $tipo['GInombreEs'] ?></option>                                    
+                                <?php } ?>
+                            </select>
+                        </div> 
+                        <div class="form-group col-lg-4">
+                            <?php $fieldName = 'idIsla'; ?>
+                            <label for="<?php echo $fieldName ?>">Isla *</label>
+                            <br>
+                            <select class="form-control" name="<?php echo $fieldName ?>" id="<?php echo $fieldName ?>" data-validate="<?php echo $this->validations[$fieldName] ?>">
+                                <option value="">Seleccione un grupo de islas...</option>
+                            </select>
+                        </div>      
+                        <div class="clearfix">
+
+                        </div> 
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'BIdescripcionEs'; ?>
+                            <label for="<?php echo $fieldName ?>">Descripción (Español) *</label>
+                            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big ckeditor" placeholder="Descripción (Español)"></textarea>
+                        </div>
+                        <div class="clearfix">
+                            
+                        </div>
+                        <div class="form-group col-lg-15">
+                            <?php $fieldName = 'BIdescripcionEn'; ?>
+                            <label for="<?php echo $fieldName ?>">Descripción (Inglés) *</label>
+                            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big ckeditor" placeholder="Descripción (Inglés)"></textarea>
+                        </div>
+                    </div>
+                </div>
+            </div>                 
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+                            Clubes de buceo
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseThree" class="panel-collapse collapse in">
+                    <div class="panel-body" id="clubesDiv">                       
+                        <?php echo $this->partial('clubes.phtml'); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+                            Imágenes
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTwo" class="panel-collapse collapse">
+                    <div class="panel-body" id="imageDiv">                       
+                        <?php echo $this->partial('imageInputs.phtml'); ?>
+                    </div>
+                </div>
+            </div>       
+        </div>       
+        <br>
+        <div class="btn-group">
+            <button type="submit" name="submit" class="btn btn-primary" data-loading-text="Validando...">Guardar</button>
+            <?php /* <button type="button" data-toggle="button" class="btn btn-info" data-rel="popover" data-content="asdasdasd" title="Información">Información</button> */ ?>
+            <button type="button" class="btn btn-danger" onclick='location.href = "<?php echo $this->url(array('module' => 'admin', 'controller' => 'isla', 'action' => 'index'), '', true) ?>"'>Cancelar</button>
+        </div>
+    </form>
+</div>

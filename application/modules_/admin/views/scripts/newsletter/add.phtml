@@ -1,0 +1,72 @@
+<?php
+$field = 'sel1';
+if (count($this->news) > 1) {
+    $field = 'sel1[]';
+}
+?>
+<div class="form-container">
+    <blockquote>
+        <?php if ($this->title) { ?>
+            <p class="text-primary"><?php echo ($this->icon) ? '<label class="glyphicon glyphicon-' . $this->icon . '"></label> ' : ''; ?> <?php echo $this->title ?></p>
+        <?php } ?>
+        <?php if ($this->description) { ?>
+            <small><?php echo $this->description ?></small>
+        <?php } ?>
+    </blockquote>
+    <form id="newsletterForm" name="newsletterForm" method="post" novalidate>
+        <div class="form-group col-lg-4">
+            <label for="NLName">Nombre *</label>
+            <input type="text" id="NLName" name="NLName" class="form-control" placeholder="Nombre" data-validate="required">
+        </div>
+        <div class="clearfix">
+
+        </div>
+        <div class="form-group col-lg-15">
+            <label for="sel1">Todas las noticias</label>
+            <select data-rel="tooltipTop" title="Seleccine con Ctrl+click para seleccionar mas de una noticia a la vez" class="form-control" name="<?php echo $field; ?>" id="sel1" multiple="multiple" style="width:100%; height:200px;" size="10">
+                <?php foreach ($this->news as $analizer) { ?>
+                    <option value="<?php echo $analizer['IDNoticia'] ?>"><?php echo $analizer['NTitulo'] ?></option>
+                <?php } ?>
+            </select>
+        </div>
+        <div class="form-group col-lg-15">
+            <div class="btn-group">
+                <button type="button" class="btn btn-info" onClick="moveOptions(this.form.IDNoticias, this.form.sel1);">&uarr;</button>
+                <button type="button" class="btn btn-info" onClick="moveOptions(this.form.sel1, this.form.IDNoticias);">&darr;</button>
+            </div>
+            <i>Seleccione noticias y luego presione <strong>&darr;</strong> para agregarlas al newsletter o <strong>&uarr;</strong> para quitarlas:</i>
+        </div>
+        <div class="form-group col-lg-15">
+            <label for="IDNoticias">Noticias a mostrar en el newsletter</label>             
+            <select data-rel="tooltipTop" title="Estas son las noticias que se mostraran en el newsletter" class="form-control"  name="IDNoticias[]" id="IDNoticias" multiple="multiple" size="10" style="width:100%; height:200px;">
+            </select>
+        </div>
+        <div class="form-group col-lg-15">
+            <div class="btn-group">
+                <button type="button" class="btn btn-warning" onClick="arriba('IDNoticias');">&uarr;</button>
+                <button type="button" class="btn btn-warning" onClick="abajo('IDNoticias');">&darr;</button>
+            </div>
+            <i>Ordene las noticias seleccionadas con: &uarr; y &darr;</i>
+        </div>
+        <div class="clearfix">
+
+        </div>
+        <div class="btn-group">
+            <button type="submit" name="submit" class="btn btn-primary" data-loading-text="Validando..." onclick="validate_form()">Guardar</button>
+            <?php /*<button type="button" data-toggle="button" class="btn btn-info" data-rel="popover" data-content="asdasdasd" title="Información">Información</button>*/?>
+            <button type="button" class="btn btn-danger" onclick='location.href="<?php echo $this->url(array('module' => 'admin', 'controller' => 'newsletter', 'action' => 'index'), '', true)?>"'>Cancelar</button>
+        </div>
+    </form>    
+</div>
+
+<script>
+    //Script viejo para seleccionar elementos del select antes del submit
+    var id_form='newsletterForm';
+    form=document.getElementById(id_form).elements; 
+    function validate_form(){
+        for(var i=0; i<form.IDNoticias.length; i++) {
+            form.IDNoticias.options[i].selected = true;
+        }            
+    }    
+</script>
+

@@ -1,0 +1,446 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"result",
+				"resultString"
+			],
+			[
+				"crea",
+				"createForm"
+			],
+			[
+				"form",
+				"formUnDelete"
+			],
+			[
+				"usuario",
+				"usuario_denunciado_id"
+			],
+			[
+				"de",
+				"denuncianteId"
+			],
+			[
+				"me",
+				"mensajes"
+			],
+			[
+				"usua",
+				"usuarioId"
+			],
+			[
+				"getUsuario",
+				"getUsuarioId"
+			],
+			[
+				"use",
+				"user"
+			],
+			[
+				"getUsua",
+				"getUsuarioId"
+			],
+			[
+				"data",
+				"dataFull"
+			],
+			[
+				"relacio",
+				"setRelacionUsuarioId"
+			],
+			[
+				"rea",
+				"relacionUsuarioEntity"
+			],
+			[
+				"rela",
+				"relacionUsuarioEntity"
+			],
+			[
+				"usu",
+				"usuarioEntity"
+			],
+			[
+				"marg",
+				"margin-left"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"con",
+				"console"
+			],
+			[
+				"strto",
+				"strtoupper"
+			],
+			[
+				"file",
+				"fileName"
+			]
+		]
+	},
+	"buffers":
+	[
+	],
+	"build_system": "",
+	"build_system_choices":
+	[
+	],
+	"build_varint": "",
+	"command_palette":
+	{
+		"height": 92.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"Package Control: insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 449.0
+	},
+	"console":
+	{
+		"height": 120.0,
+		"history":
+		[
+			"import urllib.request,os,hashlib; h = 'df21e130d211cfc94d9b0905775a7c0f' + '1e3d39e33b79698005270310898eea76'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/home/mauricio/Datos/www/ShopGallery",
+		"/home/mauricio/Datos/www/ShopGallery/app"
+	],
+	"file_history":
+	[
+		"/home/mauricio/Datos/www/ShopGallery/web/application/modules/admin/views/scripts/_list.phtml",
+		"/home/mauricio/Datos/www/ShopGallery/web/application/modules/admin/controllers/helpers/Webservice.php",
+		"/home/mauricio/Datos/www/ShopGallery/web/public/index.php",
+		"/home/mauricio/Datos/www/ShopGallery/web/application/modules/admin/controllers/helpers/Boxeway.php",
+		"/home/mauricio/Documentos/shopgallery",
+		"/home/mauricio/Datos/www/ShopGallery/web/application/modules/admin/layouts/scripts/default.phtml",
+		"/home/mauricio/Datos/www/tahitiparadise/application/modules/default/controllers/HelperController.php",
+		"/home/mauricio/Datos/www/tahitiparadise/application/modules/default/controllers/IndexController.php",
+		"/home/mauricio/Datos/www/tahitiparadise/application/layouts/scripts/default.phtml",
+		"/home/mauricio/Datos/www/tahitiparadise/public/index.php",
+		"/home/mauricio/Datos/www/tahitiparadise/public/css/ext_circular-carousel.css",
+		"/home/mauricio/Datos/www/tahitiparadise/application/modules/default/views/scripts/_partials/slider.phtml",
+		"/home/mauricio/Datos/www/tahitiparadise/application/modules/default/views/scripts/index/islands.phtml",
+		"/home/mauricio/Datos/www/tahitiparadise/application/modules/default/views/scripts/_partials/userMenu.phtml",
+		"/home/mauricio/Datos/www/tahitiparadise/application/modules/admin/controllers/IndexController.php",
+		"/home/mauricio/Datos/www/tahitiparadise/application/modules/default/views/scripts/untitled",
+		"/home/mauricio/Datos/www/tahitiparadise/application/modules/default/views/scripts/loginModal.php",
+		"/home/mauricio/Datos/www/tahitiparadise/application/modules/default/views/scripts/_partials/loginModal.phtml",
+		"/home/mauricio/Datos/www/tahitiparadise/public/css/styles.css",
+		"/home/mauricio/Datos/www/tahitiparadise/public/js/ext_carousel-contentcarousel.js",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/Api2Bundle/Resources/config/denuncias.yml",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/Api2Bundle/Resources/config/routing.yml",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Controller/UsuarioController.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Resources/views/Usuario/view.html.twig",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Resources/views/Eventos/view.html.twig",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/Api2Bundle/Controller/DenunciasController.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Controller/BaseController.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Resources/config/routing.yml",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Entity/Denuncia.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Controller/DenunciaController.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Resources/views/Denuncia/index.html.twig",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Resources/config/denuncia.yml",
+		"/home/mauricio/Datos/www/simple_gcba_web/app/Resources/views/menuComunidad.html.twig",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Resources/views/Denuncia/view.html.twig",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Repository/DenunciaRepository.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/Api2Bundle/Controller/MensajesController.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Entity/Mensaje.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/Api2Bundle/Resources/config/usuarios.yml",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Controller/EventosController.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Form/EventoType.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Form/EntidadType.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Entity/Evento.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/Api2Bundle/Controller/Api2Controller.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/Api2Bundle/Resources/config/mensajes.yml",
+		"/home/mauricio/Datos/www/jgm-01-mas-simple/source/masSimpleWeb/app/config/parameters.yml",
+		"/home/mauricio/Datos/www/jgm-01-mas-simple/source/masSimpleWeb/src/Inamika/AdminBundle/Controller/DefaultController.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Controller/RelacionesController.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/SecurityBundle/Controller/DefaultController.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Controller/DefaultController.php",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Resources/views/Relaciones/index.html.twig",
+		"/home/mauricio/Datos/www/simple_gcba_web/app/Resources/views/layout.html.twig",
+		"/home/mauricio/Datos/www/simple_gcba_web/app/config/config.yml",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Resources/config/relaciones_usuarios.yml",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Resources/views/CategoriasEventos/index.html.twig",
+		"/home/mauricio/Datos/www/simple_gcba_web/src/Inamika/AdminBundle/Entity/Chat.php",
+		"/home/mauricio/Datos/www/realges/index.html",
+		"/home/mauricio/Datos/www/realges/css/style.css",
+		"/home/mauricio/.config/sublime-text-3/Packages/User/dd.sublime-snippet",
+		"/home/mauricio/Datos/www/realges/vendor/main.min.js",
+		"/home/mauricio/Datos/www/cp3/web/application/modules/admin/controllers/helpers/Image.php",
+		"/home/mauricio/Datos/www/cp3/web/public/index.php",
+		"/home/mauricio/Datos/www/cp3/web/application/modules/admin/controllers/MaintenanceController.php",
+		"/home/mauricio/Datos/www/cp3/web/application/modules/admin/controllers/ConsultasController.php"
+	],
+	"find":
+	{
+		"height": 34.0
+	},
+	"find_in_files":
+	{
+		"height": 90.0,
+		"where_history":
+		[
+			"/home/mauricio/Datos/www/tahitiparadise/application",
+			"/home/mauricio/Datos/www/tahitiparadise",
+			"/home/mauricio/Datos/www/nortcuyo"
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": false,
+		"find_history":
+		[
+			"Hoteles",
+			"ca-nav-prev",
+			"34",
+			"sing",
+			"$(\"a[href^='#']",
+			"Sing",
+			"sing",
+			"entity",
+			"createForm",
+			"formDelete",
+			"usuario_denunciado_id",
+			"Mensajes",
+			"mensaje",
+			"usuario_id",
+			"texto",
+			"_actividad_",
+			"Actividad",
+			"EventoId",
+			"eventoId",
+			"usuarioId",
+			"entidadId",
+			"_actividad_",
+			"Actividades",
+			"Actividad",
+			"relaciones_usuarios",
+			"actividad",
+			"_actividad_",
+			"Actividad",
+			"Descripcion",
+			"descripcion",
+			"barrio",
+			"categoriaDenunciaId",
+			"Barrio",
+			"Evento",
+			"<?",
+			"value",
+			"usuario",
+			"Mensaje",
+			"evento",
+			"usuarioEntity",
+			"usuario_id",
+			"Leido",
+			"Lugar",
+			"boolean",
+			"leido",
+			"Deleted",
+			"deleted",
+			"EventoId",
+			"eventoId",
+			"setEventoId",
+			"UsuarioEvento",
+			"Version",
+			"version",
+			"Version",
+			"version",
+			"Version",
+			"Versions",
+			"version",
+			"Version",
+			"mat",
+			"RelacionUsuario",
+			"b.",
+			"b",
+			"proba",
+			"media",
+			"back",
+			"100",
+			"500",
+			"100",
+			"250",
+			"MONTSE"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"Sign",
+			"_denuncia_",
+			"Denuncias"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"sheets":
+			[
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 22.0
+	},
+	"input":
+	{
+		"height": 30.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": true,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"pinned_build_system": "",
+	"project": "shopgallery.sublime-project",
+	"replace":
+	{
+		"height": 62.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+			[
+				"circula",
+				"public/css/ext_circular-carousel.css"
+			],
+			[
+				"defainde",
+				"application/modules/default/controllers/IndexController.php"
+			],
+			[
+				"indecon",
+				"application/modules/admin/controllers/IndexController.php"
+			],
+			[
+				"ca-c",
+				"public/css/ext_circular-carousel.css"
+			],
+			[
+				"ca-con",
+				"public/js/ext_carousel-contentcarousel.js"
+			],
+			[
+				"style",
+				"public/css/styles.css"
+			],
+			[
+				"menucom",
+				"simple_gcba_web/app/Resources/views/menuComunidad.html.twig"
+			],
+			[
+				"styl",
+				"css/style.css"
+			],
+			[
+				"index",
+				"web/public/index.php"
+			],
+			[
+				"main",
+				"web/application/modules/admin/controllers/MaintenanceController.php"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"last_filter": "eid",
+		"selected_items":
+		[
+			[
+				"eid",
+				"~/Documentos/eidicom.sublime-project"
+			],
+			[
+				"rea",
+				"~/Documentos/realges.sublime-project"
+			],
+			[
+				"",
+				"~/Documentos/eidicom.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"last_filter": "",
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 317.0,
+	"status_bar_visible": true,
+	"template_settings":
+	{
+	}
+}

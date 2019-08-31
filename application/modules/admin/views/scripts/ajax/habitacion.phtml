@@ -1,0 +1,31 @@
+<div class="form-group col-lg-4" id="habitacion_<?php echo $this->alreadyRendered ?>">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Habitaciones <?php echo $this->alreadyRendered + 1 ?> 
+            <button type="button" class="close closeId" data-target="evento_<?php echo $this->alreadyRendered ?>">&times;</button>
+        </div>
+        <div class="panel-body">
+            <div class="form-group col-lg-15">
+                <?php $fieldName = 'habitacion[' . $this->alreadyRendered . '][HnombreEs]'; ?>
+                <label for="<?php echo $fieldName ?>">Nombre (Español)*</label>
+                <input maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Español)" data-validate="required">        
+            </div>
+            <div class="clearfix">
+
+            </div> 
+            <div class="form-group col-lg-15">
+                <?php $fieldName = 'habitacion[' . $this->alreadyRendered . '][HnombreEn]'; ?>
+                <label for="<?php echo $fieldName ?>">Nombre (Inglés)*</label>
+                <input maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Inglés)" data-validate="required">        
+            </div>    
+            <div class="clearfix">
+
+            </div> 
+            <div class="form-group col-lg-15">
+                <?php $fieldName = 'habitacion[' . $this->alreadyRendered . '][Hcantidad]'; ?>
+                <label for="<?php echo $fieldName ?>">Cantidad  de habitaciones en el hotel</label>
+                <input maxlength="<?php echo $this->maxlenghtInput ?>" type="number" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Cantidad de habitaciones en el hotel">        
+            </div>
+        </div>
+    </div>
+</div>

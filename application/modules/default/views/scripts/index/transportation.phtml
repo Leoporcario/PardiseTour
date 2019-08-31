@@ -1,0 +1,70 @@
+<div class="clearfix" style="margin-top: 30px">
+
+</div>
+
+<div class="row shadow bg-white island-intro">
+
+    <div class="col-lg-12 col-md-12 col-sm-12 text-center">
+    <br/>
+        <h1 class="color-b light">
+            <?php echo ($this->lang == 'Es') ? 'Sección en construcción' : 'Section under construction'; ?> 
+        </h1>        
+        <p class="color-a light" style="margin-top: 8px;">
+        <br/>
+        
+        </p>
+       
+
+    </div>
+
+</div>    
+
+<div class="clearfix" style="margin-top: 30px">
+
+</div>
+
+<!-- Transportantion -->
+<div class="row shadow bg-white" id="hotels">
+
+    <!-- Dentro de esta div va todo el contenido de transportes! -->
+
+</div>
+<!-- Transportantion -->
+
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+
+<!-- footer -->
+<?php echo $this->partial("_partials/_footer.phtml") ?>
+<!-- fin footer -->
+
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+
+
+<style>
+    
+    #home{
+        background: -moz-linear-gradient(top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 50%) !important;
+        background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,rgba(255,255,255,0.7)), color-stop(100%,rgba(255,255,255,0))) !important;
+        background: -webkit-linear-gradient(top, rgba(255,255,255,0.7) 0%, rgba(255,255,255,0) 50%) !important;
+        background: -o-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 50%) !important;
+        background: -ms-linear-gradient(top, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 50%) !important;
+        background: linear-gradient(to bottom, rgba(255,255,255,0.7) 0%,rgba(255,255,255,0) 50%) !important;
+        filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#00ffffff',GradientType=0 ) !important;
+    }
+    
+</style>
+
+<script>
+    
+    //Abre gallery
+    function openGallery(idHotel){
+        $('.' + idHotel).data('useBootstrapModal', false);
+        $('.' + idHotel).toggleClass('blueimp-gallery-controls', true);
+        blueimp.Gallery($('.hiddenGallery.cruise-'+idHotel+' a'), $('.' + idHotel).data());
+    }
+
+</script>

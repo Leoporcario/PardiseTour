@@ -1,0 +1,54 @@
+<div class="form-group col-lg-4" id="actividad_<?php echo $this->alreadyRendered ?>">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Actividad <?php echo $this->alreadyRendered + 1 ?> 
+            <button type="button" class="close closeId" data-target="actividad_<?php echo $this->alreadyRendered ?>">&times;</button>
+        </div>
+        <div class="panel-body">        
+
+            <div class="form-group col-lg-15">
+                <?php $fieldName = 'actividad[' . $this->alreadyRendered . '][AHnombreEs]'; ?>
+                <label for="<?php echo $fieldName ?>">Nombre (Español)*</label>
+                <input maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Español)" data-validate="required">        
+            </div>
+            <div class="clearfix">
+
+            </div> 
+            <div class="form-group col-lg-15">
+                <?php $fieldName = 'actividad[' . $this->alreadyRendered . '][AHnombreEn]'; ?>
+                <label for="<?php echo $fieldName ?>">Nombre (Inglés)*</label>
+                <input maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Inglés)" data-validate="required">        
+            </div>    
+            <div class="clearfix">
+
+            </div> 
+            <div class="form-group col-lg-15">
+                <?php $fieldName = 'actividad[' . $this->alreadyRendered . '][AHdescripcionEs]'; ?>
+                <label for="<?php echo $fieldName ?>">Descripción (Español)</label>
+                <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big" placeholder="Descripción (Español)"></textarea>
+            </div>
+            <div class="clearfix">
+
+            </div> 
+            <div class="form-group col-lg-15">
+                <?php $fieldName = 'actividad[' . $this->alreadyRendered . '][AHdescripcionEn]'; ?>
+                <label for="<?php echo $fieldName ?>">Descripción (Inglés)</label>
+                <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big" placeholder="Descripción (Inglés)"></textarea>
+            </div>
+            <div class="clearfix">
+
+            </div> 
+            <div class="form-group col-lg-15">
+                <?php $fieldName = 'actividad[' . $this->alreadyRendered . '][esPaga]'; ?>
+                <div class="btn-group" data-toggle="buttons">
+                    <label class="btn btn-primary">
+                        <input data-validate="required" type="radio" name="<?php echo $fieldName ?>" value="1"> Paga
+                    </label>
+                    <label class="btn btn-info">
+                        <input data-validate="required" type="radio" name="<?php echo $fieldName ?>" value="0"> Gratuita
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

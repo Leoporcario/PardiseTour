@@ -1,0 +1,61 @@
+<div class="form-container">
+    <blockquote>
+        <?php if ($this->title) { ?>
+            <p class="text-primary"><?php echo ($this->icon) ? '<label class="glyphicon glyphicon-' . $this->icon . '"></label> ' : ''; ?> <?php echo $this->title ?> [<?php echo $this->result['HOnombreEs']?> | Isla <?php echo $this->islaActual['ISnombreEs']?>]</p>
+        <?php } ?>
+        <?php if ($this->description) { ?>
+            <small><?php echo $this->description ?> </small>
+        <?php } ?>
+    </blockquote>
+    <form id="hotelForm" method="post" enctype="multipart/form-data" novalidate>        
+        <div class="panel-group" id="accordion">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse1">
+                            Habitaciones de <?php echo $this->result['HOnombreEs']?>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse in">
+                    <div class="panel-body" id="habitacionDiv">
+                        <?php echo $this->partial('habitaciones.phtml', array('habitaciones' => $this->habitaciones)); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse2">
+                            Comodidades (Habitaciónes) de <?php echo $this->result['HOnombreEs']?>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                    <div class="panel-body" id="comodidadeshabitacionDiv">
+                        <?php echo $this->partial('comodidadeshabitacion.phtml', array('comodidades' => $this->comodidadesHabitacion)); ?>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h4 class="panel-title">
+                        <a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapse3">
+                            Comodidades (Hotel) de <?php echo $this->result['HOnombreEs']?>
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                    <div class="panel-body" id="comodidadeshotelDiv">
+                        <?php echo $this->partial('comodidadeshotel.phtml', array('comodidades' => $this->comodidadesHotel)); ?>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="btn-group">
+                <button type="submit" name="submit" class="btn btn-primary" data-loading-text="Validando...">Guardar</button>
+                <?php /* <button type="button" data-toggle="button" class="btn btn-info" data-rel="popover" data-content="asdasdasd" title="Información">Información</button> */ ?>
+                <button type="button" class="btn btn-danger" onclick='location.href = "<?php echo $this->url(array('module' => 'admin', 'controller' => 'hotel', 'action' => 'index'), '', true) ?>"'>Cancelar</button>
+            </div>
+    </form>
+</div>

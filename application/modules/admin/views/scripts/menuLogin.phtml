@@ -1,0 +1,14 @@
+<ul class="nav navbar-nav navbar-right">
+    <li class="dropdown">
+        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+          <label class="glyphicon glyphicon-user"></label> <?php echo $this->ULoginname?> <span class="caret"></span>
+        </a>
+        <ul class="dropdown-menu">
+            <li role="presentation" class="dropdown-header">Opciones de Administrador</li>
+            <li><a href="<?php echo $this->url(array('module' => 'admin','controller'=>'user', 'action'=>'edit', 'id' => $this->IDUser),'',true);?>"><label class="glyphicon glyphicon-edit text-primary iconNoPadding"></label>Modificar mi información</a></li>
+            <li><a href="<?php echo $this->url(array('module' => 'admin','controller'=>'user', 'action'=>'index'),'',true);?>"><label class="glyphicon glyphicon-user text-primary iconNoPadding"></label>Gestionar usuarios</a></li>
+            <li class="divider"></li>
+            <li><a href="<?php echo $this->url(array('module' => 'admin','controller'=>'login', 'action'=>'logout'),'',true);?>"><label class="glyphicon glyphicon-log-out text-danger iconNoPadding"></label>Cerrar sesión</a></li>
+        </ul>
+    </li>
+</ul>

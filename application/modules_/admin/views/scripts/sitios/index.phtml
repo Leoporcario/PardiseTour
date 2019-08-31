@@ -1,0 +1,57 @@
+<?php echo $this->partial('messages.phtml', array('messages' => $this->messages)); ?>
+<table class="table table-striped">
+    <tr>
+        <?php
+        foreach ($this->fields as $key => $field) {
+            if ($field['list'] == true) {
+                echo '<th width="' . $field["width"] . '"><a href="';
+                if ($field['order'] == true) {
+                    echo $this->url(array('module' => $this->parameters['module'],
+                        'controller' => $this->parameters['controller'],
+                        'action' => $this->parameters['action'],
+                        'sort' => $field["field"],
+                        'order' => ($this->parameters["order"] == "asc") ? 'desc' : 'asc',
+                        'search' => (!empty($this->searched)) ? $this->searched : '' 
+                        )) . '';
+                }
+                else
+                    echo '#';
+                echo '">' . $field["label"] . '</a></th>';
+            }
+        }
+        ?>
+        <th class='opciones'>Opciones</th>
+    </tr>
+    <?php
+    if (count($this->results) > 0) {
+        foreach ($this->results as $key => $result) {
+            ?>
+            <tr>
+                <?php
+                foreach ($this->fields as $key => $field) {
+                    if ($field['list'] == true) {
+                        echo '<td class="' . $field["class"] . '" ' . $field["nowrap"] . ' style="text-align:' . $field["align"] . '">&nbsp;' . $result[$field["field"]] . '</td>';
+                    }
+                }
+                ?>            
+                <td class='opciones'>
+                    <?php foreach ($this->options as $key => $option) { ?>
+                        <a title='<?php echo $option['title']?>' href="<?php echo $this->url(array('module' => 'admin', 'controller' => $this->controller, 'action' => $option['action'], 'id' => $result['idSitios']), '', true); ?>">
+                            <label class="glyphicon glyphicon-<?php echo $option['icon'] ?>"><?php echo $option['label'] ?></label>
+                        </a>
+                    <?php } ?>
+                </td>
+            </tr>
+    <?php }
+} else {
+    ?>
+        <tr>
+            <td colspan="<?php echo count($this->fields) ?>">
+                <div class="alert alert-info"><b>No se encontraron resultados</b> <?php echo ($this->search) ? '- Intente con otro criterio de busqueda' : ''; ?></div>
+            </td>
+        </tr>  
+<?php } ?>
+</table>
+<div class="container" style="text-align: center;">
+    <?php echo $this->paginationControl($this->results, 'Sliding', 'paginationControl.phtml', array('search' => $this->searched)); ?>
+</div>

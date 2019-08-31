@@ -1,0 +1,26 @@
+<div class="modal fade bs-modal-lg" id="activeZoom" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" style="width: 60%;">
+        <div class="modal-content" style="box-shadow: none !important; background-color: transparent;">
+            <div class="modal-header" style="border: none;">
+                <div class="row">
+                    <div class="col-lg-1 text-center pull-right imgsModal">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                            <img src="<?php echo $this->baseUrl()?>/imgs/modal-x.png"/>
+                        </button>
+                    </div>
+                </div>  
+            </div>
+            <div class="modal-body text-center">
+                <img class="zoomedImage" src=""/>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    
+    .modal-backdrop.in{
+        opacity: 0.97 !important;
+    }
+    
+</style>

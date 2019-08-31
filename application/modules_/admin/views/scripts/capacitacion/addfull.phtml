@@ -1,0 +1,153 @@
+<table cellspacing="0" cellpadding="0">
+    <tr>
+        <td valign="top">
+            <div id="tree">
+                <?php echo $this->menu ?>
+            </div>
+        </td>
+        <td valign="top">
+            <form name="add" id="add" method="POST">
+                <fieldset class="save">
+                    <input type="button" class="buttons" name = "button_cancel" id = "button_cancel" onclick="location.href='<?php
+                echo $this->url(array('module' => $this->parameters['module'], 'controller' => $this->parameters['controller'], 'action' => 'index'));
+                ?>'" value="Volver">                    
+                    <input type="button" class="buttons" name = "button_sumbmit" id = "button_sumbmit" 
+                           onclick="validate_form();" value="Guardar">       
+
+                    <div id = "label_error" class="label_error">&nbsp;</div>
+                </fieldset>   
+                <fieldset>
+                    <legend>
+                        Actividad
+                    </legend>
+                    <table>
+                        <tr>     
+                            <td width="100">
+                                Módulo 3D:
+                            </td>               
+                            <td height="35">
+                                <select name="" style="width: 400px;" onchange="cargarCasos(this.value)">
+                                    <? foreach ($this->modulos as $modulo) { ?>
+                                        <option value="<?= $modulo['IDModulo'] ?>">
+                                            <?= $modulo['NombreModulo'] ?>
+                                        </option>
+                                    <? } ?>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>     
+                            <td>
+                                Caso:
+                            </td>               
+                            <td id="selectCasos" height="35">
+
+                            </td>
+                        </tr>
+                        <tr>    
+                            <td width="300">
+                                Nombre:
+                            </td>
+                            <td>
+                                <input type="text" name="NombreActividad" id="NombreActividad" />
+                            </td>
+                        </tr>
+                        <tr>     
+                            <td>
+                                Orden:
+                            </td>               
+                            <td>
+                                <input type="text" name="Orden" id="Orden" /> 
+                            </td>
+                        </tr>
+                        <tr>     
+                            <td>
+                                Tipo:
+                            </td>               
+                            <td>
+                                <select name="TipoActividad" onchange="esPredefinida(this.value, 'predefinida_<?= $this->parameters['number'] ?>')">
+                                    <option value="">Seleccione un tipo...</option>
+                                    <option value="dialogo">Dialogo</option>
+                                    <option value="predefinida">Predefinida</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr style="display:none" id="predefinida_<?= $this->parameters['number'] ?>"> 
+                            <td colspan="2">
+                                <table>
+                                    <tr>
+                                        <td>
+                                            Elegir accion Predefinida:
+                                            <select name="IDPredefinida">
+                                                <option value="0">Seleccione una acción predefinida...</option>
+                                                <? foreach ($this->predefinidas as $predefinida) { ?>
+                                                    <option value="<?= $predefinida['IDPredefinida'] ?>"><?= $predefinida['NombreAccion'] ?></option>
+                                                <? } ?>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            Descripcion predefinida:<br>
+                                            <textarea name="DescripcionPredefinida"></textarea>
+                                        </td>
+                                    </tr>     
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+            </form>
+            </fieldset>
+        </td>
+    </tr>    
+</table>
+<style>
+    textarea{
+        width: 200px;
+        height: 60px;
+    }
+</style>
+<script>
+    
+    
+    function cargarCasos(idModulo){
+        $('#selectCasos').load('<?= $this->url(array('module' => 'cmsvisor', 'controller' => 'caso', 'action' => 'getallajax'), '', true); ?>' + '/IDModulo/' + idModulo);
+        $('#selectActividad').load('<?= $this->url(array('module' => 'cmsvisor', 'controller' => 'actividad', 'action' => 'getallajax'), '', true); ?>');
+    }
+    
+    function cargarActividad(idCaso){
+        $('#selectActividad').load('<?= $this->url(array('module' => 'cmsvisor', 'controller' => 'actividad', 'action' => 'getallajax'), '', true); ?>' + '/IDCaso/' + idCaso);
+    }  
+    
+    
+    function esPredefinida(value, idTarget){
+        if(value != "predefinida"){
+            $('#'+idTarget).css('display', 'none');
+        }else{            
+            $('#'+idTarget).css('display', 'block');
+        }
+    }
+    
+    function validate_form(){
+        var id_form='add';
+        form=document.getElementById(id_form).elements;
+<?php
+foreach ($this->fields as $field) {
+    if ($field['required'] == true) {
+        ?>
+                        if(is_empty(form["<?= $field["field"] ?>"],"Por favor complete el campo <?= $field["label"] ?>")) return;
+        <?php
+    }
+    if ($field['type'] == "email") {
+        ?>
+                        if(is_valid_email(form["<?= $field["field"] ?>"],"El <?= $field["label"] ?> no es una drección válida.")) return;
+        <?php
+    }
+}
+?>
+        if(form["button_sumbmit"].disabled==false){
+            form["button_sumbmit"].disabled=true;
+            send_form(document.getElementById(id_form),"Guardando por favor espere");
+        } 
+    }
+    
+</script>

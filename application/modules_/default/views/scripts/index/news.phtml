@@ -1,0 +1,81 @@
+<!-- Descripcion isla  -->
+<div class="container">
+
+    <!--
+    <div class="row">
+        <div class="col-lg-12 shadow bg-light-blue">
+            <h1 class="color-white thin">
+            <?php echo ($this->lang == 'Es') ? 'Islas de la Polinesia' : 'Polynesian Islands'; ?>
+            </h1>
+        </div>
+    </div>
+    -->
+
+    <div class="clearfix" style="margin-top: 30px;">
+
+    </div>
+    
+    <!-- Info solo si vine isla-->
+
+    <div class="clearfix" style="margin-top: 30px">
+
+    </div>
+
+    <!-- Noticias -->
+    <div class="row shadow bg-white island-intro">
+
+        <?php if($this->news) : ?>
+
+            <div class="col-lg-12">  
+
+                <h2 class="slab color-a text-center">                            
+                    <?php echo date_format(new DateTime($this->news['NFecha']), 'd/m/Y'); ?> | <?php echo $this->news['NTitulo' . $this->lang]; ?>
+                </h2>
+
+                <br>
+                
+                <?php if($this->news['NImagen']) : ?>
+                <div class="col-lg-6 col-lg-offset-3 noPadding">
+                    <div class="image-limited">
+                        <img class="img-rounded activeZoom" data-target-image="<?php echo $this->baseUrl(); ?>/images/<?php echo $this->news['NImagen']?>" src="<?php echo $this->baseUrl()?>/imgs/preload.gif" data-src="<?php echo $this->baseUrl()?>/images/m_<?php echo $this->news['NImagen']?>"/>                    
+                    </div>
+                </div>
+                <?php endif; ?>
+                
+                <div class="clearfix"></div>
+
+                <?php if($this->news['NIntroduccion' . $this->lang]) : ?>
+                <p class="slab color-a" style="font-style: italic;">
+                    <?php echo $this->news['NIntroduccion' . $this->lang]; ?>
+                </p>
+                <?php endif;?>
+
+                <?php if($this->news['NDesarrollo' . $this->lang]) : ?>
+                <div class="slab color-a text-description">
+                    <?php echo $this->news['NDesarrollo' . $this->lang]; ?>
+                </div>
+                <?php endif;?>
+
+            </div>
+
+        <?php endif; ?>
+
+    </div>
+    <!-- Noticias -->
+    
+</div>
+<!-- end Descripcion isla  -->
+
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+
+<!-- footer -->
+<?php echo $this->partial("_partials/_footer.phtml") ?>
+<!-- fin footer -->
+
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+</div>
+</div>

@@ -1,0 +1,109 @@
+<div class="form-container">
+    <blockquote>
+        <?php if ($this->title) { ?>
+            <p class="text-primary"><?php echo ($this->icon) ? '<label class="glyphicon glyphicon-' . $this->icon . '"></label> ' : ''; ?> <?php echo $this->title ?></p>
+        <?php } ?>
+        <?php if ($this->description) { ?>
+            <small><?php echo $this->description ?></small>
+        <?php } ?>
+    </blockquote>
+    <form id="newsForm" method="post" enctype="multipart/form-data" novalidate>
+        <div class="form-group col-lg-4">
+            <?php $fieldName = 'IDTipoNoticia'; ?>
+            <label for="<?php echo $fieldName ?>">Tipo de noticia *</label>
+            <br>
+            <select class="form-control" name="<?php echo $fieldName ?>" id="<?php echo $fieldName ?>" data-validate="<?php echo $this->validations[$fieldName] ?>">
+                <option value="">Seleccione un tipo de noticia...</option>
+                <?php foreach ($this->tiposNoticia as $tipo) { ?>
+                    <option <?php echo ($this->result['IDTipoNoticia'] == $tipo['IDTipoNoticia']) ? 'selected=""' : ''; ?> value="<?= $tipo['IDTipoNoticia'] ?>"><?= $tipo['TNNombre'] ?></option>                                    
+                <?php } ?>
+            </select>
+        </div>
+        <div class="form-group col-lg-4">
+            <?php $fieldName = 'NFecha'; ?>
+            <label for="<?php echo $fieldName ?>">Fecha *</label>
+            <div class="input-group">
+                <span class="input-group-addon"><label class="glyphicon glyphicon-calendar"></label></span>
+                <input value="<?php echo $this->result[$fieldName] ?>" type="date" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Fecha" data-validate="<?php echo $this->validations[$fieldName] ?>">
+            </div>
+        </div>       
+        <div class="clearfix">
+
+        </div> 
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'NTituloEs'; ?>
+            <label for="<?php echo $fieldName ?>">Título *</label>
+            <input value="<?php echo $this->result[$fieldName] ?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Título" data-validate="<?php echo $this->validations[$fieldName] ?>">        
+        </div>   
+        <div class="clearfix">
+
+        </div>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'NTituloEn'; ?>
+            <label for="<?php echo $fieldName ?>">Título (Inglés)*</label>
+            <input value="<?php echo $this->result[$fieldName] ?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Título" data-validate="<?php echo $this->validations[$fieldName] ?>">        
+        </div>   
+        <div class="clearfix">
+
+        </div>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'NIntroduccionEs'; ?>
+            <label for="<?php echo $fieldName ?>">Introducción *</label>
+            <textarea maxlength="<?php echo $this->maxlenghtTextarea ?>" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control ckeditor" placeholder="Introduccion"><?php echo $this->result[$fieldName] ?></textarea>
+        </div>   
+        <div class="clearfix">
+
+        </div>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'NIntroduccionEn'; ?>
+            <label for="<?php echo $fieldName ?>">Introducción (Inglés)*</label>
+            <textarea maxlength="<?php echo $this->maxlenghtTextarea ?>" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control ckeditor" placeholder="Introduccion"><?php echo $this->result[$fieldName] ?></textarea>
+        </div>   
+        <div class="clearfix">
+
+        </div>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'NDesarrolloEs'; ?>
+            <label for="<?php echo $fieldName ?>">Desarrollo *</label>
+            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big ckeditor" placeholder="Desarrollo"><?php echo $this->result[$fieldName] ?></textarea>
+        </div>
+        <div class="clearfix">
+
+        </div> 
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'NDesarrolloEn'; ?>
+            <label for="<?php echo $fieldName ?>">Desarrollo (Inglés)*</label>
+            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big ckeditor" placeholder="Desarrollo"><?php echo $this->result[$fieldName] ?></textarea>
+        </div>
+        <div class="clearfix">
+
+        </div> 
+        <?php $fieldName = 'NImagen'; ?>
+        <?php if ($this->result[$fieldName]) { ?>
+            <div class="form-group col-lg-4 imageCms">
+                <img src="<?php echo $this->baseUrl() ?>/images/m_<?php echo $this->result[$fieldName] ?>" class="img-thumbnail">
+            </div>
+        <?php } ?>
+        <div class="form-group col-lg-4">
+            <label for="<?php echo $fieldName ?>">Imagen <?php echo (!empty($this->result[$fieldName])) ? '(Reemplazar o eliminar)' : ''; ?></label>
+            <input type="file" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Imagen" data-validate="<?php echo $this->validations[$fieldName] ?>">
+            <p class="help-block">Archivos .jpg o .png solamente</p>    
+            
+            <?php if ($this->result[$fieldName]) { ?>
+                <div class="btn-group" data-toggle="buttons">
+                    <label data-rel="popoverRight" data-content="Esta imagen se eliminará" class="btn btn-warning">
+                        <input type="checkbox" name="eliminarImagen" value="<?php echo $this->result[$fieldName] ?>"> Eliminar
+                    </label>
+                </div>
+            <?php } ?>                   
+        </div>  
+        <div class="clearfix">
+
+        </div> 
+        <div class="btn-group">
+            <button type="submit" name="submit" class="btn btn-primary" data-loading-text="Validando...">Guardar</button>
+            <?php /* <button type="button" data-toggle="button" class="btn btn-info" data-rel="popover" data-content="asdasdasd" title="Información">Información</button> */ ?>
+            <button type="button" class="btn btn-danger" onclick='location.href = "<?php echo $this->url(array('module' => 'admin', 'controller' => $this->controller, 'action' => 'index'), '', true) ?>"'>Cancelar</button>
+        </div>
+    </form>
+</div>

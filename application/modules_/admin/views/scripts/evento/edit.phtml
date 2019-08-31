@@ -1,0 +1,99 @@
+<div class="form-container">
+    <blockquote>
+        <?php if ($this->title) { ?>
+            <p class="text-primary"><?php echo ($this->icon) ? '<label class="glyphicon glyphicon-' . $this->icon . '"></label> ' : ''; ?> <?php echo $this->title ?></p>
+        <?php } ?>
+        <?php if ($this->description) { ?>
+            <small><?php echo $this->description ?></small>
+        <?php } ?>
+    </blockquote>
+    <form id="eventoIslaForm" method="post" enctype="multipart/form-data" novalidate>
+        <?php /*
+        <div class="form-group col-lg-4">
+            <?php $fieldName = 'idGrupoIsla'; ?>
+            <label for="<?php echo $fieldName ?>">Grupo de Islas</label>
+            <br>
+            <select class="form-control loadIslas" name="<?php echo $fieldName ?>" id="<?php echo $fieldName ?>">
+                <option value="">Seleccione un grupo de islas...</option>
+                <?php foreach ($this->grupoIsla as $tipo) { ?>
+                    <option value="<?= $tipo[$fieldName] ?>"><?= $tipo['GInombreEs'] ?></option>                                    
+                <?php } ?>
+            </select>
+        </div>
+        <div class="form-group col-lg-4">
+            <?php $fieldName = 'idIsla'; ?>
+            <label for="<?php echo $fieldName ?>">Isla *</label>
+            <br>
+            <select class="form-control" name="<?php echo $fieldName ?>" id="<?php echo $fieldName ?>" data-validate="<?php echo $this->validations[$fieldName] ?>">
+                <option value="">Seleccione un grupo de islas...</option>
+            </select>
+        </div>
+         */ ?>
+        <div class="form-group col-lg-4">
+            <?php $fieldName = 'EInombreEs'; ?>
+            <label for="<?php echo $fieldName ?>">Nombre (Español)*</label>
+            <input value="<?php echo $this->result[$fieldName] ?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Español)" data-validate="<?php echo $this->validations[$fieldName] ?>">        
+        </div>
+        <div class="form-group col-lg-4">
+            <?php $fieldName = 'EIdia'; ?>
+            <label for="<?php echo $fieldName ?>">Día*</label>
+            <input value="<?php echo $this->result[$fieldName] ?>" maxlength="<?php echo $this->maxlenghtInput ?>" type="number" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Día (número)" data-validate="<?php echo $this->validations[$fieldName] ?>">        
+        </div>
+        <div class="form-group col-lg-4">
+            <?php $fieldName = 'EImes'; ?>
+            <label for="<?php echo $fieldName ?>">Mes*</label>
+            <select id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" data-validate="required">                    
+                <?php echo $this->partial('_meses.phtml', array('mesSeleccionado' => $this->result[$fieldName])); ?>
+            </select>
+        </div>
+        <div class="clearfix">
+
+        </div>
+        <?php $fieldName = 'EIimagen'; ?>
+        <?php if ($this->result[$fieldName]) { ?>
+            <div class="form-group col-lg-4 imageCms">
+                <img src="<?php echo $this->baseUrl() ?>/images/m_<?php echo $this->result[$fieldName] ?>" class="img-thumbnail">
+            </div>
+        <?php } ?>
+        <div class="form-group col-lg-4">
+            <label for="<?php echo $fieldName ?>">Imagen <?php echo (!empty($this->result[$fieldName])) ? '(Reemplazar)' : ''; ?></label>
+            <input type="file" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Imagen" data-validate="valid_image_file">
+            <p class="help-block">Archivos .jpg o .png solamente</p>    
+        </div>
+        <div style="margin-top:25px; margin-bottom: 10px;" class="btn-group" data-toggle="buttons">
+            <?php $fieldName = 'esDestacado'; ?>
+            <label class="btn btn-warning <?php echo ($this->result[$fieldName] == 1) ? 'active' : '' ;?> ">
+                <input type="hidden" name="<?php echo $fieldName?>" value="0"/>
+                <input type="checkbox" name="<?php echo $fieldName?>" <?php echo ($this->result[$fieldName] == 1) ? 'checked=""' : '' ;?> value="1"/> Es destacado
+            </label>
+        </div>
+        <div class="clearfix">
+            
+        </div>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'EIdescripcionEs'; ?>
+            <label for="<?php echo $fieldName ?>">Descripción (Español) *</label>
+            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big ckeditor" placeholder="Descripción (Español)"><?php echo $this->result[$fieldName] ?></textarea>
+        </div>
+
+        <div class="form-group col-lg-4">
+            <?php $fieldName = 'EInombreEn'; ?>
+            <label for="<?php echo $fieldName ?>">Nombre (Inglés) *</label>
+            <input value="<?php echo $this->result[$fieldName] ?>"  maxlength="<?php echo $this->maxlenghtInput ?>" type="text" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" placeholder="Nombre (Inglés)" data-validate="<?php echo $this->validations[$fieldName] ?>">        
+        </div>
+        <div class="clearfix">
+
+        </div>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'EIdescripcionEn'; ?>
+            <label for="<?php echo $fieldName ?>">Descripción (Inglés) *</label>
+            <textarea id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control big ckeditor" placeholder="Descripción (Inglés)"><?php echo $this->result[$fieldName] ?></textarea>
+        </div>
+        <br>
+        <div class="btn-group">
+            <button type="submit" name="submit" class="btn btn-primary" data-loading-text="Validando...">Guardar</button>
+            <?php /* <button type="button" data-toggle="button" class="btn btn-info" data-rel="popover" data-content="asdasdasd" title="Información">Información</button> */ ?>
+            <button type="button" class="btn btn-danger" onclick='location.href = "<?php echo $this->url(array('module' => 'admin', 'controller' => 'evento', 'action' => 'index'), '', true) ?>"'>Cancelar</button>
+        </div>
+    </form>
+</div>

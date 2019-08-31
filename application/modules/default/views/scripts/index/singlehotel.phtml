@@ -1,0 +1,284 @@
+<div class="row">
+    <!-- Intro -->
+    <div class="col-lg-9 col-md-9 col-sm-9">
+        <div class="pull-right">
+         <h3 class=" roboto light margin-0"><b><?php echo $this->hotel['CHnombre' . $this->lang]; ?></b></h3>
+        </div>
+        <h2 class="color-a roboto light margin-0">
+            <?php echo $this->hotel['HOnombre' . $this->lang]; ?>
+        </h2>
+        <p class="roboto light color-a">
+            <?php echo str_replace("</div>", "<br/>",str_replace("rgb(34, 34, 34)", "rgb(82, 103, 188)", str_replace("<div>", " ", $this->hotel['HOdescripcion' . $this->lang])));?>
+        </p> 
+    </div>
+    <!-- end Intro -->
+    <!-- Logo -->
+    <div class="col-lg-3 col-md-3 col-sm-3 text-center hotelLogo">
+        <img src="<?php echo $this->baseUrl() ?>/images/<?php echo $this->hotel['HOlogo'] ?>" alt="Logo"/>
+    </div>
+    <!-- end Logo -->
+</div>
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+<!-- Actividades -->
+<div class="row">
+    <div class="col-lg-9 col-md-9 col-sm-9">
+    <?php
+        $freeActivities = Model_DBTable_ActividadHotel::getInstance()->showAll('esPaga = 0 AND idHotel = ' . $this->hotel['idHotel']);
+        $paidActivities = Model_DBTable_ActividadHotel::getInstance()->showAll('esPaga = 1 AND idHotel = ' . $this->hotel['idHotel']);
+        $restaurants = Model_DBTable_Restobar::getInstance()->showAll('idHotel = ' . $this->hotel['idHotel']);
+        $events = Model_DBTable_EventoHotel::getInstance()->showAll('idHotel = ' . $this->hotel['idHotel'],'idEventoHotel','ASC');
+        ?>
+        <?php if(count($freeActivities) || count($paidActivities) || count($restaurants) || count($events)) : ?>
+        <h4 class="color-a roboto margin-0">
+            <?php echo ($this->lang == 'Es') ? 'Actividades y Servicios' : 'Activities & Services' ;?>
+        </h4>
+        <div class="clearfix" style="margin-top: 15px">
+
+        </div>
+        
+        
+        <?php if(count($freeActivities) > 0) : ?>
+            <p class="title4 slab color-a bold">
+                <?php echo ($this->lang == 'Es') ? 'Actividades Gratuitas' : 'Free Activities' ;?>
+            </p>
+            <p class="title5 slab color-a thin">
+                <?php foreach($freeActivities as $keyActivity => $activity) : ?>
+                    <?php echo $activity['AHnombre' . $this->lang]; ?> <?php echo ($activity['AHdescription' . $this->lang] != '') ? "(". $activity['AHdescription' . $this->lang]. ")" : '' ;?>
+                    <?php echo ($keyActivity === count($freeActivities) - 1) ? '' : ',' ;?>
+                <?php endforeach; ?>
+            </p>
+        <?php else: ?>
+            <!-- <p class="title5 slab color-a thin">
+                <?php echo ($this->lang == 'Es') ? 'No hay información sobre actividades gratuitas.' : 'Cannot find any information on free activities.' ;?>
+            </p> -->
+        <?php endif; ?>
+
+        <?php if(count($paidActivities) > 0) : ?>
+            <p class="title4 slab color-a bold">
+                <?php echo ($this->lang == 'Es') ? 'Actividades Pagas' : 'Paid Activities' ;?>
+            </p>
+            <p class="title5 slab color-a thin">
+                <?php foreach($paidActivities as $keyActivity => $activity) : ?>
+                    <?php echo $activity['AHnombre' . $this->lang]; ?> <?php echo ($activity['AHdescription' . $this->lang] != '') ? "(". $activity['AHdescription' . $this->lang]. ")" : '' ;?>
+                    <?php echo ($keyActivity === count($paidActivities) - 1) ? '' : ',' ;?>
+                <?php endforeach; ?>
+            </p>
+        <?php else: ?>
+            <!-- <p class="title5 slab color-a thin">
+                <?php echo ($this->lang == 'Es') ? 'No hay información sobre actividades pagas.' : 'Cannot find any information on paid activities.' ;?>
+            </p> -->
+        <?php endif; ?>
+
+        <?php if(count($restaurants) > 0) : ?>
+            <p class="title4 slab color-a bold">
+                <?php echo ($this->lang == 'Es') ? 'Bares y Restaurants' : 'Bars & Restaurants' ;?>
+            </p>
+            <ul class="list-unstyled color-a title5">
+                <?php foreach($restaurants as $keyRestaurant => $restaurant) : ?>
+                    <li>
+                        <strong><?php echo $restaurant['Rnombre' . $this->lang]; ?>: </strong>
+                        <?php echo $restaurant['Rdescripcion' . $this->lang]; ?>
+                        <br>
+                    </li>
+                <?php endforeach; ?>
+            </ul>   
+        <?php else: ?>
+            <!-- <p class="title5 slab color-a thin">
+                <?php echo ($this->lang == 'Es') ? 'No hay información sobre bares y restaurants.' : 'Cannot find any information on restaurants.' ;?>
+            </p> -->
+        <?php endif; ?>
+
+        <?php if(count($events) > 0) : ?>
+            <p class="title4 slab color-a bold">
+                <?php echo ($this->lang == 'Es') ? 'Eventos' : 'Events' ;?>
+            </p>
+            <p class="title5 slab color-a thin">
+                <?php foreach($events as $keyActivity => $event) : $daysShort=array();?>
+                    <?php $days=json_decode($event['EHdia' . $this->lang]); mb_internal_encoding("UTF-8");?>
+                    <b><?php echo $event['EHnombre' . $this->lang]; ?></b><br/>
+                    <?php if(count($days)):?> <b><?php echo ($this->lang == 'Es') ? 'Días' : 'Days' ;?></b>: <?php echo join(', ',$days);?><br><?php endif;?>
+                    <?php echo $event['EHdescripcion' . $this->lang] ;?>
+                    <br>
+                    <br>
+                <?php endforeach; ?>
+                <br>
+            </p>
+        <?php else: ?>
+            <!-- <p class="title5 slab color-a thin">
+                <?php echo ($this->lang == 'Es') ? 'No hay información sobre actividades gratuitas.' : 'Cannot find any information on free activities.' ;?>
+            </p> -->
+        <?php endif; ?>
+
+        <?php endif; ?>                   
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-3">
+        <h4 class="color-a roboto margin-0">
+            <?php echo ($this->lang == 'Es') ? 'Galería de Fotos' : 'Photo Gallery' ;?>
+        </h4>
+        <div class="image cover" onclick="openGallery('<?php echo $this->hotel['idHotel']?>')" style="background-image:url(<?php echo $this->baseUrl() ?>/images/m_<?php echo $this->firstImage['Inombre'] ?>); height: 300px; ">
+            <!-- <img onclick="openGallery('<?php echo $this->hotel['idHotel']?>')" src="<?php echo $this->baseUrl() ?>/images/m_<?php echo $this->firstImage['Inombre'] ?>"/> -->
+        </div>
+        <?php if (count($this->images) > 0) : ?>
+            <div class="hiddenGallery hotel-<?php echo $this->hotel['idHotel']?>">
+                <?php foreach ($this->images as $keyImage => $image) : ?>
+                    <a href="<?php echo $this->baseUrl() ?>/images/<?php echo $image['Inombre'] ?>" title="<?php echo $this->hotel['HOnombre' . $this->lang] ?>" data-gallery>
+                        <img src="<?php echo $this->baseUrl() ?>/images/m_<?php echo $image['Inombre'] ?>" alt="<?php echo $this->hotel['HOnombre' . $this->lang] ?>">
+                    </a>
+                <?php endforeach; ?>
+            </div>
+        <?php endif; ?>
+    </div>
+</div>
+<!-- end Actividades -->
+
+<div class="clearfix" style="margin-top: 30px;">
+
+</div>
+
+<!-- Habitaciones -->
+<div class="row">
+    <div class="col-lg-10 col-md-10 col-sm-10">
+        <h4 class="color-a roboto margin-0">
+            <?php echo ($this->lang == 'Es') ? 'Habitaciones y Facilidades' : 'Rooms and Features' ;?>
+        </h4>
+        <div class="clearfix" style="margin-top: 15px">
+
+        </div>
+        <?php
+        $rooms = Model_DBTable_Habitacion::getInstance()->showAll('idHotel = ' . $this->hotel['idHotel']);
+        $roomFacilities = Model_DBTable_ComodidadHabitacion::getInstance()->showAll('idHotel = ' . $this->hotel['idHotel']);
+        $hotelFacilities = Model_DBTable_ComodidadHotel::getInstance()->showAll('idHotel = ' . $this->hotel['idHotel']);
+        ?>
+        <div class="row color-a light roboto" style="max-height: 180px; overflow-y: auto;">
+            <!-- habitaciones -->
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <?php if(count($rooms) > 0) : ?>
+                    <table class="table-condensed text-center color-a light roboto">
+                        <tr>
+                            <th  class="title-5 color-a">
+                                <?php echo ($this->lang == 'Es') ? 'Tipo de Habitación' : 'Room type' ;?>
+                            </th>
+                            <th class="title-5 color-a">
+                                <?php echo ($this->lang == 'Es') ? 'Cantidad' : 'Quantity' ;?>
+                            </th>
+                        </tr>
+                        <?php foreach($rooms as $room) : ?>
+                            <tr>
+                                <td>
+                                    <?php echo $room['Hnombre' . $this->lang]; ?>
+                                </td>
+                                <td>
+                                    <?php echo $room['Hcantidad']; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                <?php else: ?>
+                    <p class="title5 slab color-a thin">
+                        <?php echo ($this->lang == 'Es') ? 'No hay información acerca habitaciones.' : 'Cannot find any information about rooms.' ;?>
+                    </p>
+                <?php endif; ?>
+            </div>
+            <!-- fin habitaciones -->
+
+            <!-- comodidades habitaciones -->
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <?php if(count($roomFacilities) > 0) : ?>
+                    <table class="table-condensed text-left color-a light roboto">
+                        <tr>
+                            <th  class="title-5 color-a">
+                                <?php echo ($this->lang == 'Es') ? 'Comodidad de habitación' : 'Room features' ;?>
+                            </th>
+                        </tr>
+                        <?php foreach($roomFacilities as $roomFacility) : ?>
+                            <tr>
+                                <td>
+                                    <?php echo $roomFacility['CHnombre' . $this->lang]; ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                <?php else: ?>
+                    <p class="title5 slab color-a thin">
+                        <?php echo ($this->lang == 'Es') ? 'No hay información sobre comodidades de habitaciones.' : 'Cannot find any information about room features.' ;?>
+                    </p>
+                <?php endif; ?>
+            </div>
+            <!-- fin comodidades habitaciones-->
+
+            <!-- fin comodidades hotel-->
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <?php if(count($hotelFacilities) > 0) : ?>
+                    <table class="table-condensed text-left color-a light roboto">
+                        <tr>
+                            <th  class="title-5 color-a">
+                                <?php echo ($this->lang == 'Es') ? 'Comodidad del hotel' : 'Hotel features' ;?>
+                            </th>
+                            <th class="title-5 color-a">
+                                <?php echo ($this->lang == 'Es') ? 'Cantidad' : 'Quantity' ;?>
+                            </th>
+                        </tr>
+                        <?php foreach($hotelFacilities as $hFacility) : ?>
+                            <tr class="text-left">
+                                <td>
+                                    <?php echo $hFacility['CHOnombre' . $this->lang]; ?>
+                                </td>
+                                <td>
+                                <?php if ($hFacility['CHOcantidad']>0): ?>
+                                    
+                                    <?php echo $hFacility['CHOcantidad']; ?>
+                                <?php endif ?>
+                                </td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </table>
+                <?php else: ?>
+                    <p class="title5 slab color-a thin">
+                        <?php echo ($this->lang == 'Es') ? 'No hay información sobre comodidades del hotel.' : 'Cannot find any information about hotel features.' ;?>                        
+                    </p>
+                <?php endif; ?>
+            </div>
+            <!-- fin comodidades hotel-->
+        </div>                                      
+    </div>
+    <div class="col-lg-2 col-md-2 col-sm-2" id="hotel_mapa<?php echo $this->hotel['idHotel'];?>">
+        <h4 class="color-a roboto margin-0">
+            <?php echo ($this->lang == 'Es') ? 'Mapa' : 'Map' ;?>
+        </h4>
+        <!-- HOmapa -->
+        <?php if ($this->hotel['HOmapa']): ?>
+            <div id="captionHotel<?php echo $this->hotel['idHotel'];?>" style="display:none">
+            <h4><?php echo $this->hotel['HOnombre' . $this->lang]; ?></h4>
+            </div>
+            <a class="item" href="<?php echo $this->baseUrl() ?>/images/<?php echo $this->hotel['HOmapa']; ?>" data-sub-html="#captionHotel<?php echo $this->hotel['idHotel'];?>">
+            <div class="image small cover" style="height: 170px; background-image:url(<?php echo $this->baseUrl() ?>/images/<?php echo $this->hotel['HOmapa']; ?>)" style="">
+            </div>
+            </a>
+        <?php else: ?>
+            <div class="text-center color-a">
+                <?php echo ($this->lang == 'Es') ? 'Sin mapa disponible' : 'No map available' ;?>
+                
+            </div>
+        <?php endif ?>
+        <script>
+                    $(document).ready(function(){
+                        
+                        $('#hotel_mapa<?php echo $this->hotel['idHotel'];?>').lightGallery({
+                            selector: '.item'
+                        });
+                    });
+                </script>
+    </div>
+</div>
+<!-- end Habitaciones -->
+
+<!-- map Modal -->
+<?php
+echo $this->partial("_partials/mapModal.phtml", array(
+    'map' => $this->hotel['HOmapa'],
+    'hotelId' => $this->hotel['idHotel']
+    ));
+    ?>
+<!-- end Map modal -->

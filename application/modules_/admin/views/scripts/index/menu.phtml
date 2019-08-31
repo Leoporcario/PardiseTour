@@ -1,0 +1,36 @@
+<li role="presentation" class="dropdown-header">Gestión de contenido</li>
+
+<?php if(count($this->admModules) > 0){?>
+<li class="divider"></li>
+<li role="presentation" class="dropdown-header">Administración web</li>
+    <?php foreach($this->admModules as $module){?>
+        <li>
+            <a data-rel="tooltipRight" title="<?php echo utf8_encode($module['descripcion'])?>"
+               href="<?php echo $this->url(array('module'=>'admin','controller'=> $module['link'], 'action'=>'index'),'',true);?>">
+                <label class="glyphicon glyphicon-<?php echo $module['icono']?> text-primary"></label> <?php echo $module['nombre']?>
+            </a>
+        </li>
+    <?php } ?>
+<?php } ?>
+        
+<?php if(count($this->cmsModules) > 0){?>
+<li class="divider"></li>
+<li role="presentation" class="dropdown-header" style="white-space: nowrap;">Newsletters y suscriptores</li>
+    <?php foreach($this->cmsModules as $module){?>
+        <li>
+            <a data-rel="tooltipRight" title="<?php echo utf8_encode($module['descripcion'])?>"
+               href="<?php echo $this->url(array('module'=>'admin','controller'=> $module['link'], 'action'=>'index'),'',true);?>">
+                <label class="glyphicon glyphicon-<?php echo $module['icono']?> text-primary"></label> <?php echo $module['nombre']?>
+            </a>
+        </li>
+    <?php } ?>
+<?php } ?>
+
+<script>
+    $(document).ready(function() {
+        $("[data-rel=tooltipTop]").tooltip({placement: 'top', delay: { show: 500, hide: 100 }});
+        $("[data-rel=tooltipRight]").tooltip({placement: 'right', delay: { show: 500, hide: 100 }});
+        $("[data-rel=tooltipLeft]").tooltip({placement: 'left', delay: { show: 500, hide: 100 }});
+        $("[data-rel=tooltipBottom]").tooltip({placement: 'bottom', delay: { show: 500, hide: 100 }});
+    });
+</script>

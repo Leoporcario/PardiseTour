@@ -1,0 +1,61 @@
+<tr>
+    <td>
+        <fieldset>
+            <legend>
+                Opcion
+            </legend>
+            <table>
+                <tr>    
+                    <td width="">
+                        Nombre:
+                    </td>
+                    <td>
+                        <input type="text" name="NombreOpcion[<?=$this->parameters['number']?>][]" id="NombreOpcion" />
+                    </td>
+                </tr>     
+                <tr>    
+                    <td width="">
+                        Respuesta:
+                    </td>
+                    <td>
+                        <input type="text" name="Respuesta[<?=$this->parameters['number']?>][]" id="Respuesta" />
+                    </td>
+                </tr>     
+                <tr>    
+                    <td width="">
+                        Es correcta:
+                    </td>
+                    <td>
+                        <select name="Correcta[<?=$this->parameters['number']?>][]">
+                            <option value="0">No</option>
+                            <option value="1">Si</option>
+                        </select>
+                    </td>
+                </tr>     
+                <tr>    
+                    <td width="">
+                        Mensaje Error:
+                    </td>
+                    <td>
+                        <textarea name="MensajeError[<?=$this->parameters['number']?>][]" id="MensajeError"></textarea>
+                    </td>
+                </tr>       
+                <tr>    
+                    <td width="">
+                        Dialogo:
+                    </td>
+                    <td>
+                        <textarea name="Dialogo[<?=$this->parameters['number']?>][]" id="Dialogo"></textarea>
+                    </td>
+                </tr>           
+            </table>
+        </fieldset>
+    </td>
+</tr>
+<script type="text/javascript">
+    $(document).ready(
+        function(){
+            
+        }
+    );
+</script>

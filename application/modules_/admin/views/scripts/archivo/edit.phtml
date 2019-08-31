@@ -1,0 +1,121 @@
+<div class="form-container">
+    <blockquote>
+        <?php if ($this->title) { ?>
+            <p class="text-primary"><?php echo ($this->icon) ? '<label class="glyphicon glyphicon-' . $this->icon . '"></label> ' : ''; ?> <?php echo $this->title ?></p>
+        <?php } ?>
+        <?php if ($this->description) { ?>
+            <small><?php echo $this->description ?></small>
+        <?php } ?>
+    </blockquote>
+    <form id="archivoForm" method="post" enctype="multipart/form-data" novalidate>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'AnombreEs';?>
+            <?php $labelName = 'Nombre (Español)';?>
+            <label for="<?php echo $fieldName?>"><?php echo $labelName?> *</label>
+            <input value="<?php echo $this->result[$fieldName]?>" maxlength="<?php echo $this->maxlenghtInput?>" type="text" id="<?php echo $fieldName?>" name="<?php echo $fieldName?>" class="form-control" placeholder="<?php echo $labelName?>" data-validate="<?php echo $this->validations[$fieldName]?>">        
+        </div>   
+        <div class="clearfix">
+
+        </div>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'AnombreEn';?>
+            <?php $labelName = 'Nombre (Inglés)';?>
+            <label for="<?php echo $fieldName?>"><?php echo $labelName?> *</label>
+            <input value="<?php echo $this->result[$fieldName]?>" maxlength="<?php echo $this->maxlenghtInput?>" type="text" id="<?php echo $fieldName?>" name="<?php echo $fieldName?>" class="form-control" placeholder="<?php echo $labelName?>" data-validate="<?php echo $this->validations[$fieldName]?>">        
+        </div>    
+        <div class="clearfix">
+
+        </div>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'AdescripcionEs';?>
+            <?php $labelName = 'Descripción (Español)';?>
+            <label for="<?php echo $fieldName?>"><?php echo $labelName?></label>
+            <textarea id="<?php echo $fieldName?>" name="<?php echo $fieldName?>" class="form-control big ckeditor" placeholder="<?php echo $labelName?>"><?php echo $this->result[$fieldName]?></textarea>
+        </div>
+        <div class="clearfix">
+
+        </div>
+        <div class="form-group col-lg-15">
+            <?php $fieldName = 'AdescripcionEn';?>
+            <?php $labelName = 'Descripción (Inglés)';?>
+            <label for="<?php echo $fieldName?>"><?php echo $labelName?></label>
+            <textarea id="<?php echo $fieldName?>" name="<?php echo $fieldName?>" class="form-control big ckeditor" placeholder="<?php echo $labelName?>"><?php echo $this->result[$fieldName]?></textarea>
+        </div>
+        <div class="clearfix">
+
+        </div> 
+        <?php $fieldName = 'AfisicoEs'; ?>
+        <div class="form-group col-lg-4">
+            <label for="<?php echo $fieldName ?>">Archivo (Español) <?php echo (!empty($this->result[$fieldName])) ? '[Reemplazar]' : ''; ?></label>     
+            <?php if ($this->result[$fieldName]) { ?>             
+                <br>       
+                <a target="_blank" href="<?php echo $this->baseUrl() ?>/files/<?php echo $this->result[$fieldName] ?>" class="img-thumbnail"> Link al archivo</a>      
+                <br>    
+            <?php } ?>      
+            <input type="file" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" data-validate="valid_file">
+            <p class="help-block">Archivos .jpg, .png, .swf, .pdf solamente</p>
+            
+            <?php /*if ($this->result[$fieldName]) { ?>
+                <div class="btn-group" data-toggle="buttons">
+                    <label data-rel="popoverRight" data-content="Este archivo se eliminará" class="btn btn-warning">
+                        <input type="checkbox" name="eliminarArchivo" value="<?php echo $this->result[$fieldName] ?>"> Eliminar
+                    </label>
+                </div>
+            <?php } */?>
+        </div>
+         
+        <?php $fieldName = 'AfisicoEn'; ?>
+        <div class="form-group col-lg-4">
+            <label for="<?php echo $fieldName ?>">Archivo (Inglés) <?php echo (!empty($this->result[$fieldName])) ? '[Reemplazar o eliminar]' : ''; ?></label>     
+            <?php if ($this->result[$fieldName]) { ?>             
+                <br>       
+                <a target="_blank" href="<?php echo $this->baseUrl() ?>/files/<?php echo $this->result[$fieldName] ?>" class="img-thumbnail"> Link al archivo</a>      
+                <br>    
+            <?php } ?>      
+            <input type="file" id="<?php echo $fieldName ?>" name="<?php echo $fieldName ?>" class="form-control" data-validate="valid_file">
+            <p class="help-block">Archivos .jpg, .png, .swf, .pdf solamente</p>
+            
+            <?php if ($this->result[$fieldName]) { ?>
+                <div class="btn-group" data-toggle="buttons">
+                    <label data-rel="popoverRight" data-content="Este archivo se eliminará" class="btn btn-warning">
+                        <input type="checkbox" name="eliminarArchivoEn" value="<?php echo $this->result[$fieldName] ?>"> Eliminar
+                    </label>
+                </div>
+            <?php } ?>
+        </div>
+        <div class="clearfix">
+
+        </div> 
+        <div class="form-group col-lg-4">
+            <label for="Spermisos">Permisos</label>
+            <label class="glyphicon glyphicon-question-sign text-info" style="font-size: 20px;" data-rel="tooltipRight" title="Asigne permisos a este suscriptor para que pueda acceder a archivos con los mismos niveles de acceso"></label>
+            <br>
+            <div class="btn-group" data-toggle="buttons">
+                <label class="btn btn-info <?php echo ($this->result['Abase'] == 1) ? 'active' : '' ;?>">
+                    <input type="hidden" name="Abase" value="0">
+                    <input <?php echo ($this->result['Abase'] == 1) ? 'checked=""' : '' ;?> type="checkbox" name="Abase" value="1"> Azul
+                </label>
+                <label class="btn btn-success <?php echo ($this->result['Abajo'] == 1) ? 'active' : '' ;?>">
+                    <input type="hidden" name="Abajo" value="0">
+                    <input <?php echo ($this->result['Abajo'] == 1) ? 'checked=""' : '' ;?> type="checkbox" name="Abajo" value="1"> Verde
+                </label>
+                <label class="btn btn-warning <?php echo ($this->result['Amedio'] == 1) ? 'active' : '' ;?>">
+                    <input type="hidden" name="Amedio" value="0">
+                    <input <?php echo ($this->result['Amedio'] == 1) ? 'checked=""' : '' ;?> type="checkbox" name="Amedio" value="1"> Amarillo
+                </label>
+                <label class="btn btn-danger <?php echo ($this->result['Aalto'] == 1) ? 'active' : '' ;?>">
+                    <input type="hidden" name="Aalto" value="0">
+                    <input <?php echo ($this->result['Aalto'] == 1) ? 'checked=""' : '' ;?> type="checkbox" name="Aalto" value="1"> Rojo
+                </label>
+            </div>
+        </div>
+        <div class="clearfix">
+
+        </div> 
+        <div class="btn-group">
+            <button type="submit" name="submit" class="btn btn-primary" data-loading-text="Validando...">Guardar</button>
+            <?php /* <button type="button" data-toggle="button" class="btn btn-info" data-rel="popover" data-content="asdasdasd" title="Información">Información</button> */ ?>
+            <button type="button" class="btn btn-danger" onclick='location.href = "<?php echo $this->url(array('module' => 'admin', 'controller' => $this->controller, 'action' => 'index'), '', true) ?>"'>Cancelar</button>
+        </div>
+    </form>
+</div>

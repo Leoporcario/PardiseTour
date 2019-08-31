@@ -1,0 +1,21 @@
+<h2>
+    <?php echo $this->h2; ?>
+</h2>
+<?php if(!$this->error){?>
+    <div class="message" align="center">
+            <form name="form_question" method="post">
+            <p>¿Está seguro que desea eliminar el envio <?php echo $this->result["NLName"] ?> ?</p>
+        <input type="submit" class="buttons" name="delete_request" value="No" />
+        <input type="submit" class="buttons" name="delete_request" value="Si" />
+        </form>
+    </div>
+<?php }else{ ?>
+    
+    <div class="message" align="center">
+            <form name="form_question" method="post">
+            <p> <?php echo $this->error ?></p>
+             <input type="submit" class="buttons" name="delete_request" value="Volver" />
+        </form>
+    </div>
+    
+<?php } ?>
