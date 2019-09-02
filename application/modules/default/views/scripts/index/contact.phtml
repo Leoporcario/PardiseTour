@@ -50,13 +50,14 @@
                         </div>
                         
                         <br>
+                             <!--KEY PROD-->
                         <div class="form-group">
                             <div class="g-recaptcha" data-validate="required" data-callback="enableBtn" data-sitekey="6LfD_rUUAAAAAMZ6_VcSqeddRzKmK9mIL25yljyk"></div>
                         </div>
-                        <!--KEY PROD-->
-                            <!-- <div class="g-recaptcha" data-validate="required" data-callback="enableBtn" data-sitekey="6LfD_rUUAAAAAMZ6_VcSqeddRzKmK9mIL25yljyk"></div> -->
-                        <!--KEY LOCAL-->
-                            <!-- <div class="g-recaptcha" data-validate="required" data-callback="enableBtn" data-sitekey="6Lef_rUUAAAAADHu1mZePsgR_nAFiwdBntp4vtDS"></div> -->
+                            <!--KEY LOCAL-->
+                        <!-- <div class="form-group">
+                            <div class="g-recaptcha" data-validate="required" data-callback="enableBtn" data-sitekey="6Lef_rUUAAAAADHu1mZePsgR_nAFiwdBntp4vtDS"></div>
+                        </div>                       -->
                         <br>
                         <div class="btn-group">
                             <button type="button" class="btn btn-danger" onclick='location.href = "<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'index'), '', true) ?>"'><?php echo ($this->lang == 'Es') ? 'Cancelar' : 'Cancel'; ?></button>
@@ -89,7 +90,7 @@
 <!-- Bootstrap validate-->
     <script src="<?php echo $this->baseUrl(); ?>/js/bootstrap.validate.js"></script>
     <script src="<?php echo $this->baseUrl(); ?>/js/bootstrap.validate.<?php echo ($this->lang == 'es') ? 'es' : 'en'; ?>.js"></script>
-    <script src='https://www.google.com/recaptcha/api.js'></script>
+    <script src="https://www.google.com/recaptcha/api.js?hl=<?php echo ($this->lang == 'Es') ? 'es' : 'en'; ?>"></script>
     <script>
         $(document).ready(function() {
             document.getElementById("submit").disabled = true;
