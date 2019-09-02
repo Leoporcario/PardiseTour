@@ -38,6 +38,7 @@ class Admin_EventoController extends Zend_Controller_Action {
     var $actions = array(
         array('type' => 'link', 'label' => 'Agregar nuevo evento', 'icon' => 'calendar', 'controller' => 'evento', 'action' => 'add'),
         array('type' => 'link', 'label' => 'Listar todos los eventos', 'icon' => 'list', 'controller' => 'evento', 'action' => 'index'),
+        array('type' => 'link', 'label' => 'Ordenar eventos', 'icon' => 'sort-by-attributes', 'controller' => 'evento', 'action' => 'order'),
     );
     var $options = array(
         array('title' => 'Editar', 'icon' => 'edit text-primary', 'action' => 'edit'),
@@ -180,6 +181,7 @@ class Admin_EventoController extends Zend_Controller_Action {
         if ($this->getRequest()->isPost()) {   
             //Deleting variables from post
             unset($_POST['submit']);
+            $_POST['NOrden'] = 0;
             //unset($_POST['idGrupoIsla']);
             try{
                 $this->upload = new Zend_File_Transfer_Adapter_Http();
@@ -331,6 +333,22 @@ class Admin_EventoController extends Zend_Controller_Action {
         $this->view->icon = 'ban-circle';
         $this->view->title = 'Eliminar evento';
         $this->view->description = 'Seleccione una opción';
+    }
+    // ORDENAR LOS EVENTOS
+    public function orderAction() {
+        $this->view->headScript()->appendFile($this->view->baseUrl() . "/js/Form.js");
+        if ($this->getRequest()->isPost()) {
+            foreach($_POST['idEventosIsla'] as $key => $idEvento){
+                $this->eventoIsla->edit(array(
+                    'idEventoIsla' => $idEvento,
+                    'NOrden' => $key
+                ));
+            }
+        }
+        $this->view->islas = $this->eventoIsla->showAll(null, 'NOrden', 'ASC'); 
+        $this->view->icon = 'sort-by-attributes';
+        $this->view->title = 'Ordenar Eventos';
+        $this->view->description = 'Seleccione un evento con el mouse, y use las flechas para ordenarlos como desee';     
     }
 
 }

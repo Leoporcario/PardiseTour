@@ -379,7 +379,7 @@ class IndexController extends Zend_Controller_Action {
             $this->view->action = 'hotels';
 
             //Obtengo los eventos destacados
-            $mainEvents = Model_DBTable_EventoIsla::getInstance()->showAll('esDestacado = 1');
+            $mainEvents = Model_DBTable_EventoIsla::getInstance()->showAll(null,'NOrden', 'ASC');
             //Mando a la vista
             $this->view->mainEvents = $mainEvents;
         } catch (Zend_Exception $exc) {
