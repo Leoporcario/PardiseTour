@@ -1,0 +1,1 @@
+ALTER TABLE `adm_evento-isla` ADD `NOrden` INT(11) NOT NULL DEFAULT NULL; 
