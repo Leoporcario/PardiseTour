@@ -22,7 +22,7 @@
                     
                     <br>
                     
-                    <form id="new-account" name="new-account" method="post" role="form" novalidate>
+                    <form id="new-account" name="new-account" method="post" role="form" onsubmit="return validateMyForm();" novalidate>
                         
                         <div class="form-group">
                             <label class="color-a roboto" for="email"><?php echo ($this->lang == 'Es') ? 'Nombre' : 'Name'; ?></label>
@@ -48,7 +48,7 @@
                             <label class="color-a roboto" for="phone"><?php echo ($this->lang == 'Es') ? 'Consulta' : 'Message'; ?></label>
                             <textarea id="query" name="SConsulta"  data-validate="required" class="form-control" style="resize: vertical;" placeholder="<?php echo ($this->lang == 'Es') ? 'Escriba su consulta...' : 'Write your message...'; ?>"></textarea>
                         </div>
-                        
+                        <input type="text" id="input-totalmente-falso" style="display: none"> 
                         <br>
                              <!--KEY PROD-->
                         <div class="form-group">
@@ -107,6 +107,14 @@
         });
         function enableBtn(){
             document.getElementById("submit").disabled = false;
+        }
+        function validateMyForm() {
+            if(!document.getElementById("input-totalmente-falso").value) {
+                return true;
+            } //si no existe nada de contenido en el input falso, entonces se envía
+            else {
+                return false;
+            } //si existe, entonces es que es un bot quien intenta completarlo, por lo que no hacemos nada
         }
     </script>
 <!-- end Bootstrap validate-->
