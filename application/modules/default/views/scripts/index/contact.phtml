@@ -49,6 +49,9 @@
                             <textarea id="query" name="SConsulta"  data-validate="required" class="form-control" style="resize: vertical;" placeholder="<?php echo ($this->lang == 'Es') ? 'Escriba su consulta...' : 'Write your message...'; ?>"></textarea>
                         </div>
                         <input type="text" id="input-totalmente-falso" style="display: none"> 
+                        <div class="form-group">
+                            <input type="text" name="id_token" id="id_token" style="display: none" value=""> 
+                        </div>
                         <br>
                              <!--KEY PROD-->
                         <div class="form-group">
@@ -106,6 +109,17 @@
                     );
         });
         function enableBtn(){
+            $.ajax({
+                url: '<?php echo $this->url(array('module' => 'default', 'controller' => 'index', 'action' => 'generatetoken'),'default',true); ?>',
+                type: 'POST',
+                dataType: 'json',
+                success: function(json) {
+                    if(json.response == true){
+                        $('#id_token').val(""+json.data+"");
+                    }
+                    
+                }
+            });
             document.getElementById("submit").disabled = false;
         }
         function validateMyForm() {
@@ -116,5 +130,6 @@
                 return false;
             } //si existe, entonces es que es un bot quien intenta completarlo, por lo que no hacemos nada
         }
+
     </script>
 <!-- end Bootstrap validate-->

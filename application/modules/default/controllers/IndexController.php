@@ -489,44 +489,44 @@ class IndexController extends Zend_Controller_Action {
         $this->view->action = 'contact';
 
         if ($this->getRequest()->isPost()) {
-
             //Elimino submit y otros no utiles
             
             //Llamo al modelo y envio mail
             try {
-                /* EMAIL */
-                Zend_Layout::startMvc(array('layout' => 'email', 'layoutPath' => '../application/layouts/scripts/'));
-                $layout = $this->_helper->layout->getLayoutInstance();
-                $this->view->post=$_POST;
-                $layout->content = $this->view->render('emails/query.phtml');
-                $html =  $layout->render();
-                $this->_helper->Mail->sendEmail($html, "Consulta enviada desde la web");
+                if($_SESSION['token'] == $_POST['id_token']){
+                    /* EMAIL */
+                    Zend_Layout::startMvc(array('layout' => 'email', 'layoutPath' => '../application/layouts/scripts/'));
+                    $layout = $this->_helper->layout->getLayoutInstance();
+                    $this->view->post=$_POST;
+                    $layout->content = $this->view->render('emails/query.phtml');
+                    $html =  $layout->render();
+                    $this->_helper->Mail->sendEmail($html, "Consulta enviada desde la web");
 
-                // $headers = "From: " . strip_tags($_POST['SEmail']) . "\r\n";
-                // $headers .= "Reply-To: ". strip_tags($_POST['SEmail']) . "\r\n";
-                // $headers .= "MIME-Version: 1.0\r\n";
-                // $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
-                
-                // $subject = ($this->lang == 'Es') ? 'Tahiti Paradise - Consulta desde nuestra web' : 'Tahiti Paradise - Message sent from our web' ;
-                // $body = '<html><body>';
-                // $body .= "<strong style='color:#2D439C'>Tahiti Paradise - Mensaje enviado desde la web. </strong><br />";
-                // $body .= "Enviado por: <strong>" . $_POST['SNombre'] . "</strong> | Email : <strong>" . $_POST['SEmail'] . "</strong><br />";
-                // $body .= "Empresa: " . (isset($_POST['SEmpresa']) && $_POST['SEmpresa'] != '') ? $_POST['SEmpresa'] : 'No indica.' ;
-                // $body .= "<br />";
-                // $body .= "Telefono: " . (isset($_POST['STelefono']) && $_POST['STelefono'] != '') ? $_POST['STelefono'] : 'No indica.' ;
-                // $body .= "<br />";
-                // $body .= "<strong>Consulta: </strong>" . $_POST['SConsulta'];
-                // $body .= '</body></html>';
-                
+                    // $headers = "From: " . strip_tags($_POST['SEmail']) . "\r\n";
+                    // $headers .= "Reply-To: ". strip_tags($_POST['SEmail']) . "\r\n";
+                    // $headers .= "MIME-Version: 1.0\r\n";
+                    // $headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+                    
+                    // $subject = ($this->lang == 'Es') ? 'Tahiti Paradise - Consulta desde nuestra web' : 'Tahiti Paradise - Message sent from our web' ;
+                    // $body = '<html><body>';
+                    // $body .= "<strong style='color:#2D439C'>Tahiti Paradise - Mensaje enviado desde la web. </strong><br />";
+                    // $body .= "Enviado por: <strong>" . $_POST['SNombre'] . "</strong> | Email : <strong>" . $_POST['SEmail'] . "</strong><br />";
+                    // $body .= "Empresa: " . (isset($_POST['SEmpresa']) && $_POST['SEmpresa'] != '') ? $_POST['SEmpresa'] : 'No indica.' ;
+                    // $body .= "<br />";
+                    // $body .= "Telefono: " . (isset($_POST['STelefono']) && $_POST['STelefono'] != '') ? $_POST['STelefono'] : 'No indica.' ;
+                    // $body .= "<br />";
+                    // $body .= "<strong>Consulta: </strong>" . $_POST['SConsulta'];
+                    // $body .= '</body></html>';
+                    
 
-                // //Envio el email
-                // mail(
-                //     'inbound@tahitiparadise.com', 
-                //     $subject, 
-                //     $body, 
-                //     $headers
-                //     );
-                
+                    // //Envio el email
+                    // mail(
+                    //     'inbound@tahitiparadise.com', 
+                    //     $subject, 
+                    //     $body, 
+                    //     $headers
+                    //     );
+                } 
             } catch (Zend_Exception $exc) {
                 //Redirecciono al index con error. Evita colgar la aplicación
                 $this->_helper->flashMessenger->addMessage(array('type' => 'danger', 'message' => $this->errorMessage . '<br>' . $exc->getMessage()));
@@ -539,6 +539,18 @@ class IndexController extends Zend_Controller_Action {
             $this->_redirector->gotoSimple('index', null, null, array('status' => 'success'));
         }
         
+    }
+
+    //GENERO TOKEN PARA VALIDAR FORMULARIO
+
+    public function generatetokenAction(){
+        $exp_reg = "[^A-Z0-9]";
+        $this->token = substr(@preg_replace($exp_reg, "", md5(rand())) . @preg_replace($exp_reg, "", md5(rand())) . @preg_replace($exp_reg, "", md5(rand())), 0, 50);
+        $_SESSION['token'] =  $this->token;
+        $this->sendResponse($this->_helper->json(array(
+            'response'=>true,
+            'data'=>$this->token
+        )));
     }
 
     //Create account
