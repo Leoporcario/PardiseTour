@@ -70,7 +70,7 @@ class Zend_Controller_Action_Helper_Mail extends Zend_Controller_Action_Helper_A
         $mail->Port = 587; // or 587
         $mail->IsHTML(true);
         $mail->Username = "info@tahitiparadise.com";
-        $mail->Password = "PTours001";
+        $mail->Password = "Ramyap001";
         $mail->SetFrom("inbound@tahitiparadise.com","Paradise Tours");
         $mail->Subject = $asunto;
         $mail->MsgHTML($contenido);
